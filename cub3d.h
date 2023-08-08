@@ -1,0 +1,53 @@
+#ifndef CUB3D_H
+# define CUB3D_H
+
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include "libft/libft.h"
+#include "parsing/parsing_header.h"
+
+# define BUFFER_SIZE 42
+
+struct t_akinator
+{
+
+	int	Floor_rgb[3];
+	int ceiling_rgb[3];
+};
+
+
+enum	e_file_perm
+{
+	FILE_KO,
+	FILE_OK,
+	FILE_NO_PERMS,
+	FILE_RDONLY,
+	FILE_WRONLY,
+	FILE_XONLY,
+	FILE_RDWR,
+	FILE_RDX,
+	FILE_WRX,
+	FILE_RDWRX,
+	IS_A_DIREC,
+};
+
+enum	e_map_parsing_error
+{
+	HOLE_IN_LINE,
+	INCOMPLETE_LINE,
+	BAD_LINE,
+	LINES_OK,
+	HOLE_IN_COL,
+	INCOMPLETE_COL,
+	BAD_COL,
+	COL_OK,
+	PLAYER_IS_BRINGING_MILK,
+	PLAYER_OKAY,
+	PLAYER_KAYO,
+};
+
+
+
+#endif
