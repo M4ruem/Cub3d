@@ -6,7 +6,7 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:10:29 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/08 18:42:44 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:35:31 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_check_horizontal_map_border(char **map, int i, int j)
 			k = ft_get_eol(map[i], j + 1);
 			if (k > 0 && map[i][k] && map[i][k] == '1')
 			{
-				if (!ft_check_inside_line(map, j, k))
+				if (!ft_check_inside_line(map[i], j, k))
 					return (HOLE_IN_LINE);
 				i++;
 			}

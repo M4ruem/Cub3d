@@ -4,7 +4,16 @@ SRCS		=	main.c\
 				parsing/ft_parsing.c\
 				parsing/ft_check_args.c\
 				parsing/ft_parsing_file_content.c\
-				All_free/ft_free_multiple_array.c\
+				parsing/ft_check_inside_row_col.c\
+				parsing/ft_check_player.c\
+				parsing/ft_check_row_and_col.c\
+				parsing/ft_init_struct.c\
+				parsing/ft_map_analysis.c\
+				parsing/ft_parsing_shortcut.c\
+				parsing/ft_parsing_shortcut_2.c\
+				parsing/ft_set_struct.c\
+				All_free/ft_free_structs.c\
+				All_free/ft_free_arrays.c\
 
 OBJS		=	${SRCS:.c=.o}
 

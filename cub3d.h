@@ -5,17 +5,21 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <string.h>
+#include <errno.h>
 #include "libft/libft.h"
 #include "parsing/parsing_header.h"
+#include "All_free/frees.h"
 
 # define BUFFER_SIZE 42
 
-struct t_akinator
+typedef struct s_akinator
 {
-
-	int	Floor_rgb[3];
-	int ceiling_rgb[3];
-};
+	char	*texture_paths[4];
+	int		Floor_rgb[3];
+	int		Ceiling_rgb[3];
+	char	**map;
+}	t_akinator;
 
 
 enum	e_file_perm
@@ -46,6 +50,7 @@ enum	e_map_parsing_error
 	PLAYER_IS_BRINGING_MILK,
 	PLAYER_OKAY,
 	PLAYER_KAYO,
+	TOO_MANY_PEOPLE_AAAAAH,
 };
 
 

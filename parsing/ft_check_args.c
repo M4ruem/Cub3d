@@ -6,13 +6,13 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:35:14 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/08 17:00:23 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:06:11 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int	ft_strcmp(char *s1, char *s2)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
@@ -51,7 +51,7 @@ static int	ft_check_file_access(char *str)
 	return (FILE_NO_PERMS);
 }
 
-static int	ft_check_access(char *str)
+int	ft_check_access(char *str)
 {
 	int	test;
 
@@ -78,12 +78,15 @@ int	ft_check_args(char **av)
 		i++;
 	if ((ft_strcmp(&av[1][i], ".cub")))
 	{
-		printf("%s\n", "Wrong format");
+		ft_printf_fd(2, "%s\n", "Wrong format");
 		return (0);
 	}
 	test_perms = ft_check_access(av[1]);
 	if (test_perms != FILE_RDONLY && test_perms != FILE_RDWR
 		&& test_perms != FILE_RDWRX)
+	{
+		ft_printf_fd(2, strerror(13));
 		return (0);
+	}
 	return (1);
 }

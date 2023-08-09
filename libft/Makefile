@@ -6,7 +6,7 @@
 #    By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 13:57:27 by lflandri          #+#    #+#              #
-#    Updated: 2023/08/08 16:22:39 by cormiere         ###   ########.fr        #
+#    Updated: 2023/08/09 20:47:25 by cormiere         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRC 		= ft_bzero.c\
 			ft_isascii.c\
 			ft_isdigit.c\
 			ft_isprint.c\
+			ft_isuppercase.c\
 			ft_memchr.c\
 			ft_memcmp.c\
 			ft_memcpy.c\
@@ -27,6 +28,7 @@ SRC 		= ft_bzero.c\
 			ft_strlcpy.c\
 			ft_strlen.c\
 			ft_strncmp.c\
+			ft_strndup.c\
 			ft_strnstr.c\
 			ft_strrchr.c\
 			ft_tolower.c\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lflandri <lflandri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 11:36:01 by lflandri          #+#    #+#             */
-/*   Updated: 2022/11/03 20:04:27 by lflandri         ###   ########.fr       */
+/*   Updated: 2023/08/09 20:47:33 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int				ft_isalpha(int c);
 int				ft_isascii(int c);
 int				ft_isdigit(int c);
 int				ft_isprint(int c);
+int				ft_isuppercase(char c);
 char			*ft_itoa(int n);
 char			*ft_join(char const *s1, char const *s2);
 void			ft_lstadd_back(t_list **lst, t_list *new);
@@ -69,6 +70,7 @@ size_t			ft_strlcpy(char *dest, const char *src, size_t n);
 size_t			ft_strlen(const char *str);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
+char			*ft_strndup(const char *src, int size);
 char			*ft_strnstr(const char *big, const char *little, size_t len);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strtrim(char const *s1, char const *set);

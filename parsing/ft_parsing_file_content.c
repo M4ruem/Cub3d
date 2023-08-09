@@ -6,7 +6,7 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 14:11:25 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/08 21:11:56 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/09 20:41:00 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,6 @@ int	ft_array_len(char **array)
 	return (i);
 }
 
-char	*ft_self_made_strcpy(char *str)
-{
-	char	*new_str;
-	int 	i;
-
-	i = 0;
-	if (!str)
-		return (NULL);
-	new_str = ft_calloc(sizeof(char), (ft_strlen(str) + 1));
-	if (!new_str)
-		return (NULL);
-	while (str[i])
-	{
-		new_str[i] = str[i];
-		i++;
-	}
-	return (new_str);
-}
-
 static char	**ft_add_line(char **old_cont, char *line, 	int i, int nb_line)
 {
 	char	**new_cont;
@@ -55,14 +36,14 @@ static char	**ft_add_line(char **old_cont, char *line, 	int i, int nb_line)
 	}
 	while (old_cont[++i])
 	{
-		new_cont[i] = ft_self_made_strcpy(old_cont[i]);
+		new_cont[i] = ft_strdup(old_cont[i]);
 		if (!new_cont[i])
 		{
 			ft_free_multiple_array(new_cont, old_cont, NULL);
 			return (NULL);
 		}
 	}
-	new_cont[i] = ft_self_made_strcpy(line);
+	new_cont[i] = ft_strdup(line);
 	if (!new_cont[i])
 	{
 		ft_free_multiple_array(new_cont, old_cont, NULL);
@@ -72,14 +53,8 @@ static char	**ft_add_line(char **old_cont, char *line, 	int i, int nb_line)
 	return (new_cont);
 }
 
-char **ft_check_file_content(char *file)
+char **ft_check_file_content(char *file, int fd, char *line, char **content)
 {
-	char	*line;
-	char	**content;
-	int		fd;
-	int		nb_row;
-
-	nb_row = 0;
 	content = ft_calloc(sizeof(char *), 1);
 	if (!content)
 		return (NULL);
@@ -89,10 +64,19 @@ char **ft_check_file_content(char *file)
 		line = get_next_line(fd);
 		if (!line)
 			break;
+		if (line[ft_strlen(line) - 1] == '\n')
+			line[ft_strlen(line) - 1] = 0;
 		content = ft_add_line(content, line, -1, ft_array_len(content));
 		if (!content)
 			return (NULL);
 		free(line);
+	}
+	if (ft_is_empty_file(content))
+		ft_printf_fd(2, "EMPTY FILE\n");
+	if (ft_is_empty_file(content))
+	{
+		free(content);
+		return (NULL);
 	}
 	return (content);
 }

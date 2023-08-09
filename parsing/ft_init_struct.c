@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_init_struct.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/08 13:27:58 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/09 18:42:53 by cormiere         ###   ########.fr       */
+/*   Created: 2023/08/09 15:13:24 by cormiere          #+#    #+#             */
+/*   Updated: 2023/08/09 15:18:51 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int	main(int ac, char **av)
+t_akinator *ft_init_struct(int map_len)
 {
 	t_akinator *data;
-	int	error;
+	int			i;
 
-	if (ac != 2)
-	{
-		if (ac < 2)
-			ft_printf_fd(2, "%s\n" , "too few arguments\n"); //a changer
-		else
-			ft_printf_fd(2, "%s\n" , "too many arguments\n"); //a changer
-		return 0;
-	}
-	data = ft_launch_parsing(av, 0);
+	i = -1;
+	data = ft_calloc(sizeof(t_akinator), 1);
 	if (!data)
-		return (1);
-	error = ft_check_texture_paths(data);
-	if (!error)
+		return (NULL);
+	data->map = ft_calloc(sizeof(char *), map_len);
+	if (!data->map)
 	{
-		ft_printf_fd(2, "WRONG TEXTURE PATHS\n");
-		return (1);
+		free(data);
+		return (NULL);
 	}
-	//func
-	return (0);
+	while (++i < 4)
+		data->texture_paths[i] = NULL;
+	i = -1;
+	while (++i < 3)
+	{
+		data->Ceiling_rgb[i] = 0;
+		data->Floor_rgb[i] = 0;
+	}
+	return (data);
 }
