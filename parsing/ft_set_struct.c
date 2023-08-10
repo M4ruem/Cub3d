@@ -6,7 +6,7 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 13:31:54 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/09 20:48:16 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/10 21:21:37 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,19 @@ static int	ft_check_color(char *color, t_akinator *data, char c)
 	while (color[start] == ' ' || color[start] == '\t')
 		start++;
 	end = start;
-	while (color[end] != ' ' || color[end] != '\t' || color[end])
+	while (color[end] && (color[end] != ' ' || color[end] != '\t'))
 		end++;
-	if ((c == 'F' && (data->Floor_rgb[0] || data->Floor_rgb[1] \
-		|| data->Floor_rgb[2])) || (c == 'C' && (data->Ceiling_rgb[0] || data->Ceiling_rgb[1] \
-		|| data->Ceiling_rgb[2])))
+	if ((c == 'F' && (data->Floor_rgb[0] != -1 || data->Floor_rgb[1] != -1 \
+		|| data->Floor_rgb[2] != -1)) || (c == 'C'\
+		&& (data->Ceiling_rgb[0] != -1 || data->Ceiling_rgb[1] != -1\
+		|| data->Ceiling_rgb[2] != -1)))
 		return (0);
 	tmp = ft_strndup(&color[start], end - start);
 	if (!tmp)
 		return (0);
 	if (!ft_is_color_ok(tmp, -1, 0, NULL))
 		return (0);
-	error = ft_convert_color(tmp, data, c);
+	error = ft_convert_color(tmp, data, c, NULL);
 	if (!error)
 		return (0);
 	return (1);
@@ -50,7 +51,7 @@ static int	ft_check_texture(char *texture, t_akinator *data, char *pair)
 	while (texture[start] == ' ' || texture[start] == '\t')
 		start++;
 	end = start;
-	while (texture[end] != ' ' || texture[end] != '\t' || texture[end])
+	while (texture[end] && (texture[end] != ' ' || texture[end] != '\t'))
 		end++;
 	index = ft_which_case(pair);
 	if (index < 0 || index > 3)
@@ -90,16 +91,12 @@ static int	ft_check_case(char **attributes, t_akinator *data, int i, int j)
 	return (0);
 }
 
-static int	ft_attributes_analysis(char **attributes, t_akinator *data)
+static int	ft_attributes_analysis(char **attributes, t_akinator *data, int i, int j)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (attributes[i])
+	while (attributes[++i])
 	{
-		j = 0;
-		while (attributes[i][j])
+		j = -1;
+		while (attributes[i][++j])
 		{
 			if (ft_isuppercase(attributes[i][j])
 				&& (j == 0 || (j > 0 && (attributes[i][j - 1] == '\t' \
@@ -112,14 +109,15 @@ static int	ft_attributes_analysis(char **attributes, t_akinator *data)
 				}
 				break;
 			}
-			j++;
 		}
-		i++;
 	}
+	 if (ft_is_attrib_missing(data))
+	 	return (0);
+	ft_free_multiple_array(attributes, NULL, NULL);
 	return (1);
 }
 
-t_akinator *ft_set_up_akinator(char **attributes, char **map, int i, int error)
+t_akinator *ft_set_up_akinator(char **attributes, char **map, int i)
 {
 	t_akinator *data;
 
@@ -133,16 +131,16 @@ t_akinator *ft_set_up_akinator(char **attributes, char **map, int i, int error)
 		data->map[i] = ft_strdup(map[i]);
 		if (!data->map[i])
 		{
-			ft_free_multiple_array(attributes, map, data->map);
-			free(data);
+			ft_free_multiple_array(attributes, map, NULL);
+			ft_free_data(data);
 			return (NULL);
 		}
 	}
-	error = ft_attributes_analysis(attributes, data);
-	if (!error)
+	ft_free_multiple_array(map, NULL, NULL);
+	if (!ft_attributes_analysis(attributes, data, -1, -1))
 	{
-		ft_free_multiple_array(attributes, map, data->map);
-		free(data);
+		ft_free_multiple_array(attributes, NULL, NULL);
+		ft_free_data(data);
 		return (NULL);
 	}
 	return (data);

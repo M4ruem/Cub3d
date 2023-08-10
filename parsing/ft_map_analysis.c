@@ -6,7 +6,7 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 17:23:11 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/09 18:42:53 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:41:36 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_map_analysis(char **map)
 		ft_printf_fd(2, "HORIZONTAL LINES ERROR\n");
 	if (error != LINES_OK)
 		return (0);
-	error = ft_check_vertical_map_border(map, 0, 0);
+	error = ft_check_vertical_map_border(map, 0, -1);
 	if (error != COL_OK)
 		ft_printf_fd(2, "VERTICAL LINES ERROR\n");
 	if (error != COL_OK)

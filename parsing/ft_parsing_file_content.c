@@ -6,7 +6,7 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 14:11:25 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/09 20:41:00 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/10 15:31:55 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char **ft_check_file_content(char *file, int fd, char *line, char **content)
 		line = get_next_line(fd);
 		if (!line)
 			break;
-		if (line[ft_strlen(line) - 1] == '\n')
+		if (line[ft_strlen(line) - 1] == '\n' && (ft_strlen(line) > 1))
 			line[ft_strlen(line) - 1] = 0;
 		content = ft_add_line(content, line, -1, ft_array_len(content));
 		if (!content)

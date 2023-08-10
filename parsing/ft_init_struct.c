@@ -6,7 +6,7 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:13:24 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/09 15:18:51 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/10 20:30:22 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ t_akinator *ft_init_struct(int map_len)
 	data = ft_calloc(sizeof(t_akinator), 1);
 	if (!data)
 		return (NULL);
-	data->map = ft_calloc(sizeof(char *), map_len);
+	data->map = ft_calloc(sizeof(char *), map_len + 1);
 	if (!data->map)
 	{
 		free(data);
 		return (NULL);
 	}
-	while (++i < 4)
+	while (++i <= 4)
 		data->texture_paths[i] = NULL;
 	i = -1;
 	while (++i < 3)
 	{
-		data->Ceiling_rgb[i] = 0;
-		data->Floor_rgb[i] = 0;
+		data->Ceiling_rgb[i] = -1;
+		data->Floor_rgb[i] = -1;
 	}
 	return (data);
 }

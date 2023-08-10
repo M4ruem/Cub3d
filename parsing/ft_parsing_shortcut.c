@@ -6,7 +6,7 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:04:52 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/09 18:36:13 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/10 21:22:09 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,8 @@ int	ft_is_color_ok(char *tmp, int i, int nb_commas, char	**tmp_tab)
 	return (1);
 }
 
-int	ft_convert_color(char *tmp, t_akinator *data, char c)
+int	ft_convert_color(char *tmp, t_akinator *data, char c, char **tmp_tab)
 {
-	char	**tmp_tab;
 	int		i;
 
 	i = -1;
@@ -65,6 +64,11 @@ int	ft_convert_color(char *tmp, t_akinator *data, char c)
 	free(tmp);
 	if (!tmp_tab)
 		return (0);
+	if (ft_array_len(tmp_tab) < 3)
+	{
+		ft_free_multiple_array(tmp_tab, NULL, NULL);
+		return (0);
+	}
 	if (c == 'F')
 	{
 		while (++i < 3)

@@ -6,7 +6,7 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:27:58 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/09 18:42:53 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/10 18:05:49 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	//func
+	ft_free_data(data);
 	return (0);
 }

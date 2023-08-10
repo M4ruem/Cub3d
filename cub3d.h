@@ -15,7 +15,7 @@
 
 typedef struct s_akinator
 {
-	char	*texture_paths[4];
+	char	*texture_paths[5];
 	int		Floor_rgb[3];
 	int		Ceiling_rgb[3];
 	char	**map;

@@ -1,6 +1,7 @@
 NAME		=	Cub3d
 
 SRCS		=	main.c\
+				parsing/ft_attributes_securities.c\
 				parsing/ft_parsing.c\
 				parsing/ft_check_args.c\
 				parsing/ft_parsing_file_content.c\
@@ -11,6 +12,7 @@ SRCS		=	main.c\
 				parsing/ft_map_analysis.c\
 				parsing/ft_parsing_shortcut.c\
 				parsing/ft_parsing_shortcut_2.c\
+				parsing/ft_parsing_shortcut_3.c\
 				parsing/ft_set_struct.c\
 				All_free/ft_free_structs.c\
 				All_free/ft_free_arrays.c\
