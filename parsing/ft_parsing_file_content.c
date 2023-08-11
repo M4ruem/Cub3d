@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing_file_content.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 14:11:25 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/10 15:31:55 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/11 18:28:03 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char **ft_check_file_content(char *file, int fd, char *line, char **content)
 		free(line);
 	}
 	if (ft_is_empty_file(content))
-		ft_printf_fd(2, "EMPTY FILE\n");
+		ft_printf_fd(2, "Error\nEMPTY FILE\n");
 	if (ft_is_empty_file(content))
 	{
 		free(content);

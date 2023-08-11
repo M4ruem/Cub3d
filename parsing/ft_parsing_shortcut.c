@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing_shortcut.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:04:52 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/10 21:22:09 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/11 19:19:41 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,25 @@ int	ft_convert_color(char *tmp, t_akinator *data, char c, char **tmp_tab)
 int	ft_is_empty_file(char **content)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	while (content[i])
 	{
 		if (content[i])
-			return (0);
+		{
+			j = -1;
+			while (content[i][++j])
+			{
+				if (content[i][j] != ' ' && content[i][j] != '\t'
+					&& content[i][j] != '\n')
+				{
+					return (0);
+				}
+			}
+			ft_free_sp_array(content);
+			return (1);
+		}
 		i++;
 	}
 	return (1);

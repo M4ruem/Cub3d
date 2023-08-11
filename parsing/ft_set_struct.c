@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_set_struct.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 13:31:54 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/10 21:21:37 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/11 18:25:40 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ static int	ft_attributes_analysis(char **attributes, t_akinator *data, int i, in
 			{
 				if (!ft_check_case(attributes, data, i, j))
 				{
-					ft_printf_fd(2, "ATTRIBUTE ERROR\n");
+					ft_printf_fd(2, "Error\nATTRIBUTE ERROR\n");
 					return (0);
 				}
 				break;

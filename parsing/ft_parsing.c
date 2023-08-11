@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:41:11 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/10 21:36:38 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/11 18:24:17 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	ft_cut(char **map, char last_char, int i, int j)
 				if (last_char == 0)
 				{
 					if (i == 0)
-						ft_printf_fd(2, "EMPTY ATTRIBUTES\n");
+						ft_printf_fd(2, "Error\nEMPTY ATTRIBUTES\n");
 					if (i == 0)
 						return (0);
 					return (i - 1);
@@ -67,7 +67,7 @@ static int ft_ajust_map(char **map, int index)
 	if (ft_is_empty_file(map)
 		|| ft_check_multiple_map(map, ft_array_len(map), -1, 0))
 	{
-		ft_printf_fd(2, "EMPTY MAP OR MULTIPLE MAP\n");
+		ft_printf_fd(2, "Error\nEMPTY MAP OR MULTIPLE MAP\n");
 		free(map);
 		return (0);
 	}

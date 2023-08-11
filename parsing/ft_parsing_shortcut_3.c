@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing_shortcut_3.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 19:04:13 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/10 22:03:40 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/11 14:41:58 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	ft_check_vertical_multiple_map(char **map, const int len, int end_line, int 
 			while (!ft_is_col_empty(map, j))
 				j++;
 			i = j;
-			while (ft_is_col_empty(map, i) == 1)
+			while (map[0][i] && ft_is_col_empty(map, i) == 1)
 				i++;
 			if (map[0][i] && !ft_is_col_empty(map, i))
 			{

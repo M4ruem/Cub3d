@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_row_and_col.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:10:29 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/10 16:40:14 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/11 19:36:33 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+static int ft_map_characters(char c)
+{
+	if (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	return (0);
+}
 
 static int	ft_get_eol(char *line, int i)
 {
@@ -19,8 +26,11 @@ static int	ft_get_eol(char *line, int i)
 	last_one = i - 1;
 	while (line[i])
 	{
-		if (line[i] && line[i] == '1')
+		if (line[i] && (line[i] == '1' || line[i] == '0' || line[i] == 'N'\
+			|| line[i] == 'E' || line[i] == 'W' || line[i] == 'Z'))
 			last_one = i;
+		else if (line[i] && (line[i] != ' ' && line[i] != '\t'))
+			return (i);
 		i++;
 	}
 	return (last_one);
@@ -44,6 +54,8 @@ int	ft_check_horizontal_map_border(char **map, int i, int j)
 					return (HOLE_IN_LINE);
 				i++;
 			}
+			else if (map[i][k] && !ft_map_characters(map[i][k]))
+				return (INTRUDER_CHARACTER);
 			else
 				return (INCOMPLETE_LINE);
 		}
@@ -62,7 +74,9 @@ static int	ft_get_eoc(char **map, int col, int i)
 		return (last_one);
 	while (map[i][col])
 	{
-		if (map[i][col] && map[i][col] == '1')
+		if (map[i][col] && (map[i][col] == '1' || map[i][col] == '0'\
+			|| map[i][col] == 'N' || map[i][col] == 'E'|| map[i][col] == 'W'\
+			|| map[i][col] == 'S'))
 			last_one = i;
 		i++;
 		if (!map[i])
@@ -87,9 +101,6 @@ int	ft_check_vertical_map_border(char **map, int i, int j)
 			{
 				if (!ft_check_inside_col(map, j, i, k))
 					return (HOLE_IN_COL);
-				i++;
-				if (!map[i])
-					break;
 			}
 			else
 				return (INCOMPLETE_COL);

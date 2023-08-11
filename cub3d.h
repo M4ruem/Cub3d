@@ -51,8 +51,9 @@ enum	e_map_parsing_error
 	PLAYER_OKAY,
 	PLAYER_KAYO,
 	TOO_MANY_PEOPLE_AAAAAH,
+	INTRUDER_CHARACTER,
 };
 
-
+void	ft_printf_map_error(int	error_key);
 
 #endif

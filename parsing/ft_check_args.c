@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:35:14 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/09 18:06:11 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/11 18:25:12 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,17 @@ int	ft_check_args(char **av)
 		return (0);
 	while (av[1][i] != '.')
 		i++;
-	if ((ft_strcmp(&av[1][i], ".cub")))
+	if (((ft_strcmp(&av[1][i], ".cub") && ft_strlen(av[1]) > 4))\
+		|| (!ft_strcmp(&av[1][i], ".cub") && ft_strlen(av[1]) <= 4))
 	{
-		ft_printf_fd(2, "%s\n", "Wrong format");
+		ft_printf_fd(2, "Error\n%s\n", "WRONG FORMAT");
 		return (0);
 	}
 	test_perms = ft_check_access(av[1]);
 	if (test_perms != FILE_RDONLY && test_perms != FILE_RDWR
 		&& test_perms != FILE_RDWRX)
 	{
-		ft_printf_fd(2, strerror(13));
+		ft_printf_fd(2, "Error\n%s\n", strerror(13));
 		return (0);
 	}
 	return (1);

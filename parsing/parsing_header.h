@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_header.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:11:34 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/10 21:41:24 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/11 18:04:10 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			ft_strcmp(char *s1, char *s2);
 int			ft_which_case(char *pair);
 t_akinator *ft_init_struct(int map_len);
 int			ft_is_color_ok(char *tmp, int i, int nb_comas, char **tmp_tab);
-int			ft_check_player(char **map, int i, int j);
+int			ft_check_player(char **map, int i, int j, int player);
 int			ft_convert_color(char *tmp, t_akinator *data, char c, char **tmp_tab);
 int			ft_is_empty_file(char **content);
 void		ft_free_data(t_akinator *data);
@@ -45,5 +45,6 @@ int			ft_is_line_empty(char *line);
 int			ft_is_attrib_missing(t_akinator *data);
 int			ft_is_from_map(char **map, int i, int j);
 int			ft_check_vertical_multiple_map(char **map, const int len, int end_line, int j);
+void		ft_printf_map_error(int	error_key);
 
 #endif
