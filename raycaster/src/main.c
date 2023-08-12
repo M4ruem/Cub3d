@@ -55,7 +55,6 @@ int main(int ac, const char** av)
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-	draw_map2D();
 	if (!(image = mlx_new_image(mlx, 10, 10)))
 	{
 		mlx_close_window(mlx);
@@ -68,7 +67,6 @@ int main(int ac, const char** av)
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-
 	mlx_loop_hook(mlx, ft_set_color, mlx);
 	mlx_loop_hook(mlx, ft_hook, mlx);
 
