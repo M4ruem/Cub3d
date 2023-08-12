@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <errno.h>
+#include "raycaster/lib/MLX42/include/MLX42/MLX42.h"
 #include "libft/libft.h"
 #include "parsing/parsing_header.h"
 #include "All_free/frees.h"

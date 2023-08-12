@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:04:52 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/11 19:19:41 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/12 14:19:57 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,26 +105,6 @@ int	ft_is_empty_file(char **content)
 			}
 			ft_free_sp_array(content);
 			return (1);
-		}
-		i++;
-	}
-	return (1);
-}
-
-int	ft_check_texture_paths(t_akinator *data)
-{
-	int	i;
-	int	perms;
-
-	i = 0;
-	while (data->texture_paths[i] && i < 4)
-	{
-		perms = ft_check_access(data->texture_paths[i]);
-		if (perms != FILE_RDONLY && perms != FILE_RDWR
-			&& perms != FILE_RDWRX)
-		{
-			ft_free_data(data);
-			return (0);
 		}
 		i++;
 	}

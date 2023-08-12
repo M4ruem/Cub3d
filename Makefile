@@ -14,6 +14,7 @@ SRCS		=	main.c\
 				parsing/ft_parsing_shortcut_2.c\
 				parsing/ft_parsing_shortcut_3.c\
 				parsing/ft_set_struct.c\
+				parsing/ft_verif_textures.c\
 				All_free/ft_free_structs.c\
 				All_free/ft_free_arrays.c\
 

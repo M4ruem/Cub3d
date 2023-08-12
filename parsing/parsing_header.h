@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:11:34 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/11 18:04:10 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/12 15:16:07 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			ft_check_player(char **map, int i, int j, int player);
 int			ft_convert_color(char *tmp, t_akinator *data, char c, char **tmp_tab);
 int			ft_is_empty_file(char **content);
 void		ft_free_data(t_akinator *data);
-int			ft_check_texture_paths(t_akinator *data);
+int			ft_check_if_textures_works(t_akinator *data);
 int			ft_map_analysis(char **map);
 char		**ft_arraydup(char **map, int index, int i);
 char		**ft_rarraydup(char **map, int index, int i);

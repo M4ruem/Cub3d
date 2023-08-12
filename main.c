@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:27:58 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/11 18:42:43 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/12 14:08:23 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int ac, char **av)
 	data = ft_launch_parsing(av, 0);
 	if (!data)
 		return (1);
-	error = ft_check_texture_paths(data);
+	error = ft_check_if_textures_works(data);
 	if (!error)
 	{
 		ft_printf_fd(2, "Error\nWRONG TEXTURE PATHS\n");
