@@ -1,5 +1,12 @@
 NAME		=	Cub3d
 
+LIBMLX	:= ./raycaster/lib/MLX42
+
+HEADERS	:= -I ./include -I $(LIBMLX)/include
+LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+
+OBJS	:= ${SRCS:.c=.o}
+
 SRCS		=	main.c\
 				parsing/ft_attributes_securities.c\
 				parsing/ft_parsing.c\
@@ -17,12 +24,13 @@ SRCS		=	main.c\
 				parsing/ft_verif_textures.c\
 				All_free/ft_free_structs.c\
 				All_free/ft_free_arrays.c\
+				$(shell find ./src -iname "*.c")
 
 OBJS		=	${SRCS:.c=.o}
 
 CC			=	@clang
 
-CFLAGS		=	-Wall -Werror -Wextra -g3
+CFLAGS		=	-Wall -Werror -Wextra -Iinclude -ldl -lglfw -pthread -lm -Wunreachable-code -Ofast -g3
 
 
 LIBFT_PATH = libft/ --no-print-directory
