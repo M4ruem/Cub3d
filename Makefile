@@ -90,7 +90,10 @@ LIBMLX	:= ./MLX42
 
 HEADERS	:= -I ./include -I $(LIBMLX)/include
 LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-SRCS	:= $(shell ls -l */**/* | grep -F .c | wc -l)
+
+SRCS	:= $(shell find ./srcs -iname "*.c")
+
+
 OBJS	:= ${SRCS:.c=.o}
 
 LIBFT_PATH = libft/ --no-print-directory
@@ -102,13 +105,13 @@ libmlx:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
+	@clang $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
 
 $(LIBFT_NAME):
 	make -C $(LIBFT_PATH)
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) $(LIBFT_NAME) $(LIBS) $(HEADERS) -o $(NAME)
+	@clang $(OBJS) $(LIBFT_NAME) $(LIBS) $(HEADERS) -o $(NAME)
 
 clean:
 	make clean -C ./libft
