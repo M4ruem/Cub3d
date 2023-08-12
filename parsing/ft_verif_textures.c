@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_verif_textures.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 14:11:20 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/12 15:23:56 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/12 15:33:11 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	ft_image_integrity(t_akinator *data)
 	i = 0;
 	while (data->texture_paths[i])
 	{
-		tmp = mlx_load_png(texture_paths[i]);
+		tmp = mlx_load_png(data->texture_paths[i]);
 		if (!tmp)
 			return (0);
 		free(tmp);
@@ -61,7 +61,7 @@ int	ft_check_if_textures_works(t_akinator *data)
 	while (data->texture_paths[++i] && i < 4)
 	{
 		perms = ft_check_access(data->texture_paths[i]);
-		if (perms != FILE_RDONLY && perms != FILE_RDWR && perms != FILE_RDWRX)	
+		if (perms != FILE_RDONLY && perms != FILE_RDWR && perms != FILE_RDWRX)
 		{
 			ft_free_data(data);
 			return (0);
