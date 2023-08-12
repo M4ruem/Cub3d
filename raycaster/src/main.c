@@ -6,7 +6,7 @@
 #define WIDTH 600
 #define HEIGHT 600
 
-int map[] =
+/*int map[] =
 {
 	1,1,1,1,1,1,1,1,
 	1,0,0,0,0,0,0,1,
@@ -16,7 +16,7 @@ int map[] =
 	1,0,0,0,0,0,0,1,
 	1,0,0,0,0,0,0,1,
 	1,1,1,1,1,1,1,1,
-};
+};*/
 
 static mlx_image_t*	image;
 static mlx_image_t*	pouet;
@@ -40,28 +40,29 @@ void ft_set_color(void* arg)
 	}
 }
 
-void	draw_map2D(void *arg)
+/*void	draw_map2D(void *arg)
 {
+	(void)arg;
 	int x;
 	int y;
 
 	y = 0;
 	while (y < 8)
 	{
+		x = 0;
 		while (x < 8)
 		{
-			x = 0;
-			if ()
-				mlx_put_pixel(pouet, x, y, 0x000000FF);
+			if (map[y * 8 + x] == 1)
+				mlx_put_pixel(pouet, x * 64, y * 64, 0x000000FF);
 			else
-				mlx_put_pixel(pouet, x, y, 0xFFFFFFFF);
+				mlx_put_pixel(pouet, x * 64, y * 64, 0xFFFFFFFF);
 			x++;
 		}
 		y++;
 	}
-}
+}*/
 
-/*void ft_set_color2(void* arg)
+void ft_set_color2(void* arg)
 {
 	(void)arg;
 	int x;
@@ -78,7 +79,7 @@ void	draw_map2D(void *arg)
 		}
 		x++;
 	}
-}*/
+}
 
 void ft_hook(void* arg)
 {
@@ -132,7 +133,7 @@ int main(int ac, const char** av)
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-	mlx_loop_hook(mlx, /*ft_set_color2*/, mlx);
+	mlx_loop_hook(mlx, ft_set_color2/*draw_map2D*/, mlx);
 	mlx_loop_hook(mlx, ft_set_color, mlx);
 	mlx_loop_hook(mlx, ft_hook, mlx);
 
