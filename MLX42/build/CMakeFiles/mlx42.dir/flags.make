@@ -6,5 +6,5 @@ C_FLAGS = -fPIC   -D LODEPNG_NO_COMPILE_ENCODER -D LODEPNG_NO_COMPILE_ANCILLARY_
 
 C_DEFINES = 
 
-C_INCLUDES = -I/nfs/homes/jdelsol-/Documents/C_cursus42/cub3d/MLX42/include 
+C_INCLUDES = -I/nfs/homes/cormiere/Projects/Cub3d/MLX42/include 
 

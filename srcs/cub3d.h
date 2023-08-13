@@ -7,9 +7,12 @@
 #include <fcntl.h>
 #include <string.h>
 #include <errno.h>
-#include "../raycaster/lib/MLX42/include/MLX42/MLX42.h"
+#include <stdlib.h>
+#include <stdbool.h>
+#include "../MLX42/include/MLX42/MLX42.h"
 #include "../libft/libft.h"
 #include "parsing/parsing_header.h"
+#include "raycaster/raycaster_header.h"
 #include "All_free/frees.h"
 
 # define BUFFER_SIZE 42
@@ -21,6 +24,15 @@ typedef struct s_akinator
 	int		Ceiling_rgb[3];
 	char	**map;
 }	t_akinator;
+
+typedef struct s_gpt
+{
+	t_akinator		*data;
+	mlx_t*			mlx;
+	mlx_image_t*	player;
+	mlx_image_t*	minimap;
+
+}	t_gpt;
 
 
 enum	e_file_perm

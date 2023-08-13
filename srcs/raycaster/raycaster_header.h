@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_structs.c                                  :+:      :+:    :+:   */
+/*   raycaster_header.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/09 17:48:10 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/13 16:19:35 by cormiere         ###   ########.fr       */
+/*   Created: 2023/08/13 15:25:08 by cormiere          #+#    #+#             */
+/*   Updated: 2023/08/13 18:10:47 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef	RAYCASTER_HEADER_H
+# define RAYCASTER_HEADER_H
+
 #include "../cub3d.h"
 
-void	ft_free_data(t_akinator *data)
-{
-	ft_free_sp_array(data->texture_paths);
-	ft_free_multiple_array(data->map, NULL, NULL);
-	free(data);
-	return ;
-}
+#define WIDTH 600
+#define HEIGHT 600
 
-void	ft_free_center(t_gpt *center)
-{
-	ft_free_data(center->data);
-	free(center);
-}
+void	ft_key_hook(t_gpt *center);
+void	ft_set_color(t_gpt *center);
+int		ft_init_mlx(t_gpt *center);
+void	ft_draw_map2D(void *arg);
+t_gpt	*ft_init_center(t_akinator *data);
+
+
+
+#endif
