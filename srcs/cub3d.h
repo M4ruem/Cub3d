@@ -31,7 +31,6 @@ typedef struct s_gpt
 	mlx_t*			mlx;
 	mlx_image_t*	player;
 	mlx_image_t*	minimap;
-
 }	t_gpt;
 
 

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_launch_raycasting.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:34:54 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/13 18:10:33 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/13 18:42:18 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycaster_header.h"
+#include "../raycaster_header.h"
 
 int		ft_put_image(t_gpt *center)
 {
