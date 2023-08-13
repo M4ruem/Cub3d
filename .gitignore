@@ -1,6 +1,5 @@
 .vscode
 *.o
-*.txt
 *.cub
 Cub3d
 ./raycaster/lib
