@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:35:14 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/11 18:25:12 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/13 12:59:56 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	ft_check_access(char *str)
 
 int	ft_check_args(char **av)
 {
-	int	test_perms;
+	int	perms;
 	int	i;
 
 	i = 0;
@@ -82,11 +82,11 @@ int	ft_check_args(char **av)
 		ft_printf_fd(2, "Error\n%s\n", "WRONG FORMAT");
 		return (0);
 	}
-	test_perms = ft_check_access(av[1]);
-	if (test_perms != FILE_RDONLY && test_perms != FILE_RDWR
-		&& test_perms != FILE_RDWRX)
+	perms = ft_check_access(av[1]);
+	if (perms != FILE_RDONLY && perms != FILE_RDWR
+		&& perms != FILE_RDWRX)
 	{
-		ft_printf_fd(2, "Error\n%s\n", strerror(13));
+		ft_printf_files_errors(perms, av[1]);
 		return (0);
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:11:34 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/12 15:16:07 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/13 12:48:14 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,5 @@ int			ft_is_line_empty(char *line);
 int			ft_is_attrib_missing(t_akinator *data);
 int			ft_is_from_map(char **map, int i, int j);
 int			ft_check_vertical_multiple_map(char **map, const int len, int end_line, int j);
-void		ft_printf_map_error(int	error_key);
 
 #endif

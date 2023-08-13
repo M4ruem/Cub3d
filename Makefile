@@ -85,7 +85,7 @@
 #
 
 NAME	:= Cub3d
-CFLAGS	:= -Wextra -Werror -Wall -Wunreachable-code -Ofast
+CFLAGS	:= -Wextra -Werror -Wall -g3
 LIBMLX	:= ./MLX42
 
 HEADERS	:= -I ./include -I $(LIBMLX)/include

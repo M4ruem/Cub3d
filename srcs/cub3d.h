@@ -56,5 +56,6 @@ enum	e_map_parsing_error
 };
 
 void	ft_printf_map_error(int	error_key);
+void	ft_printf_files_errors(int error_key, char *file);
 
 #endif

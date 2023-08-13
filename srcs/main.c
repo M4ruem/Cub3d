@@ -6,11 +6,32 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:27:58 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/12 14:08:23 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/13 12:58:40 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_printf_files_errors(int error_key, char *file)
+{
+	if (error_key != FILE_RDONLY && error_key != FILE_RDWR
+		&& error_key != FILE_RDWRX && error_key != FILE_KO
+		&& error_key != FILE_NO_PERMS)
+	{
+		ft_printf_fd(2, "Error\n%s%s%s\n", "PERMISSION DENIED: ",
+			file, " IS UNREADABLE");
+	}
+	if (error_key == FILE_NO_PERMS)
+	{
+		ft_printf_fd(2, "Error\n%s %s\n",
+			"PERMISSION DENIED: NO PERMISSIONS ON:", file);
+	}
+	if (error_key == FILE_KO)
+	{
+		ft_printf_fd(2, "Error\n%s%s\n", "NO SUCH FILE OR DIRECTORY: ",
+			file);
+	}
+}
 
 void	ft_printf_map_error(int	error_key)
 {
@@ -54,10 +75,7 @@ int	main(int ac, char **av)
 		return (1);
 	error = ft_check_if_textures_works(data);
 	if (!error)
-	{
-		ft_printf_fd(2, "Error\nWRONG TEXTURE PATHS\n");
 		return (1);
-	}
 	//func
 	ft_free_data(data);
 	return (0);
