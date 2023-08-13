@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_2D.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:31:48 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/13 18:42:26 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/13 18:53:51 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../raycaster_header.h"
 
-void	ft_draw_map2D(t_gpt *center)
+/*void	ft_draw_map2D(t_gpt *center)
 {
 	int	x;
 	int	y;
@@ -30,4 +30,4 @@ void	ft_draw_map2D(t_gpt *center)
 		}
 		x++;
 	}
-}
+}*/

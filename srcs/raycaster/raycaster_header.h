@@ -6,7 +6,7 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:25:08 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/13 18:10:47 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/13 19:03:37 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 #define WIDTH 600
 #define HEIGHT 600
 
-void	ft_key_hook(t_gpt *center);
-void	ft_set_color(t_gpt *center);
+typedef struct s_gpt t_gpt;
+
+void	ft_key_hook(void *arg);
+void	ft_set_color_player(void *arg);
+void	ft_set_color_minimap(void *arg);
 int		ft_init_mlx(t_gpt *center);
-void	ft_draw_map2D(void *arg);
+void	ft_draw_map2D(t_gpt *center);
 t_gpt	*ft_init_center(t_akinator *data);
-
-
+void	ft_launch_raycasting(t_akinator *data);
 
 #endif

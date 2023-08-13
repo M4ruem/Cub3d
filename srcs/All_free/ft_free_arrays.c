@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_arrays.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 14:55:48 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/11 19:18:57 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/13 19:05:42 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "frees.h"
 
 void	ft_free_multiple_array(char **ar1, char **ar2, char **ar3)
 {

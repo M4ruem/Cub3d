@@ -3,49 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   ft_coloring.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/13 18:22:54 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/13 20:38:48 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../raycaster_header.h"
 
-void	ft_set_color(t_gpt *center)
+void	ft_set_color_player(void *arg)
 {
+	t_gpt *center;
 	int	x;
 	int	y;
 
+	center = (t_gpt *)arg;
 	x = 0;
 	while (x < (int)center->player->width)
 	{
 		y = 0;
 		while (y < (int)center->player->height)
 		{
-			mlx_put_pixel(center, x, y, 0xFF0000FF);
+			mlx_put_pixel(center->player, x, y, 0xFF00FFFF);
 			y++;
 		}
 		x++;
 	}
 }
 
-/*
-void ft_set_color2(void* arg)
+void	draw_pixel_around(mlx_image_t *img, int x, int y)
 {
-	(void)arg;
-	int x;
-	int y;
+	int	max_x = x + 50;
+	int max_y = y + 50;
 
-	x = 0;
-	while (x < (int)pouet->width)
+	while ( x < max_x)
 	{
-		y = 0;
-		while (y < (int)pouet->height)
+		y = max_y - 50;
+		while (y < max_y)
 		{
-			mlx_put_pixel(pouet, x, y, 0x000000FF);
+			if (y == max_y - 1 || x == max_x - 50)
+				mlx_put_pixel(img, x, y, 0x000000FF);
+			else
+				mlx_put_pixel(img, x, y, 0xFFFFFFFF);
 			y++;
 		}
 		x++;
 	}
-}*/
+
+}
+
+
+void	ft_set_color_minimap(void *arg)
+{
+	t_gpt *center;
+	int	x;
+	int	y;
+
+	center = (t_gpt *)arg;
+	x = 0;
+	while (x < (int)center->minimap->width)
+	{
+		y = 0;
+		while (y < (int)center->minimap->height)
+		{
+			draw_pixel_around(center->minimap, x, y);
+			y+=50;
+		}
+		x+=50;
+	}
+}

@@ -1,7 +1,7 @@
 NO ./textures/north.png
 SO ./textures/south.png
 WE ./textures/west.png
-EA     ./textures/east.xpm
+EA     ./textures/east.png
 
 F 56,0,0
 C 25,30,0
@@ -9,8 +9,8 @@ C 25,30,0
 	111111
 	100001
 	100001
-	100001         1111	
-111111111111111100001                                                                                                                                                   
+	100001         1111
+111111111111111100001
 10N00111111111111111
 100001
 100001

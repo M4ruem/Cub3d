@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_verif_textures.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 14:11:20 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/13 12:59:24 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/13 19:20:00 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	ft_check_if_textures_works(t_akinator *data)
 		ft_free_data(data);
 		return (0);
 	}
-	else if (ft_image_integrity(data))
+	else if (!ft_image_integrity(data))
 	{
 		ft_free_data(data);
 		return (0);

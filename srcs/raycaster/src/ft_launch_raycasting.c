@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_launch_raycasting.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:34:54 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/13 18:42:18 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/13 20:33:06 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 int		ft_put_image(t_gpt *center)
 {
-	if (mlx_image_to_window(center->mlx, center->minimap, 250, 250) == -1)
+	if (mlx_image_to_window(center->mlx, center->minimap, 0, 0) == -1)
 	{
 		mlx_close_window(center->mlx);
 		ft_free_center(center);
 		puts(mlx_strerror(mlx_errno));
 		return(0);
 	}
-
 	if (mlx_image_to_window(center->mlx, center->player, 280, 280) == -1)
 	{
 		mlx_close_window(center->mlx);
@@ -29,9 +28,9 @@ int		ft_put_image(t_gpt *center)
 		puts(mlx_strerror(mlx_errno));
 		return(0);
 	}
-	mlx_loop_hook(center->mlx, /*ft_set_color2*/ft_draw_map2D, center->mlx);
-	mlx_loop_hook(center->mlx, ft_set_color, center->mlx);
-	mlx_loop_hook(center->mlx, ft_key_hook, center->mlx);
+	mlx_loop_hook(center->mlx, ft_set_color_minimap/*ft_draw_map2D*/, center);
+	mlx_loop_hook(center->mlx, ft_set_color_player, center);
+	mlx_loop_hook(center->mlx, ft_key_hook, center);
 	return (1);
 }
 
@@ -39,6 +38,8 @@ void	ft_launch_raycasting(t_akinator *data)
 {
 	t_gpt	*center;
 	int		error;
+
+	error = 0;
 	center = ft_init_center(data);
 	if (!center)
 		exit(EXIT_FAILURE);
@@ -47,5 +48,4 @@ void	ft_launch_raycasting(t_akinator *data)
 		exit(EXIT_FAILURE);
 	mlx_loop(center->mlx);
 	mlx_terminate(center->mlx);
-	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:27:58 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/13 12:58:40 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/13 19:14:24 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	main(int ac, char **av)
 	error = ft_check_if_textures_works(data);
 	if (!error)
 		return (1);
-	//func
+	ft_launch_raycasting(data);
 	ft_free_data(data);
 	return (0);
 }

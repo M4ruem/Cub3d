@@ -6,11 +6,11 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:31:28 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/13 18:10:18 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/13 20:32:52 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycaster_header.h"
+#include "../raycaster_header.h"
 
 t_gpt	*ft_init_center(t_akinator *data)
 {
@@ -28,10 +28,11 @@ t_gpt	*ft_init_center(t_akinator *data)
 	return (center);
 }
 
-void	ft_key_hook(t_gpt *center)
+void	ft_key_hook(void *arg)
 {
-	mlx_t* mlx = center;
+	t_gpt *center;
 
+	center = (t_gpt *)arg;
 	if (mlx_is_key_down(center->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(center->mlx);
 	if (mlx_is_key_down(center->mlx, MLX_KEY_UP))
@@ -51,7 +52,7 @@ int	ft_init_mlx(t_gpt *center)
 		puts(mlx_strerror(mlx_errno));
 		return(0);
 	}
-	center->minimap = mlx_new_image(center->mlx, 1, 1);
+	center->minimap = mlx_new_image(center->mlx, 600, 600);
 	if (!center->minimap)//black image
 	{
 		mlx_close_window(center->mlx);
