@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:04:52 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/12 14:19:57 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:07:30 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ int	ft_convert_color(char *tmp, t_akinator *data, char c, char **tmp_tab)
 	if (c == 'F')
 	{
 		while (++i < 3)
-			data->Floor_rgb[i] = ft_atoi(tmp_tab[i]);
+			data->floor_rgb[i] = ft_atoi(tmp_tab[i]);
 	}
 	if (c == 'C')
 	{
 		i = -1;
 		while (++i < 3)
-			data->Ceiling_rgb[i] = ft_atoi(tmp_tab[i]);
+			data->ceiling_rgb[i] = ft_atoi(tmp_tab[i]);
 	}
 	ft_free_multiple_array(tmp_tab, NULL, NULL);
 	return (1);

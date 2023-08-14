@@ -1,38 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/14 13:48:27 by jdelsol-          #+#    #+#             */
+/*   Updated: 2023/08/14 13:51:17 by jdelsol-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <string.h>
-#include <errno.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include "../MLX42/include/MLX42/MLX42.h"
-#include "../libft/libft.h"
-#include "parsing/parsing_header.h"
-#include "raycaster/raycaster_header.h"
-#include "All_free/frees.h"
+# include <stdio.h>
+# include <unistd.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <string.h>
+# include <errno.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include "../MLX42/include/MLX42/MLX42.h"
+# include "../libft/libft.h"
+# include "parsing/parsing_header.h"
+# include "raycaster/raycaster_header.h"
+# include "All_free/frees.h"
 
 # define BUFFER_SIZE 42
 
 typedef struct s_akinator
 {
 	char	*texture_paths[5];
-	int		Floor_rgb[3];
-	int		Ceiling_rgb[3];
+	int		floor_rgb[3];
+	int		ceiling_rgb[3];
 	char	**map;
 }	t_akinator;
 
 typedef struct s_gpt
 {
 	t_akinator		*data;
-	mlx_t*			mlx;
-	mlx_image_t*	player;
-	mlx_image_t*	minimap;
+	mlx_t			*mlx;
+	mlx_image_t		*player;
+	mlx_image_t		*minimap;
 }	t_gpt;
-
 
 enum	e_file_perm
 {
@@ -66,7 +77,7 @@ enum	e_map_parsing_error
 	INTRUDER_CHARACTER,
 };
 
-void	ft_printf_map_error(int	error_key);
+void	ft_printf_map_error(int error_key);
 void	ft_printf_files_errors(int error_key, char *file);
 
 #endif

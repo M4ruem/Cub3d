@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_struct.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:13:24 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/10 20:30:22 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:10:04 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_akinator *ft_init_struct(int map_len)
+t_akinator	*ft_init_struct(int map_len)
 {
-	t_akinator *data;
+	t_akinator	*data;
 	int			i;
 
 	i = -1;
@@ -32,8 +32,8 @@ t_akinator *ft_init_struct(int map_len)
 	i = -1;
 	while (++i < 3)
 	{
-		data->Ceiling_rgb[i] = -1;
-		data->Floor_rgb[i] = -1;
+		data->ceiling_rgb[i] = -1;
+		data->floor_rgb[i] = -1;
 	}
 	return (data);
 }

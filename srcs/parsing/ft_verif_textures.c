@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_verif_textures.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 14:11:20 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/13 19:20:00 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:11:39 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	ft_image_integrity(t_akinator *data)
 {
-	int	i;
-	mlx_texture_t *tmp;
+	int				i;
+	mlx_texture_t	*tmp;
 
 	tmp = NULL;
 	i = 0;
@@ -33,15 +33,13 @@ static int	ft_image_integrity(t_akinator *data)
 	return (1);
 }
 
-static int	ft_has_good_extension(t_akinator *data)
+static int	ft_has_good_extension(t_akinator *data, int i)
 {
-	int		i;
 	int		j;
 	char	**tmp_tab;
 	char	*tmp;
 
-	i = 0;
-	while (data->texture_paths[i])
+	while (data->texture_paths[++i])
 	{
 		j = 0;
 		tmp_tab = ft_split(data->texture_paths[i], '/');
@@ -58,7 +56,6 @@ static int	ft_has_good_extension(t_akinator *data)
 			ft_printf_fd(2, "Error\nINVALID EXTENSIONS\n");
 			return (0);
 		}
-		i++;
 		free(tmp);
 	}
 	return (1);
@@ -80,7 +77,7 @@ int	ft_check_if_textures_works(t_akinator *data)
 			return (0);
 		}
 	}
-	if (!ft_has_good_extension(data))
+	if (!ft_has_good_extension(data, -1))
 	{
 		ft_free_data(data);
 		return (0);

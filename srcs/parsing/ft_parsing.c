@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:41:11 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/11 18:24:17 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:05:18 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static int	ft_cut(char **map, char last_char, int i, int j)
 		{
 			last_char = ft_isnt_from_map(map[i][j]);
 			if (ft_is_from_map(map, i, j))
+			{
 				if (last_char == 0)
 				{
 					if (i == 0)
@@ -37,18 +38,19 @@ static int	ft_cut(char **map, char last_char, int i, int j)
 						return (0);
 					return (i - 1);
 				}
+			}
 		}
 		last_char = 0;
 		if (!map[i + 1])
-			break;
+			break ;
 	}
 	return (i);
 }
 
-static int ft_ajust_map(char **map, int index)
+static int	ft_ajust_map(char **map, int index)
 {
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 	const char	**tmp = (const char **)ft_rarraydup(map, index, index);
 
 	j = -1;
@@ -74,11 +76,11 @@ static int ft_ajust_map(char **map, int index)
 	return (1);
 }
 
-static char **ft_split_map_attrib(char **map)
+static char	**ft_split_map_attrib(char **map)
 {
 	const int	index = ft_cut(map, 0, -1, -1);
 	int			error;
-	char **attributes;
+	char		**attributes;
 
 	if (!index)
 		ft_free_multiple_array(map, NULL, NULL);
@@ -97,9 +99,9 @@ static char **ft_split_map_attrib(char **map)
 
 t_akinator	*ft_launch_parsing(char **av, int error)
 {
-	char	**map;
-	char	**attributes;
-	t_akinator *data;
+	char		**map;
+	char		**attributes;
+	t_akinator	*data;
 
 	error = ft_check_args(av);
 	if (!error)

@@ -6,13 +6,13 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:10:29 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/11 19:36:33 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:08:50 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int ft_map_characters(char c)
+static int	ft_map_characters(char c)
 {
 	if (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		return (1);
@@ -75,12 +75,12 @@ static int	ft_get_eoc(char **map, int col, int i)
 	while (map[i][col])
 	{
 		if (map[i][col] && (map[i][col] == '1' || map[i][col] == '0'\
-			|| map[i][col] == 'N' || map[i][col] == 'E'|| map[i][col] == 'W'\
+			|| map[i][col] == 'N' || map[i][col] == 'E' || map[i][col] == 'W'\
 			|| map[i][col] == 'S'))
 			last_one = i;
 		i++;
 		if (!map[i])
-			break;
+			break ;
 	}
 	return (last_one);
 }

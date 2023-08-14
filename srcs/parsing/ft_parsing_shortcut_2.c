@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing_shortcut_2.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:50:21 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/10 21:41:39 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:06:46 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	ft_max_line(char **map)
 
 	max = 0;
 	i = 0;
-	while(map[i])
+	while (map[i])
 	{
 		if (max < (int)ft_strlen(map[i]))
 			max = (int)ft_strlen(map[i]);
@@ -79,7 +79,7 @@ int	ft_max_line(char **map)
 
 int	ft_is_line_empty(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!line)
@@ -112,7 +112,7 @@ int	ft_check_multiple_map(char **map, const int len, int i, int j)
 				return (1);
 			}
 			else
-				break;
+				break ;
 		}
 	}
 	if (ft_check_vertical_multiple_map(map, ft_max_line(map), i, -1))

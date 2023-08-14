@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 17:23:11 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/11 18:21:19 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:09:47 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_map_analysis(char **map)
 {
-	int error;
+	int	error;
 
 	error = ft_check_horizontal_map_border(map, 0, 0);
 	if (error != LINES_OK)

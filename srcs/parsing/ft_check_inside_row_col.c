@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_inside_row_col.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:26:55 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/08 18:36:53 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:11:55 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_check_inside_line(char *line, int start, int end)
 
 int	ft_check_inside_col(char **map, int col, int start, int end)
 {
-		int	i;
+	int	i;
 
 	i = start;
 	while (i < end)

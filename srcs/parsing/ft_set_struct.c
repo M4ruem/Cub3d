@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 13:31:54 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/12 17:34:07 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:16:13 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static int	ft_check_color(char *color, t_akinator *data, char c)
 	end = start;
 	while (color[end] && (color[end] != ' ' || color[end] != '\t'))
 		end++;
-	if ((c == 'F' && (data->Floor_rgb[0] != -1 || data->Floor_rgb[1] != -1 \
-		|| data->Floor_rgb[2] != -1)) || (c == 'C'\
-		&& (data->Ceiling_rgb[0] != -1 || data->Ceiling_rgb[1] != -1\
-		|| data->Ceiling_rgb[2] != -1)))
+	if ((c == 'F' && (data->floor_rgb[0] != -1 || data->Ffoor_rgb[1] != -1 \
+		|| data->floor_rgb[2] != -1)) || (c == 'C'\
+		&& (data->ceiling_rgb[0] != -1 || data->ceiling_rgb[1] != -1 \
+		|| data->ceiling_rgb[2] != -1)))
 		return (0);
 	tmp = ft_strndup(&color[start], end - start);
 	if (!tmp)
@@ -86,12 +86,16 @@ static int	ft_check_case(char **attributes, t_akinator *data, int i, int j)
 	else if ((attributes[i][j + 1] == ' ' || attributes[i][j + 1] == '\t'))
 	{
 		if (attributes[i][j] == 'F' || attributes[i][j] == 'C')
-			return (ft_check_color(&attributes[i][j + 1], data, attributes[i][j]));
+		{
+			return (ft_check_color(&attributes[i][j + 1], data,
+				attributes[i][j]));
+		}
 	}
 	return (0);
 }
 
-static int	ft_attributes_analysis(char **attributes, t_akinator *data, int i, int j)
+static int	ft_attributes_analysis(char **attributes, t_akinator *data,
+	int i, int j)
 {
 	while (attributes[++i])
 	{
@@ -107,19 +111,19 @@ static int	ft_attributes_analysis(char **attributes, t_akinator *data, int i, in
 					ft_printf_fd(2, "Error\nATTRIBUTE ERROR\n");
 					return (0);
 				}
-				break;
+				break ;
 			}
 		}
 	}
-	 if (ft_is_attrib_missing(data))
-	 	return (0);
+	if (ft_is_attrib_missing(data))
+		return (0);
 	ft_free_multiple_array(attributes, NULL, NULL);
 	return (1);
 }
 
-t_akinator *ft_set_up_akinator(char **attributes, char **map, int i)
+t_akinator	*ft_set_up_akinator(char **attributes, char **map, int i)
 {
-	t_akinator *data;
+	t_akinator	*data;
 
 	data = ft_init_struct(ft_array_len(map));
 	if (!data)

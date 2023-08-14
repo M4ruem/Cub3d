@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 14:11:25 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/11 18:28:03 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:11:18 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_array_len(char **array)
 	return (i);
 }
 
-static char	**ft_add_line(char **old_cont, char *line, 	int i, int nb_line)
+static char	**ft_add_line(char **old_cont, char *line, int i, int nb_line)
 {
 	char	**new_cont;
 
@@ -53,7 +53,7 @@ static char	**ft_add_line(char **old_cont, char *line, 	int i, int nb_line)
 	return (new_cont);
 }
 
-char **ft_check_file_content(char *file, int fd, char *line, char **content)
+char	**ft_check_file_content(char *file, int fd, char *line, char **content)
 {
 	content = ft_calloc(sizeof(char *), 1);
 	if (!content)
@@ -63,7 +63,7 @@ char **ft_check_file_content(char *file, int fd, char *line, char **content)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		if (line[ft_strlen(line) - 1] == '\n' && (ft_strlen(line) > 1))
 			line[ft_strlen(line) - 1] = 0;
 		content = ft_add_line(content, line, -1, ft_array_len(content));

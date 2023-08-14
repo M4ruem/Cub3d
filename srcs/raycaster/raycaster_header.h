@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_header.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:25:08 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/13 19:03:37 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:55:52 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	RAYCASTER_HEADER_H
+#ifndef RAYCASTER_HEADER_H
 # define RAYCASTER_HEADER_H
 
-#include "../cub3d.h"
+# include "../cub3d.h"
 
-#define WIDTH 600
-#define HEIGHT 600
+# define WIDTH 600
+# define HEIGHT 600
 
-typedef struct s_gpt t_gpt;
+typedef struct s_gpt	t_gpt;
 
 void	ft_key_hook(void *arg);
 void	ft_set_color_player(void *arg);
