@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_raycasting.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:31:28 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/14 17:14:19 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/14 19:44:38 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,41 @@ t_gpt	*ft_init_center(t_akinator *data)
 	return (center);
 }
 
+typedef struct s_vec
+{
+	double x;
+	double y;
+}		t_vec;
+
+//NORTH (0, -1)
+//SUD (0, 1)
+//OUEST(-1, 0)
+//EST (1, 0)
+
+/*void    ft_dda(t_data *data, t_map p1, t_map p2, int color)
+{
+	float    steps;
+	float    x;
+	float    y;
+	int        i;
+
+	steps = fabs(p2.x - p1.x);
+	if (steps < fabs(p2.y - p1.y))
+		steps = fabs(p2.y - p1.y);
+	data->coord.dx = (p2.x - p1.x) / steps;
+	data->coord.dy = (p2.y - p1.y) / steps;
+	x = p1.x + 0.5f;
+	y = p1.y + 0.5f;
+	i = 1;
+	while (i <= steps + 1)
+	{
+		ft_put_pixel(data, x, y, color);
+		x += data->coord.dx;
+		y += data->coord.dy;
+		i++;
+	}
+}*/
+
 void	ft_key_hook(void *arg)
 {
 	t_gpt	*center;
@@ -44,14 +79,50 @@ void	ft_key_hook(void *arg)
 	center = (t_gpt *)arg;
 	if (mlx_is_key_down(center->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(center->mlx);
-	if (mlx_is_key_down(center->mlx, MLX_KEY_UP))
-		center->player->instances[0].y -= 5;
+	if (mlx_is_key_down(center->mlx, MLX_KEY_W))
+	{
+		center->player.pos->instances[0].y -= 1;
+		if (center->player.pos->instances[0].y < 0)
+			center->player.pos->instances[0].y = 0;
+	}
+	if (mlx_is_key_down(center->mlx, MLX_KEY_S))
+	{
+		center->player.pos->instances[0].y += 1;
+		if (center->player.pos->instances[0].y > 194)
+			center->player.pos->instances[0].y = 194;
+	}
+	if (mlx_is_key_down(center->mlx, MLX_KEY_A))
+	{
+		center->player.pos->instances[0].x -= 1;
+		if (center->player.pos->instances[0].x < 0)
+			center->player.pos->instances[0].x = 0;
+	}
+	if (mlx_is_key_down(center->mlx, MLX_KEY_D))
+	{
+		center->player.pos->instances[0].x += 1;
+		if (center->player.pos->instances[0].x > 194)
+			center->player.pos->instances[0].x = 194;
+	}
+	center->player.y = (double)center->player.pos->instances[0].y / 200;
+	center->player.x = (double)center->player.pos->instances[0].x / 200;
+	printf("%f", center->player.x);
+	printf(" %f\n", center->player.y);
+	/*	if (mlx_is_key_down(center->mlx, MLX_KEY_UP))
+	{
+
+	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_DOWN))
-		center->player->instances[0].y += 5;
+	{
+
+	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_LEFT))
-		center->player->instances[0].x -= 5;
+	{
+
+	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_RIGHT))
-		center->player->instances[0].x += 5;
+	{
+
+	}*/
 }
 
 int	ft_init_mlx(t_gpt *center)
@@ -62,17 +133,17 @@ int	ft_init_mlx(t_gpt *center)
 		puts(mlx_strerror(mlx_errno));
 		return (0);
 	}
-	center->minimap = mlx_new_image(center->mlx, ((WIDTH / 8)), HEIGHT / 8);
+	center->minimap = mlx_new_image(center->mlx, 200, 200);
 	if (!center->minimap)
 	{
 		mlx_close_window(center->mlx);
 		puts(mlx_strerror(mlx_errno));
 		return (0);
 	}
-	center->player = mlx_new_image(center->mlx,
-		((WIDTH / 8 / ft_max_map_side(center)) / 3,
-		((WIDTH / 8 / ft_max_map_side(center))) / 3);
-	if (!center->player)
+	center->player.pos = mlx_new_image(center->mlx,
+		((((WIDTH / 6) / ft_max_map_side(center))) / 3),
+		((((WIDTH / 6) / ft_max_map_side(center)))) / 3);
+	if (!center->player.pos)
 	{
 		mlx_close_window(center->mlx);
 		puts(mlx_strerror(mlx_errno));

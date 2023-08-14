@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_map_infos.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:32:33 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/14 15:15:58 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/14 17:38:23 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@ void	ft_get_map_infos(t_gpt *center)
 	while (center->data->map[x])
 	{
 		y = 0;
-		while (center->data_.map[x][y])
+		while (center->data->map[x][y])
 		{
-			if (center->data->map[x][y])
+			if (center->data->map[x][y] == 'N' || center->data->map[x][y] == 'S'
+				|| center->data->map[x][y] == 'E'
+				|| center->data->map[x][y] == 'W')
 			{
-				center->player->instance[0].x = x;
-				center->player->instance[0].y = y;
+				center->player_start_xy[0] = x;
+				center->player_start_xy[1] = y;
 				return ;
 			}
 			y++;

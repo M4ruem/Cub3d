@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:48:27 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/14 14:56:14 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/14 19:24:10 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,23 @@ typedef struct s_akinator
 	char	**map;
 }	t_akinator;
 
+typedef struct s_player
+{
+	mlx_image_t		*pos;
+	double			x;
+	double			y;
+
+} t_player;
+
 typedef struct s_gpt
 {
 	t_akinator		*data;
 	mlx_t			*mlx;
-	mlx_image_t		*player;
+	t_player		player;
 	mlx_image_t		*minimap;
 	int				map_height;
 	int				map_width;
+	int				player_start_xy[2];
 }	t_gpt;
 
 enum	e_file_perm
