@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 13:31:54 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/14 14:16:13 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:19:06 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_check_color(char *color, t_akinator *data, char c)
 	end = start;
 	while (color[end] && (color[end] != ' ' || color[end] != '\t'))
 		end++;
-	if ((c == 'F' && (data->floor_rgb[0] != -1 || data->Ffoor_rgb[1] != -1 \
+	if ((c == 'F' && (data->floor_rgb[0] != -1 || data->floor_rgb[1] != -1 \
 		|| data->floor_rgb[2] != -1)) || (c == 'C'\
 		&& (data->ceiling_rgb[0] != -1 || data->ceiling_rgb[1] != -1 \
 		|| data->ceiling_rgb[2] != -1)))

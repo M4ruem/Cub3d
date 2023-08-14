@@ -4,3 +4,4 @@
 Cub3d
 ./raycaster/lib
 *.a
+*.c.o.d
