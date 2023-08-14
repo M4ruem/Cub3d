@@ -6,29 +6,29 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:34:54 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/13 20:33:06 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:30:38 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../raycaster_header.h"
+#include "raycaster_header.h"
 
-int		ft_put_image(t_gpt *center)
+int	ft_put_image(t_gpt *center)
 {
 	if (mlx_image_to_window(center->mlx, center->minimap, 0, 0) == -1)
 	{
 		mlx_close_window(center->mlx);
 		ft_free_center(center);
 		puts(mlx_strerror(mlx_errno));
-		return(0);
+		return (0);
 	}
 	if (mlx_image_to_window(center->mlx, center->player, 280, 280) == -1)
 	{
 		mlx_close_window(center->mlx);
 		ft_free_center(center);
 		puts(mlx_strerror(mlx_errno));
-		return(0);
+		return (0);
 	}
-	mlx_loop_hook(center->mlx, ft_set_color_minimap/*ft_draw_map2D*/, center);
+	mlx_loop_hook(center->mlx, ft_set_color_minimap, center);
 	mlx_loop_hook(center->mlx, ft_set_color_player, center);
 	mlx_loop_hook(center->mlx, ft_key_hook, center);
 	return (1);

@@ -6,11 +6,11 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:31:28 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/13 20:32:52 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:30:34 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../raycaster_header.h"
+#include "raycaster_header.h"
 
 t_gpt	*ft_init_center(t_akinator *data)
 {
@@ -30,7 +30,7 @@ t_gpt	*ft_init_center(t_akinator *data)
 
 void	ft_key_hook(void *arg)
 {
-	t_gpt *center;
+	t_gpt	*center;
 
 	center = (t_gpt *)arg;
 	if (mlx_is_key_down(center->mlx, MLX_KEY_ESCAPE))
@@ -47,24 +47,25 @@ void	ft_key_hook(void *arg)
 
 int	ft_init_mlx(t_gpt *center)
 {
-	if (!(center->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", false)))
+	center->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", false);
+	if (!center->mlx)
 	{
 		puts(mlx_strerror(mlx_errno));
-		return(0);
+		return (0);
 	}
 	center->minimap = mlx_new_image(center->mlx, 600, 600);
-	if (!center->minimap)//black image
+	if (!center->minimap)
 	{
 		mlx_close_window(center->mlx);
 		puts(mlx_strerror(mlx_errno));
-		return(0);
+		return (0);
 	}
 	center->player = mlx_new_image(center->mlx, 10, 10);
-	if (!center->player)//red dot
+	if (!center->player)
 	{
 		mlx_close_window(center->mlx);
 		puts(mlx_strerror(mlx_errno));
-		return(0);
+		return (0);
 	}
 	return (1);
 }

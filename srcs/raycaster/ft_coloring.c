@@ -6,17 +6,17 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/13 20:38:48 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:30:28 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../raycaster_header.h"
+#include "raycaster_header.h"
 
 void	ft_set_color_player(void *arg)
 {
-	t_gpt *center;
-	int	x;
-	int	y;
+	t_gpt	*center;
+	int		x;
+	int		y;
 
 	center = (t_gpt *)arg;
 	x = 0;
@@ -34,10 +34,12 @@ void	ft_set_color_player(void *arg)
 
 void	draw_pixel_around(mlx_image_t *img, int x, int y)
 {
-	int	max_x = x + 50;
-	int max_y = y + 50;
+	int	max_x;
+	int	max_y;
 
-	while ( x < max_x)
+	max_x = x + 50;
+	max_y = y + 50;
+	while (x < max_x)
 	{
 		y = max_y - 50;
 		while (y < max_y)
@@ -50,15 +52,13 @@ void	draw_pixel_around(mlx_image_t *img, int x, int y)
 		}
 		x++;
 	}
-
 }
-
 
 void	ft_set_color_minimap(void *arg)
 {
-	t_gpt *center;
-	int	x;
-	int	y;
+	t_gpt	*center;
+	int		x;
+	int		y;
 
 	center = (t_gpt *)arg;
 	x = 0;
@@ -68,8 +68,8 @@ void	ft_set_color_minimap(void *arg)
 		while (y < (int)center->minimap->height)
 		{
 			draw_pixel_around(center->minimap, x, y);
-			y+=50;
+			y += 50;
 		}
-		x+=50;
+		x += 50;
 	}
 }
