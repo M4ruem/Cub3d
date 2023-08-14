@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_launch_raycasting.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:34:54 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/14 14:30:38 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/14 16:03:47 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int	ft_put_image(t_gpt *center)
 		puts(mlx_strerror(mlx_errno));
 		return (0);
 	}
-	if (mlx_image_to_window(center->mlx, center->player, 280, 280) == -1)
+	if (mlx_image_to_window(center->mlx, center->player, \
+		(((WIDTH / 8) /center->map_width) * center->player->instances[0].x), \
+		(((WIDTH / 8) /center->map_width) * \
+		center->player->instances[0].y)) == -1)
 	{
 		mlx_close_window(center->mlx);
 		ft_free_center(center);

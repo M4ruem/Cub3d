@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:48:27 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/14 14:44:50 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:56:14 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_gpt
 	mlx_t			*mlx;
 	mlx_image_t		*player;
 	mlx_image_t		*minimap;
+	int				map_height;
+	int				map_width;
 }	t_gpt;
 
 enum	e_file_perm

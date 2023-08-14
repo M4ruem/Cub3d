@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_raycasting.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:31:28 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/14 14:50:46 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/14 17:14:19 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycaster_header.h"
+
+int	ft_max_map_side(t_gpt *center)
+{
+	if (center->map_height > center->map_width)
+		return (center->map_height);
+	else
+		return (center->map_width);
+}
 
 t_gpt	*ft_init_center(t_akinator *data)
 {
@@ -22,6 +30,7 @@ t_gpt	*ft_init_center(t_akinator *data)
 	if (!center)
 		return (NULL);
 	center->data = data;
+	ft_get_map_infos(center);
 	error = ft_init_mlx(center);
 	if (!error)
 		ft_free_center(center);
@@ -53,14 +62,16 @@ int	ft_init_mlx(t_gpt *center)
 		puts(mlx_strerror(mlx_errno));
 		return (0);
 	}
-	center->minimap = mlx_new_image(center->mlx, 600, 600);
+	center->minimap = mlx_new_image(center->mlx, ((WIDTH / 8)), HEIGHT / 8);
 	if (!center->minimap)
 	{
 		mlx_close_window(center->mlx);
 		puts(mlx_strerror(mlx_errno));
 		return (0);
 	}
-	center->player = mlx_new_image(center->mlx, 10, 10);
+	center->player = mlx_new_image(center->mlx,
+		((WIDTH / 8 / ft_max_map_side(center)) / 3,
+		((WIDTH / 8 / ft_max_map_side(center))) / 3);
 	if (!center->player)
 	{
 		mlx_close_window(center->mlx);
