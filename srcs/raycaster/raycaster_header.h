@@ -6,7 +6,7 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:25:08 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/14 14:30:44 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:44:11 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # define WIDTH 600
 # define HEIGHT 600
+# define PI 3.141592
 
 typedef struct s_gpt	t_gpt;
 

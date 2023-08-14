@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:48:27 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/14 13:51:17 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/14 14:44:50 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <errno.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <math.h>
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../libft/libft.h"
 # include "parsing/parsing_header.h"
