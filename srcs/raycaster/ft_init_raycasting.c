@@ -6,7 +6,7 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:31:28 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/16 16:01:04 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:18:24 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,15 @@ void	ft_key_hook(void *arg)
 		center->player.pos->instances[0].x += 1;
 		if (center->player.pos->instances[0].x > 194)
 			center->player.pos->instances[0].x = 194;
+	}
+	// if (mlx_is_key_down(center->mlx, MLX_KEY_RIGHT))
+	// {
+	// 	double tmp_dir = c;
+
+	// }
+	if (mlx_is_key_down(center->mlx, MLX_KEY_LEFT))
+	{
+		center->player.x  -= 1;
 	}
 	center->player.y = (double)center->player.pos->instances[0].y / 200;
 	center->player.x = (double)center->player.pos->instances[0].x / 200;
