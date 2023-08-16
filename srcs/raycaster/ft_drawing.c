@@ -12,6 +12,47 @@
 
 #include "raycaster_header.h"
 
+/*
+void mlx_draw_line(t_gpt *center, int x0, int y0, int x1, int y1, int color)
+{
+    int dx = abs(x1 - x0);
+    int sx = x0 < x1 ? 1 : -1;
+    int dy = -abs(y1 - y0);
+    int sy = y0 < y1 ? 1 : -1;
+    int err = dx + dy;
+
+    while (1)
+    {
+        mlx_pixel_put(center->player.pos, x0, y0, color);
+        if (x0 == x1 && y0 == y1) break;
+        int e2 = 2 * err;
+        if (e2 >= dy)
+        {
+            err += dy;
+            x0 += sx;
+        }
+        if (e2 <= dx)
+        {
+            err += dx;
+            y0 += sy;
+        }
+    }
+}
+
+void ft_set_player_color(void *arg)
+{
+	t_gpt	*center;
+	int		x;
+	int		y;
+	center = (t_gpt *)arg;
+    mlx_pixel_put(center->player.pos, x, y, 0xFFFF00);
+
+    int line_end_x = px + pdx * 20;
+    int line_end_y = py + pdy * 20;
+    mlx_draw_line(center->player.pos, x, y, line_end_x, line_end_y, 0xFFFF00);
+}*/
+
+
 void	ft_set_color_player(void *arg)
 {
 	t_gpt	*center;

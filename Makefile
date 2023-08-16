@@ -88,8 +88,9 @@ NAME	:= Cub3d
 CFLAGS	:= -Wextra -Werror -Wall -g3
 LIBMLX	:= ./MLX42
 
-HEADERS	:= -I ./include -I $(LIBMLX)/include
-LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+HEADERS	:= -I ./include -I libmlx42.a -Iinclude
+LIBS_PATH = /opt/homebrew/Cellar/glfw/3.3.8/lib/
+LIBS := -L$(LIBS_PATH) $(LIBMLX)/build/libmlx42.a -ldl -pthread -lm -framework Cocoa -framework OpenGL -framework IOKit -lglfw.3.3
 
 SRCS	:= $(shell find ./srcs -iname "*.c")
 
@@ -111,7 +112,7 @@ $(LIBFT_NAME):
 	make -C $(LIBFT_PATH)
 
 $(NAME): $(OBJS)
-	@clang $(OBJS) $(LIBFT_NAME) $(LIBS) $(HEADERS) -o $(NAME)
+	@clang $(OBJS) $(LIBS) $(LIBFT_NAME) $(HEADERS) -o $(NAME)
 
 clean:
 	make clean -C ./libft

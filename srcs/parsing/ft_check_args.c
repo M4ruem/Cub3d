@@ -55,7 +55,7 @@ int	ft_check_access(char *str)
 {
 	int	test;
 
-	test = open(str, __O_DIRECTORY, 777);
+	test = open(str, O_DIRECTORY, 777);
 	if (test != -1)
 	{
 		close(test);
