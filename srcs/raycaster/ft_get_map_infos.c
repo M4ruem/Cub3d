@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_map_infos.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:32:33 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/14 17:38:23 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:30:47 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_get_map_infos(t_gpt *center)
 				|| center->data->map[x][y] == 'E'
 				|| center->data->map[x][y] == 'W')
 			{
+				center->player_start_sens = center->data->map[x][y];
 				center->player_start_xy[0] = x;
 				center->player_start_xy[1] = y;
 				return ;

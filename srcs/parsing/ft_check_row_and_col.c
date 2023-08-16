@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:10:29 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/14 14:08:50 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:57:27 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_get_eol(char *line, int i)
 	while (line[i])
 	{
 		if (line[i] && (line[i] == '1' || line[i] == '0' || line[i] == 'N'\
-			|| line[i] == 'E' || line[i] == 'W' || line[i] == 'Z'))
+			|| line[i] == 'E' || line[i] == 'W' || line[i] == 'S'))
 			last_one = i;
 		else if (line[i] && (line[i] != ' ' && line[i] != '\t'))
 			return (i);

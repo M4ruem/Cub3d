@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_raycasting.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:31:28 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/16 17:18:24 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/16 18:11:01 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,8 @@ int	ft_init_mlx(t_gpt *center)
 		return (0);
 	}
 	center->player.pos = mlx_new_image(center->mlx,
-		(WIDTH / 6),
-		(WIDTH / 6));
+		200,
+		200);
 	if (!center->player.pos)
 	{
 		mlx_close_window(center->mlx);

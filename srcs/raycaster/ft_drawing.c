@@ -3,57 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   ft_drawing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/16 16:32:06 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/16 18:21:51 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycaster_header.h"
 
-
-/*void mlx_draw_line(t_gpt *center, int x0, int y0, int x1, int y1, int color)
+static void	ft_drawing_in_sens(t_gpt *center, int *p1, int *p2)
 {
-    int dx = abs(x1 - x0);
-    int sx = x0 < x1 ? 1 : -1;
-    int dy = -abs(y1 - y0);
-    int sy = y0 < y1 ? 1 : -1;
-    int err = dx + dy;
+	int	i;
 
-    while (1)
-    {
-        mlx_put_pixel(center->player.pos, x0, y0, color);
-        if (x0 == x1 && y0 == y1) break;
-        int e2 = 2 * err;
-        if (e2 >= dy)
-        {
-            err += dy;
-            x0 += sx;
-        }
-        if (e2 <= dx)
-        {
-            err += dx;
-            y0 += sy;
-        }
-    }
+	i = -1;
+	while (++i < 2)
+	{
+		ft_dda(center, p1, p2, 0xFF00FFFF);
+		if (center->player_start_sens == 'S'
+			|| center->player_start_sens == 'N')
+		{
+			p1[0]++;
+			p2[0]++;
+		}
+		else if (center->player_start_sens == 'W'
+			|| center->player_start_sens == 'E')
+		{
+			p1[1]--;
+			p2[1]--;
+		}
+	}
 }
 
-void ft_set_color_player(void *arg)
+static void	ft_ajust_sens_fov(t_gpt *center, int *p1, int *p2)
 {
-	t_gpt	*center;
-	//int		x = 0;
-	//int		y = 0;
-	int		pdx = 1;
-	int		pdy = 1;
-	center = (t_gpt *)arg;
-    mlx_put_pixel(center->player.pos, 1, 1, 0xFFFF00);
-
-    int line_end_x = 1 + pdx * 20;
-    int line_end_y = 1 + pdy * 20;
-    mlx_draw_line(center, 1, 1, line_end_x, line_end_y, 0xFFFF00);
-}*/
-
+	if (center->player_start_sens == 'S')
+ 	{
+		p1[0] += 2;
+		p1[1] += 10;
+		p2[0] += 2;
+	}
+	else if (center->player_start_sens == 'N')
+	{
+		p1[0] += 2;
+		p1[1] -= 15;
+		p2[0] += 2;
+	}
+	else if (center->player_start_sens == 'E')
+	{
+		p1[0] += 3;
+		p1[1] -= 2;
+		p2[0] += 15;
+		p2[1] -= 2;
+	}
+	else
+	{
+		p1[1] -= 2;
+		p2[0] -= 10;
+		p2[1] -= 2;
+	}
+}
 
 void	ft_set_color_player(void *arg)
 {
@@ -68,22 +77,17 @@ void	ft_set_color_player(void *arg)
 	while (++x < (int)(center->player.pos->width / ft_max_map_side(center) / 3))
 	{
 		y = -1;
-		while (++y < (int)(center->player.pos->height / ft_max_map_side(center) / 3))
-			mlx_put_pixel(center->player.pos, x, y, 0xFF00FFFF);
+		while (++y < (int)(center->player.pos->height \
+			/ ft_max_map_side(center) / 3))
+			mlx_put_pixel(center->player.pos, x + 100, y + 100, 0xFF00FFFF);
 	}
-	//y = -1;
-	tmp[0] = center->player_start_xy[0] + 1;
-	tmp[1] = center->player_start_xy[1] + 10;
-	tmp_2[0] = center->player_start_xy[0] + 1;
-	tmp_2[1] = center->player_start_xy[1];
+	tmp[0] = center->player_start_xy[0] + 100;
+	tmp[1] = center->player_start_xy[1] + 100;
+	tmp_2[0] = center->player_start_xy[0] + 100;
+	tmp_2[1] = center->player_start_xy[1] + 100;
+	ft_ajust_sens_fov(center, tmp, tmp_2);
 	x = 0;
-	while (x < 2)
-	{
-		ft_dda(center, tmp, tmp_2, 0xFF00FFFF);
-		tmp[0]++;
-		tmp_2[0]++;
-		x++;
-	}
+	ft_drawing_in_sens(center, tmp, tmp_2);
 }
 
 void	draw_pixel_around(mlx_image_t *img, int x, int y, int color)
