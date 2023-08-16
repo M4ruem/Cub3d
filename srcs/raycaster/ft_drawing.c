@@ -6,14 +6,14 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/14 19:24:59 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:32:06 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycaster_header.h"
 
-/*
-void mlx_draw_line(t_gpt *center, int x0, int y0, int x1, int y1, int color)
+
+/*void mlx_draw_line(t_gpt *center, int x0, int y0, int x1, int y1, int color)
 {
     int dx = abs(x1 - x0);
     int sx = x0 < x1 ? 1 : -1;
@@ -23,7 +23,7 @@ void mlx_draw_line(t_gpt *center, int x0, int y0, int x1, int y1, int color)
 
     while (1)
     {
-        mlx_pixel_put(center->player.pos, x0, y0, color);
+        mlx_put_pixel(center->player.pos, x0, y0, color);
         if (x0 == x1 && y0 == y1) break;
         int e2 = 2 * err;
         if (e2 >= dy)
@@ -39,17 +39,19 @@ void mlx_draw_line(t_gpt *center, int x0, int y0, int x1, int y1, int color)
     }
 }
 
-void ft_set_player_color(void *arg)
+void ft_set_color_player(void *arg)
 {
 	t_gpt	*center;
-	int		x;
-	int		y;
+	//int		x = 0;
+	//int		y = 0;
+	int		pdx = 1;
+	int		pdy = 1;
 	center = (t_gpt *)arg;
-    mlx_pixel_put(center->player.pos, x, y, 0xFFFF00);
+    mlx_put_pixel(center->player.pos, 1, 1, 0xFFFF00);
 
-    int line_end_x = px + pdx * 20;
-    int line_end_y = py + pdy * 20;
-    mlx_draw_line(center->player.pos, x, y, line_end_x, line_end_y, 0xFFFF00);
+    int line_end_x = 1 + pdx * 20;
+    int line_end_y = 1 + pdy * 20;
+    mlx_draw_line(center, 1, 1, line_end_x, line_end_y, 0xFFFF00);
 }*/
 
 
@@ -58,17 +60,28 @@ void	ft_set_color_player(void *arg)
 	t_gpt	*center;
 	int		x;
 	int		y;
+	int		tmp[2];
+	int		tmp_2[2];
 
 	center = (t_gpt *)arg;
-	x = 0;
-	while (x < (int)center->player.pos->width)
+	x = -1;
+	while (++x < (int)(center->player.pos->width / ft_max_map_side(center) / 3))
 	{
-		y = 0;
-		while (y < (int)center->player.pos->height)
-		{
+		y = -1;
+		while (++y < (int)(center->player.pos->height / ft_max_map_side(center) / 3))
 			mlx_put_pixel(center->player.pos, x, y, 0xFF00FFFF);
-			y++;
-		}
+	}
+	//y = -1;
+	tmp[0] = center->player_start_xy[0] + 1;
+	tmp[1] = center->player_start_xy[1] + 10;
+	tmp_2[0] = center->player_start_xy[0] + 1;
+	tmp_2[1] = center->player_start_xy[1];
+	x = 0;
+	while (x < 2)
+	{
+		ft_dda(center, tmp, tmp_2, 0xFF00FFFF);
+		tmp[0]++;
+		tmp_2[0]++;
 		x++;
 	}
 }

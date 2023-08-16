@@ -6,7 +6,7 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:25:08 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/14 17:45:43 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:55:35 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ void	ft_launch_raycasting(t_akinator *data);
 void	ft_get_map_infos(t_gpt *center);
 void	draw_pixel_around(mlx_image_t *img, int x, int y, int color);
 int		ft_max_map_side(t_gpt *center);
+void	ft_dda(t_gpt *center, int *p1, int *p2, int color);
 
 #endif

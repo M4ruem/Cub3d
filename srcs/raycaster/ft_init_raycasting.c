@@ -6,7 +6,7 @@
 /*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:31:28 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/14 19:44:38 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:01:04 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,29 +48,30 @@ typedef struct s_vec
 //OUEST(-1, 0)
 //EST (1, 0)
 
-/*void    ft_dda(t_data *data, t_map p1, t_map p2, int color)
+void    ft_dda(t_gpt *center, int *p1, int *p2, int color)
 {
 	float    steps;
 	float    x;
 	float    y;
 	int        i;
+	double	dxy[2];
 
-	steps = fabs(p2.x - p1.x);
-	if (steps < fabs(p2.y - p1.y))
-		steps = fabs(p2.y - p1.y);
-	data->coord.dx = (p2.x - p1.x) / steps;
-	data->coord.dy = (p2.y - p1.y) / steps;
-	x = p1.x + 0.5f;
-	y = p1.y + 0.5f;
+	steps = abs(p2[0] - p1[0]);
+	if (steps < abs(p2[1] - p1[1]))
+		steps = abs(p2[1] - p1[1]);
+	dxy[0] = (p2[0] - p1[0]) / steps;
+	dxy[1] = (p2[1] - p1[1]) / steps;
+	x = (p1[0] + 0.5f);
+	y = (p1[1] + 0.5f);
 	i = 1;
 	while (i <= steps + 1)
 	{
-		ft_put_pixel(data, x, y, color);
-		x += data->coord.dx;
-		y += data->coord.dy;
+		mlx_put_pixel(center->player.pos, (int)x, (int)y, color);
+		x += dxy[0];
+		y += dxy[1];
 		i++;
 	}
-}*/
+}
 
 void	ft_key_hook(void *arg)
 {
@@ -141,8 +142,8 @@ int	ft_init_mlx(t_gpt *center)
 		return (0);
 	}
 	center->player.pos = mlx_new_image(center->mlx,
-		((((WIDTH / 6) / ft_max_map_side(center))) / 3),
-		((((WIDTH / 6) / ft_max_map_side(center)))) / 3);
+		(WIDTH / 6),
+		(WIDTH / 6));
 	if (!center->player.pos)
 	{
 		mlx_close_window(center->mlx);
