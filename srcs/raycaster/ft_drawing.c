@@ -6,63 +6,11 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/17 16:01:54 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:03:48 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycaster_header.h"
-
-// static void	ft_drawing_in_sens(t_gpt *center, int *p1, int *p2)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (++i < 2)
-// 	{
-// 		ft_dda(center, p1, p2, 0xFF00FFFF);
-// 		if (center->player_start_sens == 'S'
-// 			|| center->player_start_sens == 'N')
-// 		{
-// 			p1[0]++;
-// 			p2[0]++;
-// 		}
-// 		else if (center->player_start_sens == 'W'
-// 			|| center->player_start_sens == 'E')
-// 		{
-// 			p1[1]--;
-// 			p2[1]--;
-// 		}
-// 	}
-// }
-
-// static void	ft_ajust_sens_fov(t_gpt *center, int *p1, int *p2)
-// {
-// 	if (center->player_start_sens == 'S')
-//  	{
-// 		p1[0] += 2;
-// 		p1[1] += 10;
-// 		p2[0] += 2;
-// 	}
-// 	else if (center->player_start_sens == 'N')
-// 	{
-// 		p1[0] += 2;
-// 		p1[1] -= 15;
-// 		p2[0] += 2;
-// 	}
-// 	else if (center->player_start_sens == 'E')
-// 	{
-// 		p1[0] += 3;
-// 		p1[1] -= 2;
-// 		p2[0] += 15;
-// 		p2[1] -= 2;
-// 	}
-// 	else
-// 	{
-// 		p1[1] -= 2;
-// 		p2[0] -= 10;
-// 		p2[1] -= 2;
-// 	}
-// }
 
 void    ft_dda(t_gpt *center, int *p1, int *p2, int color)
 {
@@ -95,10 +43,11 @@ void	ft_set_color_player(void *arg)
 	t_gpt	*center;
 	int		x;
 	int		y;
-
+	int tmp[2];
+	int end[2];
+	
 	center = (t_gpt *)arg;
 	x = -1;
-	
 	while (++x < (int)(center->player.pos->width / ft_max_map_side(center) / 3))
 	{
 		y = -1;
@@ -106,15 +55,11 @@ void	ft_set_color_player(void *arg)
 			/ ft_max_map_side(center) / 3))
 			mlx_put_pixel(center->player.pos, x + 100, y + 100, 0xFF00FFFF);
 	}
+	tmp[0] = 103;
+	tmp[1] = 103;
+	end[0] = tmp[0] + (cosf(center->a) * 20);
+	end[1] = tmp[1]+ (sinf(center->a) * 20);
 
-	int tmp[2];
-	tmp[0] = center->player.pos->instances[0].x;
-	tmp[1] = center->player.pos->instances[0].y;
-	int end[2];
-	end[0] = tmp[0] + (cosf(center->a) * 50);
-	end[1] = tmp[1]+ (sinf(center->a) * 50);
-
-// float  tmp[2] = {center->player.x, center->player.y };
 // 	printf("%f %f\n", (double)tmp[0], (double)tmp[1]);
 	ft_dda(center, tmp, end, 0xFF00FFFF);
 	// ft_ajust_sens_fov(center, tmp, tmp_2);
@@ -181,7 +126,7 @@ void	ft_set_color_minimap(void *arg)
 		while (x < (int)center->minimap->height && center->data->map[i][j])
 		{
 			if (center->data->map[i][j] == '1')
-				draw_pixel_around(center->minimap, x, y, 0x000000FF);
+				draw_pixel_around(center->minimap, x, y, 0xFFFFFFFF);
 			else
 				draw_pixel_around(center->minimap, x, y, 0x000000FF);
 			x += 25; /// 8 / ft_max_map_side(center)));

@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:53 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/17 16:31:58 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:02:08 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,21 @@
 
 void	ft_clear_image(t_gpt *center)
 {
+	int	x;
+	int	y;
+
+	x = 0;
 	
+	while (x < (int)center->player.pos->height)
+	{
+		y = 0;
+		while (y < (int)center->player.pos->width)
+		{
+			mlx_put_pixel(center->player.pos, x, y, 0x00000000);
+			y++;
+		}
+		x++;
+	}
 }
 
 void	ft_key_hook(void *arg)
@@ -56,13 +70,13 @@ void	ft_key_hook(void *arg)
 
 	if (mlx_is_key_down(center->mlx, MLX_KEY_LEFT))
 	{
-		ft_clear_image();
-		center->a += 0.1;
+		ft_clear_image(center);
+		center->a -= 0.02;
 	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_RIGHT))
 	{
-		ft_clear_image();
-		center->a -= 0.1;
+		ft_clear_image(center);
+		center->a += 0.02;
 	}
 	center->a = fmod(center->a, 6.28);
 	// printf("dir x %f\t dir y  %f\n", cosf(center->a), sinf(center->a));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_header.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:25:08 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/16 15:55:35 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:07:53 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define WIDTH 900
 # define HEIGHT 900
-# define PI 3.141592
+# define PI 3.141592653589
 
 typedef struct s_gpt	t_gpt;
 
