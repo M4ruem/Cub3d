@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:48:27 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/16 17:30:42 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/17 15:13:23 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_gpt
 	int				map_width;
 	char			player_start_sens;
 	int				player_start_xy[2];
+	float			a;
 }	t_gpt;
 
 enum	e_file_perm

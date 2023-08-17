@@ -5,3 +5,13 @@ Cub3d
 ./raycaster/lib
 *.a
 *.c.o.d
+*.json
+*.bin
+*.cmake
+*.cpp
+*.txt
+*.log
+*.ts
+*.marks
+*.make
+*.check_cache
