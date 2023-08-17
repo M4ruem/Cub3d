@@ -6,13 +6,15 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:53 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/17 17:50:41 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/17 18:04:06 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycaster_header.h"
 
-void	ft_clear_image(t_gpt *center)
+
+
+static void	ft_clear_image(t_gpt *center)
 {
 	int	x;
 	int	y;
@@ -41,25 +43,25 @@ void	ft_key_hook(void *arg)
 		mlx_close_window(center->mlx);
 	if (mlx_is_key_down(center->mlx, MLX_KEY_W))
 	{
-		center->player.pos->instances[0].y -= 1;
+		center->player.pos->instances[0].y -= 1; //ft_ajust_direction_y(-1);
 		if (center->player.pos->instances[0].y < -100)
 			center->player.pos->instances[0].y = -100;
 	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_S))
 	{
-		center->player.pos->instances[0].y += 1;
+		center->player.pos->instances[0].y += 1; //ft_ajust_direction_y(1);
 		if (center->player.pos->instances[0].y > 92)
 			center->player.pos->instances[0].y = 92;
 	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_A))
 	{
-		center->player.pos->instances[0].x -= 1;
+		center->player.pos->instances[0].x -= 1;//ft_ajust_direction_x(-1);
 		if (center->player.pos->instances[0].x < -100)
 			center->player.pos->instances[0].x = -100;
 	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_D))
 	{
-		center->player.pos->instances[0].x += 1;
+		center->player.pos->instances[0].x += 1;//ft_ajust_direction_x(1);
 		if (center->player.pos->instances[0].x > 92)
 			center->player.pos->instances[0].x = 92;
 	}
