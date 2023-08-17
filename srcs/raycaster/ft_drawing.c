@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/17 17:31:36 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/17 18:13:13 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,7 @@ void	ft_set_color_player(t_gpt *center)
 	tmp[1] = 103;
 	end[0] = tmp[0] + (cosf(center->a) * 20);
 	end[1] = tmp[1]+ (sinf(center->a) * 20);
-
-// 	printf("%f %f\n", (double)tmp[0], (double)tmp[1]);
 	ft_dda(center, tmp, end, 0xFF00FFFF);
-	// ft_ajust_sens_fov(center, tmp, tmp_2);
-	// x = 0;
-	// ft_drawing_in_sens(center, tmp, tmp_2);
-	
 }
 
 void	draw_pixel_around(mlx_image_t *img, int x, int y, int color)
@@ -87,23 +81,6 @@ void	draw_pixel_around(mlx_image_t *img, int x, int y, int color)
 		x++;
 	}
 }
-
-// void	black_screen(void *arg)
-// {
-// 	int x = 0;
-// 	int y = 0 ;
-// 	t_gpt *center = (t_gpt *)arg;
-// 	while (x < (int)center->player.pos->height)
-// 	{
-// 		x = 0;
-// 		while (y < (int)center->player.pos->width)
-// 		{
-// 			mlx_put_pixel(center->player.pos, y, x, 0x000000FF);
-// 			y++;
-// 		}
-// 		x++;
-// 	}
-// }
 
 void	ft_set_color_minimap(t_gpt *center)
 {
