@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/17 17:03:48 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:31:36 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,13 @@ void    ft_dda(t_gpt *center, int *p1, int *p2, int color)
 }
 
 
-void	ft_set_color_player(void *arg)
+void	ft_set_color_player(t_gpt *center)
 {
-	t_gpt	*center;
 	int		x;
 	int		y;
 	int tmp[2];
 	int end[2];
-	
-	center = (t_gpt *)arg;
+
 	x = -1;
 	while (++x < (int)(center->player.pos->width / ft_max_map_side(center) / 3))
 	{
@@ -107,17 +105,14 @@ void	draw_pixel_around(mlx_image_t *img, int x, int y, int color)
 // 	}
 // }
 
-void	ft_set_color_minimap(void *arg)
+void	ft_set_color_minimap(t_gpt *center)
 {
-	t_gpt	*center;
 	int		x;
 	int		y;
 	int		i;
 	int		j;
 
 	i = 0;
-	center = (t_gpt *)arg;
-	// black_screen(arg);
 	y = 0;
 	while (y < (int)center->minimap->width && center->data->map[i])
 	{

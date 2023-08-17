@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:53 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/17 17:02:08 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:50:41 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,32 @@ void	ft_key_hook(void *arg)
 	t_gpt	*center;
 
 	center = (t_gpt *)arg;
+	ft_set_color_minimap(center);
 	if (mlx_is_key_down(center->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(center->mlx);
 	if (mlx_is_key_down(center->mlx, MLX_KEY_W))
 	{
 		center->player.pos->instances[0].y -= 1;
-		if (center->player.pos->instances[0].y < 0)
-			center->player.pos->instances[0].y = 0;
+		if (center->player.pos->instances[0].y < -100)
+			center->player.pos->instances[0].y = -100;
 	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_S))
 	{
 		center->player.pos->instances[0].y += 1;
-		if (center->player.pos->instances[0].y > 194)
-			center->player.pos->instances[0].y = 194;
+		if (center->player.pos->instances[0].y > 92)
+			center->player.pos->instances[0].y = 92;
 	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_A))
 	{
 		center->player.pos->instances[0].x -= 1;
-		if (center->player.pos->instances[0].x < 0)
-			center->player.pos->instances[0].x = 0;
+		if (center->player.pos->instances[0].x < -100)
+			center->player.pos->instances[0].x = -100;
 	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_D))
 	{
 		center->player.pos->instances[0].x += 1;
-		if (center->player.pos->instances[0].x > 194)
-			center->player.pos->instances[0].x = 194;
+		if (center->player.pos->instances[0].x > 92)
+			center->player.pos->instances[0].x = 92;
 	}
 
 	center->player.y = (double)center->player.pos->instances[0].y / (double)200;
@@ -72,11 +73,13 @@ void	ft_key_hook(void *arg)
 	{
 		ft_clear_image(center);
 		center->a -= 0.02;
+		ft_set_color_player(center);
 	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_RIGHT))
 	{
 		ft_clear_image(center);
 		center->a += 0.02;
+		ft_set_color_player(center);
 	}
 	center->a = fmod(center->a, 6.28);
 	// printf("dir x %f\t dir y  %f\n", cosf(center->a), sinf(center->a));

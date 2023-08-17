@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:25:08 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/17 17:07:53 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:33:09 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 typedef struct s_gpt	t_gpt;
 
 void	ft_key_hook(void *arg);
-void	ft_set_color_player(void *arg);
-void	ft_set_color_minimap(void *arg);
+void	ft_set_color_player(t_gpt *center);
+void	ft_set_color_minimap(t_gpt *center);
 int		ft_init_mlx(t_gpt *center);
 void	ft_draw_map2D(t_gpt *center);
 t_gpt	*ft_init_center(t_akinator *data);
