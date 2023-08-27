@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/27 16:38:33 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/27 19:05:58 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,7 @@ void	ft_set_color_player(t_gpt *center)
 				100 + y - (size / 2), 0xFF00FFFF);
 		}
 	}
-	tmp[0] = center->player.x;
-	tmp[1] = center->player.y;
-	ft_fov(center, tmp, 0.0, 0);
+	ft_trace_rays(center);
 	tmp[0] = 100;
 	tmp[1] = 100;
 	end[0] = tmp[0] + (cosf(center->player.angle) * 15);

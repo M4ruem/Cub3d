@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:31:28 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/26 18:01:46 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/27 18:55:05 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_gpt	*ft_init_center(t_akinator *data)
 	if (!error)
 		ft_free_center(center);
 	center->player.angle = ft_adapt_sens(center);
+	center->rays[900] = 0;
 	return (center);
 }
 

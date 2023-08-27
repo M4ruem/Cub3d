@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:53 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/27 16:12:36 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/27 19:06:00 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int	ft_is_collision_for_player(t_gpt *center, float px, float py)
 	int	x;
 	int	y;
 
-	x = (px + 4) / 25.0;
-	y = (py + 4) / 25.0;
+	x = px / 25.0;
+	y = py / 25.0;
 	if (center->data->map[y][x] == '1')
 		return (1);
 	return (0);
@@ -88,6 +88,9 @@ void	ft_key_hook(void *arg)
 	if (mlx_is_key_down(center->mlx, MLX_KEY_RIGHT))
 		center->player.angle += 0.02;
 	center->player.angle = fmod(center->player.angle, 6.28);
+	// Calule distance -> tab
+	ft_fov(center);
+	// Dessin '3D'
 	ft_clear_image(center);
 	ft_set_color_minimap(center);
 }

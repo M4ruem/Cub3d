@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:25:08 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/27 16:07:22 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/27 18:21:44 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_get_map_infos(t_gpt *center);
 int		ft_max_map_side(t_gpt *center);
 void	ft_dda(t_gpt *center, int *p1, int *p2, int color);
 void	ft_adapt_player_moving(t_gpt *center, int key);
-void	ft_fov(t_gpt *center, int *p1, double tmp_angle, int i);
+void	ft_fov(t_gpt *center);
 int		ft_out_of_range(int x, int y, mlx_image_t *img);
-
+void	ft_trace_rays(t_gpt *center);
 #endif
