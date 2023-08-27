@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:34:54 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/17 18:06:46 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/21 18:04:19 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,6 @@ int	ft_put_image(t_gpt *center)
 		puts(mlx_strerror(mlx_errno));
 		return (0);
 	}
-	if (mlx_image_to_window(center->mlx, center->player.pos, \
-		(25 * center->player_start_xy[1])+ 10 - 100, \
-		(25 * center->player_start_xy[0])+ 10 -100) == -1)
-	{
-		mlx_close_window(center->mlx);
-		ft_free_center(center);
-		puts(mlx_strerror(mlx_errno));
-		return (0);
-	}
-	ft_set_color_player(center);
 	mlx_loop_hook(center->mlx, ft_key_hook, center);
 	return (1);
 }

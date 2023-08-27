@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:48:27 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/17 15:13:23 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/21 15:24:53 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ typedef struct s_akinator
 
 typedef struct s_player
 {
-	mlx_image_t		*pos;
-	double			x;
-	double			y;
+	double	angle;
+	double	x;
+	double	y;
 
 } t_player;
 
@@ -56,7 +56,6 @@ typedef struct s_gpt
 	int				map_width;
 	char			player_start_sens;
 	int				player_start_xy[2];
-	float			a;
 }	t_gpt;
 
 enum	e_file_perm

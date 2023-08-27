@@ -6,18 +6,25 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/17 18:13:13 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/27 15:27:08 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycaster_header.h"
 
-void    ft_dda(t_gpt *center, int *p1, int *p2, int color)
+int	ft_out_of_range(int x, int y, mlx_image_t *img)
 {
-	float    steps;
-	float    x;
-	float    y;
-	int        i;
+	if (x < 0 || y < 0 || (uint32_t)x > img->width || (uint32_t)y > img->height)
+		return (1);
+	return (0);
+}
+
+void	ft_dda(t_gpt *center, int *p1, int *p2, int color)
+{
+	float	steps;
+	float	x;
+	float	y;
+	int		i;
 	double	dxy[2];
 
 	steps = abs(p2[0] - p1[0]);
@@ -30,33 +37,40 @@ void    ft_dda(t_gpt *center, int *p1, int *p2, int color)
 	i = 1;
 	while (i <= steps + 1)
 	{
-		mlx_put_pixel(center->player.pos, (int)x, (int)y, color);
+		if (ft_out_of_range(x, y, center->minimap))
+			break ;
+		mlx_put_pixel(center->minimap, (int)x, (int)y, color);
 		x += dxy[0];
 		y += dxy[1];
 		i++;
 	}
 }
 
-
 void	ft_set_color_player(t_gpt *center)
 {
-	int		x;
-	int		y;
-	int tmp[2];
-	int end[2];
+	int	x;
+	int	y;
+	int	size[2];
+	int	tmp[2];
+	int	end[2];
 
-	x = -1;
-	while (++x < (int)(center->player.pos->width / ft_max_map_side(center) / 3))
+	size[0] = 8;
+	size[1] = 8;
+	x = 0;
+	while (++x < size[0])
 	{
-		y = -1;
-		while (++y < (int)(center->player.pos->height \
-			/ ft_max_map_side(center) / 3))
-			mlx_put_pixel(center->player.pos, x + 100, y + 100, 0xFF00FFFF);
+		y = 0;
+		while (++y < size[1])
+		{
+			mlx_put_pixel(center->minimap, center->player.x + x, \
+				center->player.y + y, 0xFF00FFFF);
+		}
 	}
-	tmp[0] = 103;
-	tmp[1] = 103;
-	end[0] = tmp[0] + (cosf(center->a) * 20);
-	end[1] = tmp[1]+ (sinf(center->a) * 20);
+	tmp[0] = center->player.x + x - 4;
+	tmp[1] = center->player.y + y - 4;
+	end[0] = tmp[0] + (cosf(center->player.angle) * 15);
+	end[1] = tmp[1] + (sinf(center->player.angle) * 15);
+	ft_fov(center, tmp, 0.0, 0);
 	ft_dda(center, tmp, end, 0xFF00FFFF);
 }
 
@@ -101,10 +115,11 @@ void	ft_set_color_minimap(t_gpt *center)
 				draw_pixel_around(center->minimap, x, y, 0xFFFFFFFF);
 			else
 				draw_pixel_around(center->minimap, x, y, 0x000000FF);
-			x += 25; /// 8 / ft_max_map_side(center)));
+			x += 25;
 			j++;
 		}
-		y += 25; // / 8 / ft_max_map_side(center)));
+		y += 25;
 		i++;
 	}
+	ft_set_color_player(center);
 }

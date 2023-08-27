@@ -6,110 +6,69 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:53 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/17 18:42:46 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/27 15:41:49 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycaster_header.h"
 
-
-void	ft_adapt_player_moving(t_gpt *center, int key)
+static void	ft_four_mouvement(float *x, float *y, t_gpt *center)
 {
-	const int	p1_xy[2] = {103, 103};
-	float		steps;
-	int	p2_xy[2];
-	double	dxy[2];
-
-	p2_xy[0] = p1_xy[0] + (cosf(center->a) * 20);
-	p2_xy[1] = p1_xy[1] + (sinf(center->a) * 20);
-	steps = abs(p2_xy[0] - p1_xy[0]);
-	if (steps < abs(p2_xy[1] - p1_xy[1]))
-		steps = abs(p2_xy[1] - p1_xy[1]);
-	dxy[0] = (p2_xy[0] - p1_xy[0]) / steps;
-	dxy[1] = (p2_xy[1] - p1_xy[1]) / steps;
-	if (key == MLX_KEY_W)
+	if (mlx_is_key_down(center->mlx, MLX_KEY_W))
 	{
-		center->player.pos->instances[0].x += dxy[0];
-		center->player.pos->instances[0].y += dxy[1];
+		*x = center->player.x + cosf(center->player.angle) / 1.5;
+		*y = center->player.y + sinf(center->player.angle) / 1.5;
 	}
-	if (key == MLX_KEY_S)
+	if (mlx_is_key_down(center->mlx, MLX_KEY_S))
 	{
-		center->player.pos->instances[0].x -= dxy[0];
-		center->player.pos->instances[0].y -= dxy[1];
+		*x = center->player.x - cosf(center->player.angle) / 1.5;
+		*y = center->player.y - sinf(center->player.angle) / 1.5;
 	}
-	else
-		
+	if (mlx_is_key_down(center->mlx, MLX_KEY_D))
+	{
+		*x = center->player.x + cosf(center->player.angle + (PI / 2.0)) / 1.5;
+		*y = center->player.y + sinf(center->player.angle + (PI / 2.0)) / 1.5;
+	}
+	if (mlx_is_key_down(center->mlx, MLX_KEY_A))
+	{
+		*x = center->player.x - cosf(center->player.angle + (PI / 2.0)) / 1.5;
+		*y = center->player.y - sinf(center->player.angle + (PI / 2.0)) / 1.5;
+	}
 }
 
-static void	ft_clear_image(t_gpt *center)
+int	ft_is_collision_for_player(t_gpt *center, float px, float py)
 {
 	int	x;
 	int	y;
 
-	x = 0;
-	
-	while (x < (int)center->player.pos->height)
-	{
-		y = 0;
-		while (y < (int)center->player.pos->width)
-		{
-			mlx_put_pixel(center->player.pos, x, y, 0x00000000);
-			y++;
-		}
-		x++;
-	}
+	x = (px + 4) / 25.0;
+	y = (py + 4) / 25.0;
+	if (center->data->map[y][x] == '1')
+		return (1);
+	return (0);
 }
 
 void	ft_key_hook(void *arg)
 {
 	t_gpt	*center;
+	float	x;
+	float	y;
 
+	x = -1;
+	y = -1;
 	center = (t_gpt *)arg;
-	ft_set_color_minimap(center);
 	if (mlx_is_key_down(center->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(center->mlx);
-	if (mlx_is_key_down(center->mlx, MLX_KEY_W))
+	ft_four_mouvement(&x, &y, center);
+	if (!ft_is_collision_for_player(center, x, y))
 	{
-		center->player.pos->instances[0].y -= 1; 
-		if (center->player.pos->instances[0].y < -100)
-			center->player.pos->instances[0].y = -100;
+		center->player.x = x;
+		center->player.y = y;
 	}
-	if (mlx_is_key_down(center->mlx, MLX_KEY_S))
-	{
-		center->player.pos->instances[0].y += 1;
-		if (center->player.pos->instances[0].y > 92)
-			center->player.pos->instances[0].y = 92;
-	}
-	if (mlx_is_key_down(center->mlx, MLX_KEY_A))
-	{
-		center->player.pos->instances[0].x -= 1;
-		if (center->player.pos->instances[0].x < -100)
-			center->player.pos->instances[0].x = -100;
-	}
-	if (mlx_is_key_down(center->mlx, MLX_KEY_D))
-	{
-		center->player.pos->instances[0].x += 1;
-		if (center->player.pos->instances[0].x > 92)
-			center->player.pos->instances[0].x = 92;
-	}
-
-	center->player.y = (double)center->player.pos->instances[0].y / (double)200;
-	center->player.x = (double)center->player.pos->instances[0].x / (double)200;
-	printf("%f", center->player.x);
-	printf(" %f\n", center->player.y);
-
 	if (mlx_is_key_down(center->mlx, MLX_KEY_LEFT))
-	{
-		ft_clear_image(center);
-		center->a -= 0.02;
-		ft_set_color_player(center);
-	}
+		center->player.angle -= 0.02;
 	if (mlx_is_key_down(center->mlx, MLX_KEY_RIGHT))
-	{
-		ft_clear_image(center);
-		center->a += 0.02;
-		ft_set_color_player(center);
-	}
-	center->a = fmod(center->a, 6.28);
-	// printf("dir x %f\t dir y  %f\n", cosf(center->a), sinf(center->a));
+		center->player.angle += 0.02;
+	center->player.angle = fmod(center->player.angle, 6.28);
+	ft_set_color_minimap(center);
 }
