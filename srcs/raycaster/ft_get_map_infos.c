@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:32:33 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/21 17:12:33 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/27 16:38:05 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	ft_get_map_infos(t_gpt *center)
 				|| center->data->map[x][y] == 'W')
 			{
 				center->player_start_sens = center->data->map[x][y];
-				center->player.x = 25 * y + 8;
-				center->player.y = 25 * x + 8;
+				center->player.x = 25 * y + 12;
+				center->player.y = 25 * x + 12;
 				return ;
 			}
 			y++;

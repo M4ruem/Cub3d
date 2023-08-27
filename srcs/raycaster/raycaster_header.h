@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:25:08 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/27 15:27:29 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/27 16:07:22 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_draw_map2D(t_gpt *center);
 t_gpt	*ft_init_center(t_akinator *data);
 void	ft_launch_raycasting(t_akinator *data);
 void	ft_get_map_infos(t_gpt *center);
-void	draw_pixel_around(mlx_image_t *img, int x, int y, int color);
 int		ft_max_map_side(t_gpt *center);
 void	ft_dda(t_gpt *center, int *p1, int *p2, int color);
 void	ft_adapt_player_moving(t_gpt *center, int key);

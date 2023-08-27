@@ -6,11 +6,29 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:53 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/27 15:41:49 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/27 16:12:36 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycaster_header.h"
+
+static void	ft_clear_image(t_gpt *center)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < (int)center->minimap->height)
+	{
+		y = 0;
+		while (y < (int)center->minimap->width)
+		{
+			mlx_put_pixel(center->minimap, x, y, 0x00000000);
+			y++;
+		}
+		x++;
+	}
+}
 
 static void	ft_four_mouvement(float *x, float *y, t_gpt *center)
 {
@@ -70,5 +88,6 @@ void	ft_key_hook(void *arg)
 	if (mlx_is_key_down(center->mlx, MLX_KEY_RIGHT))
 		center->player.angle += 0.02;
 	center->player.angle = fmod(center->player.angle, 6.28);
+	ft_clear_image(center);
 	ft_set_color_minimap(center);
 }

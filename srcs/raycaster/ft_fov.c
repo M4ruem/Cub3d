@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 15:51:15 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/27 15:24:55 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/27 16:41:58 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,16 +88,18 @@ static double	ft_vertical_collisions(int *p1, t_gpt *center,
 
 void	ft_fov(t_gpt *center, int *p1, double tmp_angle, int i)
 {
-	const double	fov = (PI / 2.0);
 	double			diff_angle;
 	int				p2[2];
 	double			eor_verti;
 	double			eor;
+	int				tm_p1[2];
 
 	i = -1;
-	diff_angle = fov / 1920.0;
-	tmp_angle = center->player.angle - (fov / 2.0);
-	while (++i < 1920)
+	tm_p1[0] = p1[0] + 100 - center->player.x;
+	tm_p1[1] = p1[1] + 100 - center->player.y;
+	diff_angle = (PI / 2.0) / (double)WIDTH;
+	tmp_angle = center->player.angle - ((PI / 2.0) / 2.0);
+	while (++i < WIDTH)
 	{
 		eor = ft_horizontal_collisions(p1, center, cosf(tmp_angle), \
 			sinf(tmp_angle));
@@ -105,9 +107,10 @@ void	ft_fov(t_gpt *center, int *p1, double tmp_angle, int i)
 			cosf(tmp_angle), sinf(tmp_angle));
 		if (eor > eor_verti)
 			eor = eor_verti;
-		p2[0] = p1[0] + (cosf(tmp_angle) * eor);
-		p2[1] = p1[1] + (sinf(tmp_angle) * eor);
-		ft_dda(center, p1, p2, 0x0000FFFF);
+		p2[0] = tm_p1[0] + (cosf(tmp_angle) * eor);
+		p2[1] = tm_p1[1] + (sinf(tmp_angle) * eor);
+		printf("p1[0] %i p1[1] %i\n", p1[0], p1[1]);
+		ft_dda(center, tm_p1, p2, 0x0000FFFF);
 		tmp_angle += diff_angle;
 	}
 }

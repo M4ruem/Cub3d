@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/27 15:27:08 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/27 16:38:33 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,31 +50,32 @@ void	ft_set_color_player(t_gpt *center)
 {
 	int	x;
 	int	y;
-	int	size[2];
+	int	size;
 	int	tmp[2];
 	int	end[2];
 
-	size[0] = 8;
-	size[1] = 8;
-	x = 0;
-	while (++x < size[0])
+	size = 9;
+	x = -1;
+	while (++x < size)
 	{
-		y = 0;
-		while (++y < size[1])
+		y = -1;
+		while (++y < size)
 		{
-			mlx_put_pixel(center->minimap, center->player.x + x, \
-				center->player.y + y, 0xFF00FFFF);
+			mlx_put_pixel(center->minimap, 100 + x - (size / 2), \
+				100 + y - (size / 2), 0xFF00FFFF);
 		}
 	}
-	tmp[0] = center->player.x + x - 4;
-	tmp[1] = center->player.y + y - 4;
+	tmp[0] = center->player.x;
+	tmp[1] = center->player.y;
+	ft_fov(center, tmp, 0.0, 0);
+	tmp[0] = 100;
+	tmp[1] = 100;
 	end[0] = tmp[0] + (cosf(center->player.angle) * 15);
 	end[1] = tmp[1] + (sinf(center->player.angle) * 15);
-	ft_fov(center, tmp, 0.0, 0);
 	ft_dda(center, tmp, end, 0xFF00FFFF);
 }
 
-void	draw_pixel_around(mlx_image_t *img, int x, int y, int color)
+static void	draw_pixel_around(t_gpt *center, int x, int y, int color)
 {
 	int	max_x;
 	int	max_y;
@@ -87,9 +88,23 @@ void	draw_pixel_around(mlx_image_t *img, int x, int y, int color)
 		while (y < max_y)
 		{
 			if (y == max_y - 1 || x == max_x - 25)
-				mlx_put_pixel(img, x, y, 0x888888FF);
+			{
+				if ((x + 100 - center->player.x) > 0 && \
+					(y + 100 - center->player.y) > 0 && \
+					(x + 100 - center->player.x) < 200 && \
+					(y + 100 - center->player.y) < 200)
+					mlx_put_pixel(center->minimap, x + 100 - center->player.x, \
+						y + 100 - center->player.y, 0x888888FF);
+			}
 			else
-				mlx_put_pixel(img, x, y, color);
+			{
+				if ((x + 100 - center->player.x) > 0 && \
+					(y + 100 - center->player.y) > 0 && \
+					(x + 100 - center->player.x) < 200 && \
+					(y + 100 - center->player.y) < 200)
+					mlx_put_pixel(center->minimap, x + 100 - center->player.x, \
+						y + 100 - center->player.y, color);
+			}
 			y++;
 		}
 		x++;
@@ -112,9 +127,9 @@ void	ft_set_color_minimap(t_gpt *center)
 		while (x < (int)center->minimap->height && center->data->map[i][j])
 		{
 			if (center->data->map[i][j] == '1')
-				draw_pixel_around(center->minimap, x, y, 0xFFFFFFFF);
+				draw_pixel_around(center, x, y, 0xFFFFFFFF);
 			else
-				draw_pixel_around(center->minimap, x, y, 0x000000FF);
+				draw_pixel_around(center, x, y, 0x000000FF);
 			x += 25;
 			j++;
 		}
