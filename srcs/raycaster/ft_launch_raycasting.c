@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_launch_raycasting.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:34:54 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/28 14:10:30 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/28 15:22:40 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	ft_put_image(t_gpt *center)
 		puts(mlx_strerror(mlx_errno));
 		return (0);
 	}
+	center->minimap->instances->z = 1;
+	center->fov_img->instances->z = 0;
 	mlx_loop_hook(center->mlx, ft_key_hook, center);
 	return (1);
 }
