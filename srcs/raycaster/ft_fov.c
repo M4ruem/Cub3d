@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 15:51:15 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/27 19:25:15 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/28 14:19:55 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	ft_fov(t_gpt *center)
 			cosf(tmp_angle), sinf(tmp_angle));
 		if (eor > eor_verti)
 			eor = eor_verti;
-		center->rays[i] = eor;
+		center->fov[i].ray = eor;
 		tmp_angle += diff_angle;
 	}
 }
@@ -125,8 +125,8 @@ void	ft_trace_rays(t_gpt *center)
 	tmp_angle = center->player.angle - (PI / 4.0);
 	while (++i < WIDTH)
 	{
-		p2[0] = tm_p1[0] + (cosf(tmp_angle) * center->rays[i]);
-		p2[1] = tm_p1[1] + (sinf(tmp_angle) * center->rays[i]);
+		p2[0] = tm_p1[0] + (cosf(tmp_angle) * center->fov[i].ray);
+		p2[1] = tm_p1[1] + (sinf(tmp_angle) * center->fov[i].ray);
 		ft_dda(center, tm_p1, p2, 0x0000FFFF);
 		tmp_angle += diff_angle;
 	}

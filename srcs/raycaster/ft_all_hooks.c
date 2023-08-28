@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:53 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/27 19:06:00 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/28 14:41:25 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	ft_key_hook(void *arg)
 	// Calule distance -> tab
 	ft_fov(center);
 	// Dessin '3D'
+	ft_3d_making(center);
 	ft_clear_image(center);
 	ft_set_color_minimap(center);
 }
