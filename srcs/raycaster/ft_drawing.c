@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/27 19:05:58 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/28 18:03:34 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,11 @@ void	ft_set_color_minimap(t_gpt *center)
 
 	i = 0;
 	y = 0;
-	while (y < (int)center->minimap->width && center->data->map[i])
+	while (y < (int)(center->minimap->width) && center->data->map[i])
 	{
 		j = 0;
 		x = 0;
-		while (x < (int)center->minimap->height && center->data->map[i][j])
+		while (x < (int)(center->minimap->height) && center->data->map[i][j])
 		{
 			if (center->data->map[i][j] == '1')
 				draw_pixel_around(center, x, y, 0xFFFFFFFF);

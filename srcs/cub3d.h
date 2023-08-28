@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:48:27 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/28 14:18:12 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/28 15:38:28 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_3d
 	double	ray;
 	double	x;
 	double	y;
+	double	angle;
 }	t_3d;
 
 typedef struct s_gpt

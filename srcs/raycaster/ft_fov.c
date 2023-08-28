@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 15:51:15 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/28 14:19:55 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/28 17:39:37 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ void	ft_fov(t_gpt *center)
 	double tmp_angle;
 
 	i = -1;
-	diff_angle = (PI / 2.0) / (double)WIDTH;
-	tmp_angle = center->player.angle - (PI / 4.0);
+	diff_angle = (70 * PI / 180) / (double)WIDTH;
+	tmp_angle = center->player.angle - ((70 * PI / 180) / 2.0);
 	while (++i < WIDTH)
 	{
 		eor = ft_horizontal_collisions(center, cosf(tmp_angle), \
@@ -106,6 +106,7 @@ void	ft_fov(t_gpt *center)
 		if (eor > eor_verti)
 			eor = eor_verti;
 		center->fov[i].ray = eor;
+		center->fov[i].angle = tmp_angle;
 		tmp_angle += diff_angle;
 	}
 }
@@ -121,8 +122,8 @@ void	ft_trace_rays(t_gpt *center)
 	tm_p1[0] = 100;
 	tm_p1[1] = 100;
 	i = -1;
-	diff_angle = (PI / 2.0) / (double)WIDTH;
-	tmp_angle = center->player.angle - (PI / 4.0);
+	diff_angle = (70 * PI / 180) / (double)WIDTH;
+	tmp_angle = center->player.angle - ((70 * PI / 180) / 2.0);
 	while (++i < WIDTH)
 	{
 		p2[0] = tm_p1[0] + (cosf(tmp_angle) * center->fov[i].ray);
