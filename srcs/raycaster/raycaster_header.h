@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:25:08 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/28 14:42:34 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:43:32 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ void	ft_fov(t_gpt *center);
 int		ft_out_of_range(int x, int y, mlx_image_t *img);
 void	ft_trace_rays(t_gpt *center);
 void	ft_3d_making(t_gpt *center);
-
+int		ft_adapt_color_floor(t_gpt *center);
+int		ft_adapt_color_ceiling(t_gpt *center);
+int		ft_still_inside(t_gpt *center, int x, int y);
 #endif

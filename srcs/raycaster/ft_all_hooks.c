@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_all_hooks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:53 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/28 15:14:37 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:15:10 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,23 @@ static void	ft_four_mouvement(float *x, float *y, t_gpt *center)
 {
 	if (mlx_is_key_down(center->mlx, MLX_KEY_W))
 	{
-		*x = center->player.x + cosf(center->player.angle) / 1.5;
-		*y = center->player.y + sinf(center->player.angle) / 1.5;
+		*x = center->player.x + cosf(center->player.angle);
+		*y = center->player.y + sinf(center->player.angle);
 	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_S))
 	{
-		*x = center->player.x - cosf(center->player.angle) / 1.5;
-		*y = center->player.y - sinf(center->player.angle) / 1.5;
+		*x = center->player.x - cosf(center->player.angle);
+		*y = center->player.y - sinf(center->player.angle);
 	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_D))
 	{
-		*x = center->player.x + cosf(center->player.angle + (PI / 2.0)) / 1.5;
-		*y = center->player.y + sinf(center->player.angle + (PI / 2.0)) / 1.5;
+		*x = center->player.x + cosf(center->player.angle + (PI / 2.0));
+		*y = center->player.y + sinf(center->player.angle + (PI / 2.0));
 	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_A))
 	{
-		*x = center->player.x - cosf(center->player.angle + (PI / 2.0)) / 1.5;
-		*y = center->player.y - sinf(center->player.angle + (PI / 2.0)) / 1.5;
+		*x = center->player.x - cosf(center->player.angle + (PI / 2.0));
+		*y = center->player.y - sinf(center->player.angle + (PI / 2.0));
 	}
 }
 

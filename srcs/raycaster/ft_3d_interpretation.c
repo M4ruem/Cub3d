@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:54:15 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/28 17:34:49 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:04:37 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	ft_ceiling_making(t_gpt *center)
 		y = 0;
 		while (y < HEIGHT / 2)
 		{
-			mlx_put_pixel(center->fov_img, x, y, 0xFF4400FF);
+			mlx_put_pixel(center->fov_img, x, y,
+					ft_adapt_color_ceiling(center));
 			y++;
 		}
 		x++;
@@ -41,7 +42,8 @@ void	ft_floor_making(t_gpt *center)
 		y = HEIGHT / 2;
 		while (y < HEIGHT)
 		{
-			mlx_put_pixel(center->fov_img, x, y, 0x00FF00FF);
+			mlx_put_pixel(center->fov_img, x, y,
+					ft_adapt_color_floor(center));
 			y++;
 		}
 		x++;
@@ -58,11 +60,12 @@ void	ft_wall_making(t_gpt *center, double screen_dist)
 	xy[0] = 0;
 	while (xy[0] < WIDTH)
 	{
-		dist = center->fov[xy[0]].ray * cosf((center->fov[xy[0]].angle - center->player.angle));
+		dist = center->fov[xy[0]].ray * \
+			cosf((center->fov[xy[0]].angle - center->player.angle));
 		if (center->fov[xy[0]].ray > 0)
-			height_proj = (screen_dist / dist) * 8;
+			height_proj = roundf((screen_dist / dist) * 8.0);
 		else
-			height_proj = screen_dist;	
+			height_proj = screen_dist;
 		xy[1] = (HEIGHT / 2) - (height_proj);
 		if (xy[1] < 0)
 			xy[1] = 0;
