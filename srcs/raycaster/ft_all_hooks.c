@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:53 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/29 15:15:10 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:44:56 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,35 @@ static void	ft_clear_image(t_gpt *center)
 	}
 }
 
-static void	ft_four_mouvement(float *x, float *y, t_gpt *center)
+static void	ft_all_mouvements(double *x, double *y, t_gpt *center)
 {
+	if (mlx_is_key_down(center->mlx, MLX_KEY_LEFT))
+		center->player.angle -= 0.02;
+	if (mlx_is_key_down(center->mlx, MLX_KEY_RIGHT))
+		center->player.angle += 0.02;
 	if (mlx_is_key_down(center->mlx, MLX_KEY_W))
 	{
-		*x = center->player.x + cosf(center->player.angle);
-		*y = center->player.y + sinf(center->player.angle);
+		*x += cos(center->player.angle);
+		*y += sin(center->player.angle);
 	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_S))
 	{
-		*x = center->player.x - cosf(center->player.angle);
-		*y = center->player.y - sinf(center->player.angle);
+		*x -= cos(center->player.angle);
+		*y -= sin(center->player.angle);
 	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_D))
 	{
-		*x = center->player.x + cosf(center->player.angle + (PI / 2.0));
-		*y = center->player.y + sinf(center->player.angle + (PI / 2.0));
+		*x -= sin(center->player.angle);
+		*y += cos(center->player.angle);
 	}
 	if (mlx_is_key_down(center->mlx, MLX_KEY_A))
 	{
-		*x = center->player.x - cosf(center->player.angle + (PI / 2.0));
-		*y = center->player.y - sinf(center->player.angle + (PI / 2.0));
+		*x += sin(center->player.angle);
+		*y -= cos(center->player.angle);
 	}
 }
 
-int	ft_is_collision_for_player(t_gpt *center, float px, float py)
+static int	ft_is_collision_for_player(t_gpt *center, double px, double py)
 {
 	int	x;
 	int	y;
@@ -69,29 +73,23 @@ int	ft_is_collision_for_player(t_gpt *center, float px, float py)
 void	ft_key_hook(void *arg)
 {
 	t_gpt	*center;
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 
-	x = -1;
-	y = -1;
 	center = (t_gpt *)arg;
+	x = center->player.x;
+	y = center->player.y;
 	if (mlx_is_key_down(center->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(center->mlx);
-	ft_four_mouvement(&x, &y, center);
+	ft_all_mouvements(&x, &y, center);
 	if (!ft_is_collision_for_player(center, x, y))
 	{
 		center->player.x = x;
 		center->player.y = y;
 	}
-	if (mlx_is_key_down(center->mlx, MLX_KEY_LEFT))
-		center->player.angle -= 0.02;
-	if (mlx_is_key_down(center->mlx, MLX_KEY_RIGHT))
-		center->player.angle += 0.02;
 	center->player.angle = fmod(center->player.angle, 6.28);
-	// Calule distance -> tab
-	ft_fov(center);
-	// Dessin '3D'
-	ft_3d_making(center);
+	ft_fov(center, -1, 0.0);
 	ft_clear_image(center);
+	ft_3d_making(center);
 	ft_set_color_minimap(center);
 }

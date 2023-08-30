@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/29 14:48:28 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:19:39 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	ft_set_color_player(t_gpt *center)
 	ft_trace_rays(center);
 	tmp[0] = 100;
 	tmp[1] = 100;
-	end[0] = tmp[0] + (cosf(center->player.angle) * 15);
-	end[1] = tmp[1] + (sinf(center->player.angle) * 15);
+	end[0] = (double)tmp[0] + (cosf(center->player.angle) * 15.0);
+	end[1] = (double)tmp[1] + (sinf(center->player.angle) * 15.0);
 	ft_dda(center, tmp, end, 0xFF00FFFF);
 }
 
@@ -88,14 +88,14 @@ static void	draw_pixel_around(t_gpt *center, int x, int y, int color)
 			if (y == max_y - 1 || x == max_x - 25)
 			{
 				if (ft_still_inside(center, x, y))
-					mlx_put_pixel(center->minimap, x + 100 - center->player.x, \
-						y + 100 - center->player.y, 0x888888FF);
+					mlx_put_pixel(center->minimap, (double)x + 100.0 - center->player.x, \
+						(double)y + 100.0 - center->player.y, 0x888888FF);
 			}
 			else
 			{
 				if (ft_still_inside(center, x, y))
-					mlx_put_pixel(center->minimap, x + 100 - center->player.x, \
-						y + 100 - center->player.y, color);
+					mlx_put_pixel(center->minimap, (double)x + 100.0 - center->player.x, \
+						(double)y + 100.0 - center->player.y, color);
 			}
 		}
 		x++;

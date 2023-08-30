@@ -6,19 +6,19 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 15:51:15 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/28 17:39:37 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:30:34 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycaster_header.h"
 
-int	ft_is_collision_for_ray(t_gpt *center, float px, float py)
+int	ft_is_collision_for_ray(t_gpt *center, double px, double py)
 {
 	int	x;
 	int	y;
 
-	x = px / 25.0;
-	y = py / 25.0;
+	x = px / 25;
+	y = py / 25;
 	if (x < 0 || x >= center->map_width || y < 0 || y >= center->map_height)
 		return (1);
 	if (center->data->map[y][x] == '1')
@@ -35,15 +35,17 @@ static double	ft_horizontal_collisions(t_gpt *center,
 
 	if (!sin_a)
 		return (100000000000000000.0);
-	if (sin_a > 0)
-		dxyz[1] = 25;
-	if (sin_a > 0)
-		xy[1] = ((int)center->player.y / 25 + 1) * 25;
-	if (sin_a < 0)
-		dxyz[1] = -25;
-	if (sin_a < 0)
-		xy[1] = ((int)center->player.y / 25) * 25 - 0.0001;
-	dist = (xy[1] - (int)center->player.y) / sin_a;
+	if (sin_a > 0.0)
+	{
+		dxyz[1] = 25.0;
+		xy[1] = ((int)center->player.y / 25 + 1) * 25.0;
+	}
+	else if (sin_a < 0.0)
+	{
+		dxyz[1] = -25.0;
+		xy[1] = ((int)center->player.y / 25) * 25.0 - 0.0001;
+	}
+	dist = (double)(xy[1] - (int)center->player.y) / sin_a;
 	xy[0] = (int)center->player.x + dist * cos_a;
 	dxyz[2] = dxyz[1] / sin_a;
 	dxyz[0] = dxyz[2] * cos_a;
@@ -65,15 +67,17 @@ static double	ft_vertical_collisions(t_gpt *center,
 
 	if (!cos_a)
 		return (100000000000000000.0);
-	if (cos_a > 0)
-		dxyz[0] = 25;
-	if (cos_a > 0)
-		xy[0] = ((int)center->player.x / 25 + 1) * 25;
-	if (cos_a < 0)
-		dxyz[0] = -25;
-	if (cos_a < 0)
-		xy[0] = ((int)center->player.x / 25) * 25 - 0.0001;
-	dist = (xy[0] - (int)center->player.x) / cos_a;
+	if (cos_a > 0.0)
+	{
+		dxyz[0] = 25.0;
+		xy[0] = ((int)center->player.x / 25 + 1) * 25.0;
+	}
+	else if (cos_a < 0.0)
+	{
+		dxyz[0] = -25.0;
+		xy[0] = ((int)center->player.x / 25) * 25.0 - 0.0001;
+	}
+	dist = (double)(xy[0] - (int)center->player.x) / cos_a;
 	xy[1] = (int)center->player.y + dist * sin_a;
 	dxyz[2] = dxyz[0] / cos_a;
 	dxyz[1] = dxyz[2] * sin_a;
@@ -86,28 +90,32 @@ static double	ft_vertical_collisions(t_gpt *center,
 	return (dist);
 }
 
-void	ft_fov(t_gpt *center)
+void	ft_fov(t_gpt *center, int i, double eor)
 {
 	double	diff_angle;
 	double	eor_verti;
-	double	eor;
-	int		i;
 	double tmp_angle;
+	double start_angle;
 
-	i = -1;
-	diff_angle = (70 * PI / 180) / (double)WIDTH;
-	tmp_angle = center->player.angle - ((70 * PI / 180) / 2.0);
+	diff_angle = (70.0 * PI / 180.0) / (double)WIDTH;
+	start_angle = center->player.angle - ((70 * PI / 180.0) / 2.0);
 	while (++i < WIDTH)
 	{
-		eor = ft_horizontal_collisions(center, cosf(tmp_angle), \
-			sinf(tmp_angle));
+		tmp_angle = start_angle + diff_angle * i;
+		eor = ft_horizontal_collisions(center, cos(tmp_angle), \
+			sin(tmp_angle));
 		eor_verti = ft_vertical_collisions(center, \
-			cosf(tmp_angle), sinf(tmp_angle));
+			cos(tmp_angle), sin(tmp_angle));
+		center->fov[i].dir = HORIZONTAL;
 		if (eor > eor_verti)
+		{
 			eor = eor_verti;
+			center->fov[i].dir =  VERTICAL;
+		}
 		center->fov[i].ray = eor;
 		center->fov[i].angle = tmp_angle;
-		tmp_angle += diff_angle;
+		// center->fov[i].x = 100  + (cos(tmp_angle) * eor);
+		// center->fov[i].y = 100  + (sin(tmp_angle) * eor);
 	}
 }
 
@@ -126,8 +134,8 @@ void	ft_trace_rays(t_gpt *center)
 	tmp_angle = center->player.angle - ((70 * PI / 180) / 2.0);
 	while (++i < WIDTH)
 	{
-		p2[0] = tm_p1[0] + (cosf(tmp_angle) * center->fov[i].ray);
-		p2[1] = tm_p1[1] + (sinf(tmp_angle) * center->fov[i].ray);
+		p2[0] = tm_p1[0] + (cos(tmp_angle) * center->fov[i].ray);
+		p2[1] = tm_p1[1] + (sin(tmp_angle) * center->fov[i].ray);
 		ft_dda(center, tm_p1, p2, 0x0000FFFF);
 		tmp_angle += diff_angle;
 	}

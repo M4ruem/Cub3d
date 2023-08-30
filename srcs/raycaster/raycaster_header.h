@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:25:08 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/29 14:43:32 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:06:41 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "../cub3d.h"
 
 # define PI 3.141592653589
+# define HORIZONTAL 0
+# define VERTICAL 1
 
 typedef struct s_gpt	t_gpt;
 
@@ -30,11 +32,13 @@ void	ft_get_map_infos(t_gpt *center);
 int		ft_max_map_side(t_gpt *center);
 void	ft_dda(t_gpt *center, int *p1, int *p2, int color);
 void	ft_adapt_player_moving(t_gpt *center, int key);
-void	ft_fov(t_gpt *center);
+void	ft_fov(t_gpt *center, int i, double eor);
 int		ft_out_of_range(int x, int y, mlx_image_t *img);
 void	ft_trace_rays(t_gpt *center);
 void	ft_3d_making(t_gpt *center);
 int		ft_adapt_color_floor(t_gpt *center);
 int		ft_adapt_color_ceiling(t_gpt *center);
 int		ft_still_inside(t_gpt *center, int x, int y);
+int		ft_adapt_textures(t_gpt *center, int *xy, int dist_y);
+
 #endif

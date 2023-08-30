@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:48:27 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/28 15:38:28 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:04:05 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,16 @@ typedef struct s_3d
 	double	x;
 	double	y;
 	double	angle;
+	char	dir;
 }	t_3d;
+
+typedef struct s_textures
+{
+	mlx_texture_t *north;
+	mlx_texture_t *south;
+	mlx_texture_t *east;
+	mlx_texture_t *west;
+}	t_textures;
 
 typedef struct s_gpt
 {
@@ -66,8 +75,9 @@ typedef struct s_gpt
 	int				map_width;
 	char			player_start_sens;
 	int				player_start_xy[2];
-	t_3d			fov[WIDTH + 1];
+	t_3d			fov[WIDTH];
 	mlx_image_t		*fov_img;
+	t_textures		textures_tab;
 }	t_gpt;
 
 enum	e_file_perm
