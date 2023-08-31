@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 15:51:15 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/30 17:30:34 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:29:22 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,11 @@ static double	ft_vertical_collisions(t_gpt *center,
 
 void	ft_fov(t_gpt *center, int i, double eor)
 {
-	double	diff_angle;
+	const double	diff_angle = (70.0 * PI / 180.0) / (double)WIDTH;
 	double	eor_verti;
 	double tmp_angle;
 	double start_angle;
 
-	diff_angle = (70.0 * PI / 180.0) / (double)WIDTH;
 	start_angle = center->player.angle - ((70 * PI / 180.0) / 2.0);
 	while (++i < WIDTH)
 	{
@@ -108,14 +107,13 @@ void	ft_fov(t_gpt *center, int i, double eor)
 			cos(tmp_angle), sin(tmp_angle));
 		center->fov[i].dir = HORIZONTAL;
 		if (eor > eor_verti)
-		{
-			eor = eor_verti;
+		{	eor = eor_verti;
 			center->fov[i].dir =  VERTICAL;
 		}
 		center->fov[i].ray = eor;
 		center->fov[i].angle = tmp_angle;
-		// center->fov[i].x = 100  + (cos(tmp_angle) * eor);
-		// center->fov[i].y = 100  + (sin(tmp_angle) * eor);
+		center->fov[i].x = center->player.x  + (cos(tmp_angle) * eor);
+		center->fov[i].y = center->player.y  + (sin(tmp_angle) * eor);
 	}
 }
 

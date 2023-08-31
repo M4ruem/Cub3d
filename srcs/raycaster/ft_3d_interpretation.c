@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:54:15 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/30 17:13:39 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:22:37 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,16 @@ void	ft_floor_making(t_gpt *center)
 	}
 }
 
-// static double	ft_get_y_progress(int *xy, int height_proj)
-// {
-// 	double	tmp;
+static double	ft_get_y_progress(int *xy, int height_proj)
+{
+	double	tmp;
 
-// 	tmp = (xy[1] - ((HEIGHT / 2) - (height_proj)));
-// 	if (tmp < 0)
-// 		tmp = 0;
-// 	tmp /= (((HEIGHT / 2) + (height_proj)) - ((HEIGHT / 2) - (height_proj)));
-// 	return (tmp);
-// }
+	tmp = (xy[1] - ((HEIGHT / 2) - (height_proj / 2)));
+	if (tmp < 0)
+		tmp = 0;
+	tmp /= (((HEIGHT / 2) + (height_proj / 2)) - ((HEIGHT / 2) - (height_proj / 2)));
+	return (tmp);
+}
 
 void	ft_wall_making(t_gpt *center, double screen_dist)
 {
@@ -81,8 +81,8 @@ void	ft_wall_making(t_gpt *center, double screen_dist)
 			xy[1] = 0;
 		while (xy[1] < ((HEIGHT / 2) + (height_proj / 2)) && xy[1] < HEIGHT)
 		{
-			mlx_put_pixel(center->fov_img, xy[0], xy[1], 0x7777FFFF);
-				//ft_adapt_textures(center, xy, ft_get_y_progress(xy, height_proj)));
+			mlx_put_pixel(center->fov_img, xy[0], xy[1],
+				ft_adapt_textures(center, xy, ft_get_y_progress(xy, height_proj)));
 			xy[1]++;
 		}
 		xy[0]++;
