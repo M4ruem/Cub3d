@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_all_hooks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:53 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/04 17:34:02 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:03:24 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,6 @@ static void	ft_clear_image(t_gpt *center)
 			y++;
 		}
 		x++;
-	}
-}
-
-static void	ft_all_mouvements(double *x, double *y, t_gpt *center)
-{
-	if (mlx_is_key_down(center->mlx, MLX_KEY_LEFT))
-		center->player.angle -= 0.03;
-	if (mlx_is_key_down(center->mlx, MLX_KEY_RIGHT))
-		center->player.angle += 0.03;
-	if (mlx_is_key_down(center->mlx, MLX_KEY_W))
-	{
-		*x += cos(center->player.angle) * 1.5;
-		*y += sin(center->player.angle) * 1.5;
-	}
-	if (mlx_is_key_down(center->mlx, MLX_KEY_S))
-	{
-		*x -= cos(center->player.angle) * 1.5;
-		*y -= sin(center->player.angle) * 1.5;
-	}
-	if (mlx_is_key_down(center->mlx, MLX_KEY_D))
-	{
-		*x -= sin(center->player.angle) * 1.5;
-		*y += cos(center->player.angle) * 1.5;
-	}
-	if (mlx_is_key_down(center->mlx, MLX_KEY_A))
-	{
-		*x += sin(center->player.angle) * 1.5;
-		*y -= cos(center->player.angle) * 1.5;
 	}
 }
 
@@ -88,7 +60,7 @@ void	ft_key_hook(void *arg)
 	y = center->player.y;
 	if (mlx_is_key_down(center->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(center->mlx);
-	ft_all_mouvements(&x, &y, center);
+	ft_basic_mouvements(&x, &y, center);
 	if (!ft_is_collision_for_player(center, x, y))
 	{
 		center->player.x = roundf(x);

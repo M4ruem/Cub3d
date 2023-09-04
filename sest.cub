@@ -1,7 +1,7 @@
-NO ./textures/Metal_Plate.png
-SO ./textures/Metal_Plate.png
+NO ./textures/north.png
+SO ./textures/south.png
 WE ./textures/Metal_Plate.png
-EA     ./textures/Metal_Plate.png
+EA     ./textures/east.png
 
 F 0,0,0
 C 255,255,255

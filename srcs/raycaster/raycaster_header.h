@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:25:08 by cormiere          #+#    #+#             */
-/*   Updated: 2023/09/04 15:27:50 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:49:11 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ int		ft_adapt_color_floor(t_gpt *center);
 int		ft_adapt_color_ceiling(t_gpt *center);
 int		ft_still_inside(t_gpt *center, int x, int y);
 int		ft_adapt_textures(t_gpt *center, int *xy, double dist_y);
+void	ft_basic_mouvements(double *x, double *y, t_gpt *center);
 
 #endif
