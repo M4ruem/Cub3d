@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_drawing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/09/04 17:12:37 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:36:40 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,14 @@ static void	draw_pixel_around(t_gpt *center, int x, int y, int color)
 	int	max_x;
 	int	max_y;
 
-	max_x = x + 25;
-	max_y = y + 25;
+	max_x = x + center->size;
+	max_y = y + center->size;
 	while (x < max_x)
 	{
-		y = max_y - 26;
+		y = max_y - (center->size + 1);
 		while (++y < max_y)
 		{
-			if (y == max_y - 1 || x == max_x - 25)
+			if (y == max_y - 1 || x == max_x - center->size)
 			{
 				if (ft_still_inside(center, x, y))
 					mlx_put_pixel(center->minimap, (double)x + 100.0 - center->player.x, \
@@ -121,9 +121,9 @@ void	ft_set_color_minimap(t_gpt *center)
 				|| center->data->map[i][j] == 'S'\
 				|| center->data->map[i][j] == 'W') \
 				draw_pixel_around(center, x, y, 0x000000FF);
-			x += 25;
+			x += center->size;
 		}
-		y += 25;
+		y += center->size;
 	}
 	ft_set_color_player(center);
 }

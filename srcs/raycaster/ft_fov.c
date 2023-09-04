@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fov.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 15:51:15 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/04 17:09:36 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:29:33 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	ft_is_collision_for_ray(t_gpt *center, double px, double py)
 	int	x;
 	int	y;
 
-	x = px / 25;
-	y = py / 25;
+	x = px / center->size;
+	y = py / center->size;
 	if (x < 0 || x >= center->map_width || y < 0 || y >= center->map_height)
 		return (1);
 	if (center->data->map[y][x] == '1')
@@ -107,7 +107,7 @@ void	ft_fov(t_gpt *center, int i, double eor)
 			cos(tmp_angle), sin(tmp_angle));
 		center->fov[i].dir = HORIZONTAL;
 		if (eor > eor_verti)
-		{	
+		{
 			eor = eor_verti;
 			center->fov[i].dir =  VERTICAL;
 		}

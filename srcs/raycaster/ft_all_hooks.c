@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_all_hooks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:53 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/04 17:08:45 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:34:02 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,14 @@ static void	ft_all_mouvements(double *x, double *y, t_gpt *center)
 
 static int	ft_is_collision_for_player(t_gpt *center, double px, double py)
 {
-	const int	p1[2] = {px / 25.0, (py - 2) / 25.0};
-	const int	p2[2] = {(px - 3) / 25.0, py / 25.0};
-	const int	p3[2] = {(px + 3) / 25.0, py / 25.0};
-	const int	p4[2] = {px / 25.0, (py + 5) / 25.0};
+	const int	p1[2] = {px / (double)center->size, \
+		(py - 2) / (double)center->size};
+	const int	p2[2] = {(px - 3) / (double)center->size, \
+		py / (double)center->size};
+	const int	p3[2] = {(px + 3) / (double)center->size, \
+		py / (double)center->size};
+	const int	p4[2] = {px / (double)center->size, \
+		(py + 5) / (double)center->size};
 
 	if (center->data->map[p1[1]][p1[0]] == '1'
 		|| center->data->map[p2[1]][p2[0]] == '1'

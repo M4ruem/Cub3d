@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_textures_gestion.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:34:22 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/04 16:59:34 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:38:32 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,24 @@ static void		ft_which_face(double *prog, mlx_texture_t **img,
 {
 	if (cosf(center->fov[i].angle) > 0 && center->fov[i].dir == VERTICAL)
 	{
-		*prog = (center->fov[i].y /  25.0) - (int)(center->fov[i].y / 25.0);
+		*prog = (center->fov[i].y /  (double)center->size) - (int)(center->fov[i].y / (double)center->size);
 		*img = center->textures_tab.west;
 	}
 	else if (cosf(center->fov[i].angle) < 0 && center->fov[i].dir == VERTICAL)
 	{
-		*prog = 1.0 - ((center->fov[i].y / 25.0) - \
-				(int)(center->fov[i].y / 25.0));
+		*prog = 1.0 - ((center->fov[i].y / (double)center->size) - \
+				(int)(center->fov[i].y / (double)center->size));
 		*img = center->textures_tab.east;
 	}
 	else if (sinf(center->fov[i].angle) > 0 && center->fov[i].dir == HORIZONTAL)
 	{
-		*prog = 1.0 - ((center->fov[i].x / 25.0) - \
-				(int)(center->fov[i].x / 25.0));
+		*prog = 1.0 - ((center->fov[i].x / (double)center->size) - \
+				(int)(center->fov[i].x / (double)center->size));
 		*img = center->textures_tab.north;
 	}
 	else if (sinf(center->fov[i].angle) < 0 && center->fov[i].dir == HORIZONTAL)
 	{
-		*prog = (center->fov[i].x / 25.0) - (int)(center->fov[i].x / 25.0);
+		*prog = (center->fov[i].x / (double)center->size) - (int)(center->fov[i].x / (double)center->size);
 		*img = center->textures_tab.south;
 	}
 	else
