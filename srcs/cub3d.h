@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:48:27 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/04 16:39:36 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:09:52 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define BUFFER_SIZE 42
 # define WIDTH 1920
 # define HEIGHT 1080
+# define DEMI_HEIGHT 540
+# define DEMI_WIDTH 960
 
 typedef struct s_akinator
 {

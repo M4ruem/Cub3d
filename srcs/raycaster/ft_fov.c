@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fov.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 15:51:15 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/04 16:41:10 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:09:36 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,12 @@ static double	ft_vertical_collisions(t_gpt *center,
 
 void	ft_fov(t_gpt *center, int i, double eor)
 {
-	const double	diff_angle = (70.0 * PI / 180.0) / (double)WIDTH;
-	double	eor_verti;
-	double tmp_angle;
-	double start_angle;
+	static double	diff_angle = FOV / (double)WIDTH;
+	double			eor_verti;
+	double			tmp_angle;
+	double			start_angle;
 
-	start_angle = center->player.angle - ((70 * PI / 180.0) / 2.0);
+	start_angle = center->player.angle - DEMI_FOV;
 	while (++i < WIDTH)
 	{
 		tmp_angle = start_angle + diff_angle * i;
@@ -107,7 +107,8 @@ void	ft_fov(t_gpt *center, int i, double eor)
 			cos(tmp_angle), sin(tmp_angle));
 		center->fov[i].dir = HORIZONTAL;
 		if (eor > eor_verti)
-		{	eor = eor_verti;
+		{	
+			eor = eor_verti;
 			center->fov[i].dir =  VERTICAL;
 		}
 		center->fov[i].ray = eor;
@@ -119,17 +120,16 @@ void	ft_fov(t_gpt *center, int i, double eor)
 
 void	ft_trace_rays(t_gpt *center)
 {
-	int		i;
-	int		tm_p1[2];
-	double	tmp_angle;
-	double	diff_angle;
-	int		p2[2];
+	int				i;
+	int				tm_p1[2];
+	double			tmp_angle;
+	static double	diff_angle = FOV / (double)WIDTH;
+	int				p2[2];
 
 	tm_p1[0] = 100;
 	tm_p1[1] = 100;
 	i = -1;
-	diff_angle = (70 * PI / 180) / (double)WIDTH;
-	tmp_angle = center->player.angle - ((70 * PI / 180) / 2.0);
+	tmp_angle = center->player.angle - DEMI_FOV;
 	while (++i < WIDTH)
 	{
 		p2[0] = tm_p1[0] + (cos(tmp_angle) * center->fov[i].ray);

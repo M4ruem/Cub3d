@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:25:08 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/30 19:03:10 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:27:50 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # define PI 3.141592653589
 # define HORIZONTAL 0
 # define VERTICAL 1
+# define PLAYER_SIZE 9
+# define HALF_PLAYER_SIZE 4
+# define FOV 1.221730476
+# define DEMI_FOV 0.610865238
 
 typedef struct s_gpt	t_gpt;
 

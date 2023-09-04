@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/29 17:19:39 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:12:37 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,20 @@ void	ft_set_color_player(t_gpt *center)
 {
 	int	x;
 	int	y;
-	int	size;
-	int	tmp[2];
+	static int	tmp[2] = {100, 100};
 	int	end[2];
 
-	size = 9;
 	x = -1;
-	while (++x < size)
+	while (++x < PLAYER_SIZE)
 	{
 		y = -1;
-		while (++y < size)
+		while (++y < PLAYER_SIZE)
 		{
-			mlx_put_pixel(center->minimap, 100 + x - (size / 2), \
-				100 + y - (size / 2), 0xFF00FFFF);
+			mlx_put_pixel(center->minimap, 100 + x - HALF_PLAYER_SIZE, \
+				100 + y - HALF_PLAYER_SIZE, 0xFF00FFFF);
 		}
 	}
 	ft_trace_rays(center);
-	tmp[0] = 100;
-	tmp[1] = 100;
 	end[0] = (double)tmp[0] + (cosf(center->player.angle) * 15.0);
 	end[1] = (double)tmp[1] + (sinf(center->player.angle) * 15.0);
 	ft_dda(center, tmp, end, 0xFF00FFFF);
