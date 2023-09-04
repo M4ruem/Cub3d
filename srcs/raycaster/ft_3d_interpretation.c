@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:54:15 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/04 17:08:05 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:46:25 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ static double	ft_get_y_progress(int y, int height_proj)
 	double	tmp;
 
 	tmp = (y - ((DEMI_HEIGHT) - (height_proj)));
-	if (tmp < 0)
-		tmp = 0;
 	tmp /= (((DEMI_HEIGHT) + (height_proj)) - ((DEMI_HEIGHT) - (height_proj)));
 	return (tmp);
 }
@@ -77,8 +75,8 @@ void	ft_wall_making(t_gpt *center, double screen_dist)
 		else
 			height_proj = screen_dist;
 		xy[1] = (DEMI_HEIGHT) - (height_proj);
-		if (xy[1] < 0)
-			xy[1] = 0;
+		while (xy[1] < 0)
+			xy[1]++;
 		while (xy[1] < ((DEMI_HEIGHT) + (height_proj)) && xy[1] < HEIGHT)
 		{
 			mlx_put_pixel(center->fov_img, xy[0], xy[1], ft_adapt_textures(\

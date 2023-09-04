@@ -6,11 +6,33 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:53 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/04 18:03:24 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:55:34 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycaster_header.h"
+#include <sys/time.h>
+
+static void	ft_print_fps(t_gpt *center)
+{
+	static double	last_time = 0;
+	static double	current_time = 0;
+	char			title[10];
+	int				tmp;
+	
+	title[0] = 'f';
+	title[1] = 'p';
+	title[2] = 's';
+	title[3] = ' ';
+	title[4] = ':';
+	title[5] = ' ';
+	last_time = current_time;
+	current_time = mlx_get_time();
+	tmp = roundf(1.0 / ((current_time - last_time)));
+	title[6] = (tmp / 10) + '0';
+	title[7] = (tmp % 10) + '0';
+	mlx_set_window_title(center->mlx, title);
+}
 
 static void	ft_clear_image(t_gpt *center)
 {
@@ -71,4 +93,5 @@ void	ft_key_hook(void *arg)
 	ft_clear_image(center);
 	ft_3d_making(center);
 	ft_set_color_minimap(center);
+	ft_print_fps(center);
 }
