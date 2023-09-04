@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:48:27 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/30 16:04:05 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:39:36 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_gpt
 	int				map_width;
 	char			player_start_sens;
 	int				player_start_xy[2];
+	int				size;
 	t_3d			fov[WIDTH];
 	mlx_image_t		*fov_img;
 	t_textures		textures_tab;

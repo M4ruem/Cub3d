@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_3d_interpretation.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 13:54:15 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/31 16:22:37 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:39:11 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_wall_making(t_gpt *center, double screen_dist)
 	xy[0] = 0;
 	while (xy[0] < WIDTH)
 	{
-		dist = (center->fov[xy[0]].ray / 25.0) * \
+		dist = (center->fov[xy[0]].ray / (double)center->size) * \
 			cosf((center->fov[xy[0]].angle - center->player.angle));
 		if (dist > 0)
 			height_proj = (screen_dist / dist);
@@ -92,7 +92,7 @@ void	ft_wall_making(t_gpt *center, double screen_dist)
 void	ft_3d_making(t_gpt *center)
 {
 	const double			screen_dist =  (WIDTH / 2) / tan(PI / 4.0);
-	
+
 	ft_floor_making(center);
 	ft_ceiling_making(center);
 	ft_wall_making(center, screen_dist);

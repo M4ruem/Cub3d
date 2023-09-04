@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_raycasting.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:31:28 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/29 19:18:47 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:40:07 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_gpt	*ft_init_center(t_akinator *data)
 	center = ft_calloc(sizeof(t_gpt), 1);
 	if (!center)
 		return (NULL);
+	center->size = 25;
 	center->data = data;
 	ft_get_map_infos(center);
 	error = ft_init_mlx(center);

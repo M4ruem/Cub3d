@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fov.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 15:51:15 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/31 16:29:22 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:41:10 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ static double	ft_horizontal_collisions(t_gpt *center,
 		return (100000000000000000.0);
 	if (sin_a > 0.0)
 	{
-		dxyz[1] = 25.0;
-		xy[1] = ((int)center->player.y / 25 + 1) * 25.0;
+		dxyz[1] = (double)center->size;
+		xy[1] = ((int)center->player.y / center->size + 1) * (double)center->size;
 	}
 	else if (sin_a < 0.0)
 	{
-		dxyz[1] = -25.0;
-		xy[1] = ((int)center->player.y / 25) * 25.0 - 0.0001;
+		dxyz[1] = -(double)center->size;
+		xy[1] = ((int)center->player.y / center->size) * (double)center->size - 0.0001;
 	}
 	dist = (double)(xy[1] - (int)center->player.y) / sin_a;
 	xy[0] = (int)center->player.x + dist * cos_a;
@@ -69,13 +69,13 @@ static double	ft_vertical_collisions(t_gpt *center,
 		return (100000000000000000.0);
 	if (cos_a > 0.0)
 	{
-		dxyz[0] = 25.0;
-		xy[0] = ((int)center->player.x / 25 + 1) * 25.0;
+		dxyz[0] = (double)center->size;
+		xy[0] = ((int)center->player.x / center->size + 1) * (double)center->size;
 	}
 	else if (cos_a < 0.0)
 	{
-		dxyz[0] = -25.0;
-		xy[0] = ((int)center->player.x / 25) * 25.0 - 0.0001;
+		dxyz[0] = -(double)center->size;
+		xy[0] = ((int)center->player.x / center->size) * (double)center->size - 0.0001;
 	}
 	dist = (double)(xy[0] - (int)center->player.x) / cos_a;
 	xy[1] = (int)center->player.y + dist * sin_a;

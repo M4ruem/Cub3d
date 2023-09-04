@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_all_hooks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:53 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/08/31 17:56:50 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:37:32 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ static int	ft_is_collision_for_player(t_gpt *center, double px, double py)
 	int	x;
 	int	y;
 
-	x = px / 25.0;
-	y = py / 25.0;
+	x = px / (double)center->size;
+	y = py / (double)center->size;
 	if (center->data->map[y][x] == '1')
 		return (1);
 	return (0);
