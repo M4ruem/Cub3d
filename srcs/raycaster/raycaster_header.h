@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:25:08 by cormiere          #+#    #+#             */
-/*   Updated: 2023/09/04 17:49:11 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:35:04 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,22 @@
 # define FOV 1.221730476
 # define DEMI_FOV 0.610865238
 
+enum	e_side_wall
+{
+	TOP,
+	BOTTOM,
+	LEFT,
+	RIGHT,
+};
+
+typedef struct s_ray_info
+{
+	double x;
+	double y;
+	double dist;
+}	t_ray_info;
+
+
 typedef struct s_gpt	t_gpt;
 
 void	ft_key_hook(void *arg);
@@ -36,9 +52,9 @@ void	ft_get_map_infos(t_gpt *center);
 int		ft_max_map_side(t_gpt *center);
 void	ft_dda(t_gpt *center, int *p1, int *p2, int color);
 void	ft_adapt_player_moving(t_gpt *center, int key);
-void	ft_fov(t_gpt *center, int i, double eor);
+void	ft_fov(t_gpt *center, int i);
 int		ft_out_of_range(int x, int y, mlx_image_t *img);
-void	ft_trace_rays(t_gpt *center);
+void	ft_trace_rays(t_gpt *center, int i);
 void	ft_3d_making(t_gpt *center);
 int		ft_adapt_color_floor(t_gpt *center);
 int		ft_adapt_color_ceiling(t_gpt *center);

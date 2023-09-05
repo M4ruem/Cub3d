@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_map_infos.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 14:32:33 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/04 17:37:10 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:50:27 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	ft_get_map_infos(t_gpt *center)
 		y = 0;
 		while (center->data->map[x][y])
 		{
-			if (center->data->map[x][y] == 'N' || center->data->map[x][y] == 'S'
+			if (center->data->map[x][y] == 'N'
+				|| center->data->map[x][y] == 'S'
 				|| center->data->map[x][y] == 'E'
 				|| center->data->map[x][y] == 'W')
 			{

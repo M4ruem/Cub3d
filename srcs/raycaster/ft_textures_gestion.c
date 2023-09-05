@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_textures_gestion.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:34:22 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/04 17:38:32 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:07:30 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	ft_make_color(mlx_texture_t *texture, double tmp, double dist_y)
 
 	x = texture->width * tmp;
 	y = (texture->height) * (dist_y);
-	index = (x + (y * (texture->width))) * 4;
+	index = (x + (y * (texture->width))) << 2;
 	color[0] = texture->pixels[index];
 	color[1] = texture->pixels[index + 1];
 	color[2] = texture->pixels[index + 2];
@@ -31,24 +31,24 @@ static int	ft_make_color(mlx_texture_t *texture, double tmp, double dist_y)
 static void		ft_which_face(double *prog, mlx_texture_t **img,
 	t_gpt *center, const int i)
 {
-	if (cosf(center->fov[i].angle) > 0 && center->fov[i].dir == VERTICAL)
+	if (center->fov[i].dir == LEFT)
 	{
 		*prog = (center->fov[i].y /  (double)center->size) - (int)(center->fov[i].y / (double)center->size);
 		*img = center->textures_tab.west;
 	}
-	else if (cosf(center->fov[i].angle) < 0 && center->fov[i].dir == VERTICAL)
+	else if (center->fov[i].dir == RIGHT)
 	{
 		*prog = 1.0 - ((center->fov[i].y / (double)center->size) - \
 				(int)(center->fov[i].y / (double)center->size));
 		*img = center->textures_tab.east;
 	}
-	else if (sinf(center->fov[i].angle) > 0 && center->fov[i].dir == HORIZONTAL)
+	else if (center->fov[i].dir == TOP)
 	{
 		*prog = 1.0 - ((center->fov[i].x / (double)center->size) - \
 				(int)(center->fov[i].x / (double)center->size));
 		*img = center->textures_tab.north;
 	}
-	else if (sinf(center->fov[i].angle) < 0 && center->fov[i].dir == HORIZONTAL)
+	else if (center->fov[i].dir == BOTTOM)
 	{
 		*prog = (center->fov[i].x / (double)center->size) - (int)(center->fov[i].x / (double)center->size);
 		*img = center->textures_tab.south;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+         #
+#    By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 13:57:27 by lflandri          #+#    #+#              #
-#    Updated: 2023/08/12 16:56:05 by cormiere         ###   ########.fr        #
+#    Updated: 2023/09/05 17:15:51 by jdelsol-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,7 +108,7 @@ all :		${NAME}
 
 .c.o :
 			@echo -n "${WHITE}"
-			@clang -I -Wall -Wextra -Werror -c $< -o ${<:.c=.o}
+			@clang -I -Wall -Wextra -Werror -Ofast -c $< -o ${<:.c=.o}
 			@echo -n "${NEUTRE}"
 
 ${NAME}:

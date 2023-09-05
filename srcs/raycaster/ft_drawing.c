@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_drawing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/09/04 17:36:40 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:22:09 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_out_of_range(int x, int y, mlx_image_t *img)
 {
-	if (x < 0 || y < 0 || (uint32_t)x > img->width || (uint32_t)y > img->height)
+	if (x < 0 || y < 0 || (uint32_t)x >= img->width || (uint32_t)y >= img->height)
 		return (1);
 	return (0);
 }
@@ -63,7 +63,7 @@ void	ft_set_color_player(t_gpt *center)
 				100 + y - HALF_PLAYER_SIZE, 0xFF00FFFF);
 		}
 	}
-	ft_trace_rays(center);
+	ft_trace_rays(center, 0);
 	end[0] = (double)tmp[0] + (cosf(center->player.angle) * 15.0);
 	end[1] = (double)tmp[1] + (sinf(center->player.angle) * 15.0);
 	ft_dda(center, tmp, end, 0xFF00FFFF);
