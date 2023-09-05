@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:27:58 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/14 13:48:11 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/04 20:18:13 by cormiere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	ft_printf_map_error(int error_key)
 	if (error_key == INTRUDER_CHARACTER)
 		ft_printf_fd(2, "Error\n%s\n", "ABNORMAL CHARACTER ON THE MAP");
 }
+
+#include <time.h>
 
 int	main(int ac, char **av)
 {
