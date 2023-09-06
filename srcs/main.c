@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:27:58 by cormiere          #+#    #+#             */
-/*   Updated: 2023/09/04 20:18:13 by cormiere         ###   ########.fr       */
+/*   Updated: 2023/09/06 19:58:46 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	ft_printf_map_error(int error_key)
 		ft_printf_fd(2, "Error\n%s\n", "ABNORMAL CHARACTER ON THE MAP");
 }
 
-#include <time.h>
-
 int	main(int ac, char **av)
 {
 	t_akinator	*data;
@@ -69,9 +67,9 @@ int	main(int ac, char **av)
 	if (ac != 2)
 	{
 		if (ac < 2)
-			ft_printf_fd(2, "Error\n%s\n", "TOO FEW ARGUMENTS\n");
+			ft_printf_fd(2, "Error\n%s\n", "TOO FEW ARGUMENTS");
 		else
-			ft_printf_fd(2, "Error\n%s\n", "TOO MANY ARGUMENTS\n");
+			ft_printf_fd(2, "Error\n%s\n", "TOO MANY ARGUMENTS");
 		return (0);
 	}
 	data = ft_launch_parsing(av, 0);
@@ -81,6 +79,5 @@ int	main(int ac, char **av)
 	if (!error)
 		return (1);
 	ft_launch_raycasting(data);
-	ft_free_data(data);
 	return (0);
 }

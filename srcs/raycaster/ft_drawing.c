@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/09/05 17:22:09 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:55:38 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	ft_out_of_range(int x, int y, mlx_image_t *img)
 {
-	if (x < 0 || y < 0 || (uint32_t)x >= img->width || (uint32_t)y >= img->height)
+	if (x < 0 || y < 0 || (uint32_t)x >= img->width
+		|| (uint32_t)y >= img->height)
 		return (1);
 	return (0);
 }
@@ -48,10 +49,10 @@ void	ft_dda(t_gpt *center, int *p1, int *p2, int color)
 
 void	ft_set_color_player(t_gpt *center)
 {
-	int	x;
-	int	y;
+	int			x;
+	int			y;
 	static int	tmp[2] = {100, 100};
-	int	end[2];
+	int			end[2];
 
 	x = -1;
 	while (++x < PLAYER_SIZE)
@@ -71,39 +72,36 @@ void	ft_set_color_player(t_gpt *center)
 
 static void	draw_pixel_around(t_gpt *center, int x, int y, int color)
 {
-	int	max_x;
-	int	max_y;
+	const int	max_xy[2] = {x + center->size, y + center->size};
 
-	max_x = x + center->size;
-	max_y = y + center->size;
-	while (x < max_x)
+	x--;
+	while (++x < max_xy[0])
 	{
-		y = max_y - (center->size + 1);
-		while (++y < max_y)
+		y = max_xy[1] - (center->size + 1);
+		while (++y < max_xy[1])
 		{
-			if (y == max_y - 1 || x == max_x - center->size)
+			if (y == max_xy[1] - 1 || x == max_xy[0] - center->size)
 			{
 				if (ft_still_inside(center, x, y))
-					mlx_put_pixel(center->minimap, (double)x + 100.0 - center->player.x, \
-						(double)y + 100.0 - center->player.y, 0x888888FF);
+					mlx_put_pixel(center->minimap, (double)x + 100.0
+						- center->player.x, (double)y + 100.0
+						- center->player.y, 0x888888FF);
 			}
 			else
 			{
 				if (ft_still_inside(center, x, y))
-					mlx_put_pixel(center->minimap, (double)x + 100.0 - center->player.x, \
-						(double)y + 100.0 - center->player.y, color);
+					mlx_put_pixel(center->minimap, (double)x + 100.0
+						- center->player.x, (double)y + 100.0
+						- center->player.y, color);
 			}
 		}
-		x++;
 	}
 }
 
-void	ft_set_color_minimap(t_gpt *center)
+void	ft_set_color_minimap(t_gpt *center, int i, int j)
 {
 	int		x;
 	int		y;
-	int		i;
-	int		j;
 
 	i = -1;
 	y = 0;
@@ -119,7 +117,7 @@ void	ft_set_color_minimap(t_gpt *center)
 				|| center->data->map[i][j] == 'N' \
 				|| center->data->map[i][j] == 'E' \
 				|| center->data->map[i][j] == 'S'\
-				|| center->data->map[i][j] == 'W') \
+				|| center->data->map[i][j] == 'W')
 				draw_pixel_around(center, x, y, 0x000000FF);
 			x += center->size;
 		}

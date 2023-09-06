@@ -1,7 +1,7 @@
 .vscode
 *.o
 *.cub
-Cub3d
+cub3d
 ./raycaster/lib
 *.a
 *.c.o.d

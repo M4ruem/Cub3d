@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 15:51:15 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/05 17:45:26 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:59:17 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,19 @@ int	ft_is_collision_for_ray(t_gpt *center, double px, double py)
 static t_ray_info	ft_horizontal_collisions(t_gpt *center,
 	const double cos_a, const double sin_a)
 {
-	double			dxyz[3];
-	static t_ray_info		ray = {0.0, 0.0, 0.0};
+	double				dxyz[3];
+	static t_ray_info	ray = {0.0, 0.0, 0.0};
 
 	if (!sin_a)
 		return (ray);
 	if (sin_a > 0.0)
-	{
 		dxyz[1] = (double)center->size;
-		ray.y = ((int)center->player.y / center->size + 1) * (double)center->size;
-	}
+	if (sin_a > 0.0)
+		ray.y = ((int)center->player.y / center->size + 1) * center->size;
 	else if (sin_a < 0.0)
 	{
 		dxyz[1] = -(double)center->size;
-		ray.y = ((int)center->player.y / center->size) * (double)center->size - 0.0001;
+		ray.y = ((int)center->player.y / center->size) * center->size - 0.0001;
 	}
 	ray.dist = (double)(ray.y - (int)center->player.y) / sin_a;
 	ray.x = (int)center->player.x + ray.dist * cos_a;
@@ -60,20 +59,19 @@ static t_ray_info	ft_horizontal_collisions(t_gpt *center,
 static t_ray_info	ft_vertical_collisions(t_gpt *center,
 	const double cos_a, const double sin_a)
 {
-	double			dxyz[3];
-	static t_ray_info		ray = {0.0, 0.0, 0.0};
+	double				dxyz[3];
+	static t_ray_info	ray = {0.0, 0.0, 0.0};
 
 	if (!cos_a)
 		return (ray);
 	if (cos_a > 0.0)
-	{
 		dxyz[0] = (double)center->size;
-		ray.x = ((int)center->player.x / center->size + 1) * (double)center->size;
-	}
+	if (cos_a > 0.0)
+		ray.x = ((int)center->player.x / center->size + 1) * center->size;
 	else if (cos_a < 0.0)
 	{
 		dxyz[0] = -(double)center->size;
-		ray.x = ((int)center->player.x / center->size) * (double)center->size - 0.0001;
+		ray.x = ((int)center->player.x / center->size) * center->size - 0.0001;
 	}
 	ray.dist = (double)(ray.x - (int)center->player.x) / cos_a;
 	ray.y = (int)center->player.y + ray.dist * sin_a;
@@ -93,7 +91,7 @@ static t_ray_info	ft_which_collisions(t_gpt *center, double cos_angle,
 {
 	t_ray_info	ray;
 	t_ray_info	ray_verti;
-	
+
 	ray = ft_horizontal_collisions(center, cos_angle, sin_angle);
 	ray_verti = ft_vertical_collisions(center, cos_angle, sin_angle);
 	center->fov[i].dir = BOTTOM;

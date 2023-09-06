@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:32:10 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/04 17:59:36 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:44:28 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	ft_left_right(double *x, double *y, t_gpt *center)
 		*y += cos(center->player.angle) * 1.25;
 	}
 	else if (mlx_is_key_down(center->mlx, MLX_KEY_A) && !mlx_is_key_down(\
-			center->mlx, MLX_KEY_W) && !mlx_is_key_down(center->mlx, MLX_KEY_S)\
+			center->mlx, MLX_KEY_W) && !mlx_is_key_down(center->mlx, MLX_KEY_S)
 		&& !mlx_is_key_down(center->mlx, MLX_KEY_D))
 	{
 		*x += sin(center->player.angle) * 1.5;

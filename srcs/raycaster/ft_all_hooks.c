@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:53 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/05 17:12:11 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:50:44 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_print_fps(t_gpt *center)
 {
 	char			title[10];
 	int				tmp;
-	
+
 	title[0] = 'f';
 	title[1] = 'p';
 	title[2] = 's';
@@ -100,6 +100,7 @@ void	ft_key_hook(void *arg)
 	if (mlx_is_key_down(center->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(center->mlx);
 	ft_basic_mouvements(&x, &y, center);
+	ft_mouse_mouvement(center);
 	if (!ft_is_collision_for_player(center, x, y))
 	{
 		center->player.x = roundf(x);
@@ -109,6 +110,6 @@ void	ft_key_hook(void *arg)
 	ft_fov(center, -1);
 	ft_clear_image(center);
 	ft_3d_making(center);
-	ft_set_color_minimap(center);
+	ft_set_color_minimap(center, 0, 0);
 	ft_print_fps(center);
 }

@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:48:27 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/04 17:09:52 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:39:59 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_player
 	double	x;
 	double	y;
 
-} t_player;
+}	t_player;
 
 typedef struct s_3d
 {
@@ -61,10 +61,10 @@ typedef struct s_3d
 
 typedef struct s_textures
 {
-	mlx_texture_t *north;
-	mlx_texture_t *south;
-	mlx_texture_t *east;
-	mlx_texture_t *west;
+	mlx_texture_t	*north;
+	mlx_texture_t	*south;
+	mlx_texture_t	*east;
+	mlx_texture_t	*west;
 }	t_textures;
 
 typedef struct s_gpt
