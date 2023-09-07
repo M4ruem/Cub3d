@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 19:04:13 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/14 14:09:33 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:12:53 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,15 @@ int	ft_is_from_map(char **map, int i, int j)
 	if (((map[i][j] == '1' || map[i][j] == '0')
 		&& (map[i][ft_first_c(map[i])] != 'F'\
 		&& map[i][ft_first_c(map[i])] != 'C')) || (map[i][j] == 'N'\
-		&& map[i][j + 1] != 'O') || (map[i][j] == 'S'\
-		&& map[i][j + 1] != 'O') || (map[i][j] == 'W'\
-		&& map[i][j + 1] != 'E') || (map[i][j] == 'E'\
-		&& map[i][j + 1] != 'A' && map[i][j - 1] != 'W'))
+		&& map[i][j + 1] != 'O'
+		&& (!ft_isalpha(map[i][j + 1]) && (j > 0 && !ft_isalpha(map[i][j - 1]))))
+		|| (map[i][j] == 'S' && map[i][j + 1] != 'O'
+		&& (!ft_isalpha(map[i][j + 1]) && (j > 0 && !ft_isalpha(map[i][j - 1]))))
+		|| (map[i][j] == 'W' && map[i][j + 1] != 'E'
+		&& (!ft_isalpha(map[i][j + 1]) && (j > 0 && !ft_isalpha(map[i][j - 1]))))
+		|| (map[i][j] == 'E'\
+		&& map[i][j + 1] != 'A' && map[i][j - 1] != 'W'
+		&& (!ft_isalpha(map[i][j + 1]) && (j > 0 && !ft_isalpha(map[i][j - 1])))))
 		return (1);
 	return (0);
 }
