@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:35:14 by cormiere          #+#    #+#             */
-/*   Updated: 2023/09/07 15:25:39 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:46:25 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_check_args(char **av)
 	while (av[1][i] != '.' && av[1][i])
 		i++;
 	if ((av[1][i] != '.') || (av[1][i] == '.' && !av[1][i + 1]) \
-		|| ((ft_strcmp(&av[1][i], ".cub") && ft_strlen(av[1]) > 4)) \
+		|| ((ft_strcmp(&av[1][i], ".cub") && ft_strlen(av[1]) >= 4)) \
 		|| (!ft_strcmp(&av[1][i], ".cub") && ft_strlen(av[1]) <= 4))
 	{
 		ft_printf_fd(2, "Error\n%s\n", "WRONG FORMAT");
