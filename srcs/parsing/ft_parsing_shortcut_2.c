@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 20:50:21 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/14 14:06:46 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/09 18:10:08 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**ft_arraydup(char **map, int index, int i)
 	j = -1;
 	new_map = ft_calloc(sizeof(char *), len + 1);
 	if (!new_map)
-		ft_free_multiple_array(NULL, map, NULL);
+		ft_free_multiple_array(NULL, map);
 	if (!new_map)
 		return (NULL);
 	while (map[++i] && i <= index)
@@ -29,7 +29,7 @@ char	**ft_arraydup(char **map, int index, int i)
 		new_map[++j] = ft_strdup(map[i]);
 		if (!new_map[j])
 		{
-			ft_free_multiple_array(new_map, map, NULL);
+			ft_free_multiple_array(new_map, map);
 			return (NULL);
 		}
 	}
@@ -46,7 +46,7 @@ char	**ft_rarraydup(char **map, int index, int i)
 	j = -1;
 	new_map = ft_calloc(sizeof(char *), len - index + 1);
 	if (!new_map)
-		ft_free_multiple_array(NULL, map, NULL);
+		ft_free_multiple_array(NULL, map);
 	if (!new_map)
 		return (NULL);
 	while (map[++i])
@@ -54,7 +54,7 @@ char	**ft_rarraydup(char **map, int index, int i)
 		new_map[++j] = ft_strdup(map[i]);
 		if (!new_map[j])
 		{
-			ft_free_multiple_array(new_map, map, NULL);
+			ft_free_multiple_array(new_map, map);
 			return (NULL);
 		}
 	}

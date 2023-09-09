@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 14:11:20 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/06 19:04:21 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/09 19:09:17 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,16 @@ static int	ft_has_good_extension(t_akinator *data, int i)
 
 	while (data->texture_paths[++i])
 	{
-		j = 0;
 		tmp_tab = ft_split(data->texture_paths[i], '/');
 		if (!tmp_tab)
 			return (0);
 		tmp = ft_strdup(tmp_tab[ft_array_len(tmp_tab) - 1]);
-		ft_free_multiple_array(tmp_tab, NULL, NULL);
-		while (tmp[j] && tmp[j] != '.')
-			j++;
-		if ((ft_strcmp(&tmp[j], ".png") && ft_strlen(tmp) > 4)
+		ft_free_multiple_array(tmp_tab, NULL);
+		j = ft_strlen(tmp);
+		while (j > 0 && tmp[j] != '.')
+			j--;
+		if ((tmp[j] != '.') || (tmp[j] == '.' && !tmp[j + 1]) \
+			|| (ft_strcmp(&tmp[j], ".png") && ft_strlen(tmp) >= 4)
 			|| (!ft_strcmp(&tmp[j], ".png") && ft_strlen(tmp) <= 4))
 		{
 			free(tmp);

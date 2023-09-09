@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 17:48:10 by cormiere          #+#    #+#             */
-/*   Updated: 2023/09/06 18:52:50 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/09 18:30:54 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	ft_free_data(t_akinator *data)
 {
-	ft_free_sp_array(data->texture_paths);
-	ft_free_multiple_array(data->map, NULL, NULL);
+	ft_free_texture_paths(data->texture_paths);
+	ft_free_multiple_array(data->map, NULL);
 	free(data);
+	data = NULL;
 	return ;
 }
 

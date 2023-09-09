@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 13:53:39 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/06 17:43:47 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/07 16:59:18 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,14 @@ int	ft_adapt_color_ceiling(t_gpt *center)
 		(center->data->ceiling_rgb[1] * 65536) \
 		+ (center->data->ceiling_rgb[2] * 256) + 255;
 	return (color);
+}
+
+void	ft_set_draw_around_color(t_gpt *center, char c, int x, int y)
+{
+	if (c == '1')
+		draw_pixel_around(center, x + center->size, \
+		y + center->size, 0xFFFFFFFF);
+	else
+		draw_pixel_around(center, x + center->size, \
+		y + center->size, 0x000000FF);
 }

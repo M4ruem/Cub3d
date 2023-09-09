@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:41:11 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/14 14:05:18 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/09 18:37:04 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ static int	ft_ajust_map(char **map, int index)
 		map[++j] = ft_strdup_fill((char *)tmp[i], ft_max_line((char **)tmp));
 		if (!map[j])
 		{
-			ft_free_multiple_array(map, (char **)tmp, NULL);
+			ft_free_multiple_array(map, (char **)tmp);
 			return (0);
 		}
 	}
-	ft_free_multiple_array((char **)tmp, NULL, NULL);
+	ft_free_multiple_array((char **)tmp, NULL);
 	if (ft_is_empty_file(map)
 		|| ft_check_multiple_map(map, ft_array_len(map), -1, 0))
 	{
@@ -83,7 +83,7 @@ static char	**ft_split_map_attrib(char **map)
 	char		**attributes;
 
 	if (!index)
-		ft_free_multiple_array(map, NULL, NULL);
+		ft_free_multiple_array(map, NULL);
 	if (!index)
 		return (NULL);
 	attributes = ft_arraydup(map, index, -1);
@@ -91,7 +91,7 @@ static char	**ft_split_map_attrib(char **map)
 		return (NULL);
 	error = ft_ajust_map(map, index);
 	if (!error)
-		ft_free_multiple_array(attributes, NULL, NULL);
+		ft_free_multiple_array(attributes, NULL);
 	if (!error)
 		return (NULL);
 	return (attributes);
@@ -114,11 +114,14 @@ t_akinator	*ft_launch_parsing(char **av, int error)
 		return (NULL);
 	error = ft_map_analysis(map);
 	if (!error)
-		ft_free_multiple_array(map, attributes, NULL);
+		ft_free_multiple_array(map, attributes);
 	if (!error)
 		return (NULL);
 	data = ft_set_up_akinator(attributes, map, -1);
 	if (!data)
+	{
+		ft_free_multiple_array(attributes, NULL);
 		return (NULL);
+	}
 	return (data);
 }

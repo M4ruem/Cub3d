@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 13:31:54 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/14 14:19:06 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/09 18:59:06 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ static int	ft_attributes_analysis(char **attributes, t_akinator *data,
 	}
 	if (ft_is_attrib_missing(data))
 		return (0);
-	ft_free_multiple_array(attributes, NULL, NULL);
+	ft_free_multiple_array(attributes, NULL);
 	return (1);
 }
 
@@ -127,7 +127,7 @@ t_akinator	*ft_set_up_akinator(char **attributes, char **map, int i)
 
 	data = ft_init_struct(ft_array_len(map));
 	if (!data)
-		ft_free_multiple_array(map, attributes, NULL);
+		ft_free_multiple_array(map, attributes);
 	if (!data)
 		return (NULL);
 	while (map[++i])
@@ -135,15 +135,14 @@ t_akinator	*ft_set_up_akinator(char **attributes, char **map, int i)
 		data->map[i] = ft_strdup(map[i]);
 		if (!data->map[i])
 		{
-			ft_free_multiple_array(attributes, map, NULL);
+			ft_free_multiple_array(attributes, map);
 			ft_free_data(data);
 			return (NULL);
 		}
 	}
-	ft_free_multiple_array(map, NULL, NULL);
+	ft_free_multiple_array(map, NULL);
 	if (!ft_attributes_analysis(attributes, data, -1, -1))
 	{
-		ft_free_multiple_array(attributes, NULL, NULL);
 		ft_free_data(data);
 		return (NULL);
 	}

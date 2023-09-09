@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:30:06 by cormiere          #+#    #+#             */
-/*   Updated: 2023/09/06 17:55:38 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/07 16:57:02 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_set_color_player(t_gpt *center)
 	ft_dda(center, tmp, end, 0xFF00FFFF);
 }
 
-static void	draw_pixel_around(t_gpt *center, int x, int y, int color)
+void	draw_pixel_around(t_gpt *center, int x, int y, int color)
 {
 	const int	max_xy[2] = {x + center->size, y + center->size};
 
@@ -80,7 +80,8 @@ static void	draw_pixel_around(t_gpt *center, int x, int y, int color)
 		y = max_xy[1] - (center->size + 1);
 		while (++y < max_xy[1])
 		{
-			if (y == max_xy[1] - 1 || x == max_xy[0] - center->size)
+			if (x == max_xy[0] - center->size \
+				|| (y == max_xy[1] - center->size))
 			{
 				if (ft_still_inside(center, x, y))
 					mlx_put_pixel(center->minimap, (double)x + 100.0
@@ -100,25 +101,24 @@ static void	draw_pixel_around(t_gpt *center, int x, int y, int color)
 
 void	ft_set_color_minimap(t_gpt *center, int i, int j)
 {
-	int		x;
-	int		y;
+	int			x;
+	int			y;
+	const int	tmp_x = (int)((center->player.x / center->size));
+	const int	tmp_y = (int)((center->player.y / center->size));
 
-	i = -1;
-	y = 0;
-	while (center->data->map[++i])
+	i = tmp_y - 5;
+	if (i < -1)
+		i = -1;
+	y = i * center->size;
+	while (center->data->map[++i] && i < tmp_y + 5)
 	{
-		j = -1;
-		x = 0;
-		while (center->data->map[i][++j])
+		j = tmp_x - 5;
+		if (j < -1)
+			j = -1;
+		x = j * center->size;
+		while (center->data->map[i][++j] && j < tmp_x + 5)
 		{
-			if (center->data->map[i][j] == '1')
-				draw_pixel_around(center, x, y, 0xFFFFFFFF);
-			else if (center->data->map[i][j] == '0'
-				|| center->data->map[i][j] == 'N' \
-				|| center->data->map[i][j] == 'E' \
-				|| center->data->map[i][j] == 'S'\
-				|| center->data->map[i][j] == 'W')
-				draw_pixel_around(center, x, y, 0x000000FF);
+			ft_set_draw_around_color(center, center->data->map[i][j], x, y);
 			x += center->size;
 		}
 		y += center->size;

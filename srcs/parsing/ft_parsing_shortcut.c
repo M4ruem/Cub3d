@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:04:52 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/14 14:07:30 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/09 18:10:47 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,30 @@ int	ft_which_case(char *pair)
 		return (-1);
 }
 
+static int	ft_alone_nb(char *str, int i)
+{
+	int	tmp_i;
+
+	tmp_i = i;
+	if (ft_isdigit(str[i]))
+	{
+		while (ft_isdigit(str[tmp_i]) && tmp_i > 0)
+			tmp_i--;
+		while (ft_isdigit(str[i]) && str[i])
+			i++;
+		if (str[tmp_i] != ',' && str[i] != ',')
+			return (1);
+	}
+	return (0);
+}
+
 int	ft_is_color_ok(char *tmp, int i, int nb_commas, char	**tmp_tab)
 {
 	while (tmp[++i])
 	{
 		if ((tmp[i] == ',' && (i == 0 || !ft_isdigit(tmp[i - 1]) \
 			|| !ft_isdigit(tmp[i + 1]) || nb_commas == 2)) \
-			|| ft_isalpha(tmp[i]))
+			|| ft_isalpha(tmp[i]) || ft_alone_nb(tmp, i))
 		{
 			free(tmp);
 			return (0);
@@ -47,11 +64,11 @@ int	ft_is_color_ok(char *tmp, int i, int nb_commas, char	**tmp_tab)
 		if (ft_atoi(tmp_tab[i]) > 255 || ft_atoi(tmp_tab[i]) < 0)
 		{
 			free(tmp);
-			ft_free_multiple_array(tmp_tab, NULL, NULL);
+			ft_free_multiple_array(tmp_tab, NULL);
 			return (0);
 		}
 	}
-	ft_free_multiple_array(tmp_tab, NULL, NULL);
+	ft_free_multiple_array(tmp_tab, NULL);
 	return (1);
 }
 
@@ -66,7 +83,7 @@ int	ft_convert_color(char *tmp, t_akinator *data, char c, char **tmp_tab)
 		return (0);
 	if (ft_array_len(tmp_tab) < 3)
 	{
-		ft_free_multiple_array(tmp_tab, NULL, NULL);
+		ft_free_multiple_array(tmp_tab, NULL);
 		return (0);
 	}
 	if (c == 'F')
@@ -80,7 +97,7 @@ int	ft_convert_color(char *tmp, t_akinator *data, char c, char **tmp_tab)
 		while (++i < 3)
 			data->ceiling_rgb[i] = ft_atoi(tmp_tab[i]);
 	}
-	ft_free_multiple_array(tmp_tab, NULL, NULL);
+	ft_free_multiple_array(tmp_tab, NULL);
 	return (1);
 }
 

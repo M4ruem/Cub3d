@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 14:11:25 by cormiere          #+#    #+#             */
-/*   Updated: 2023/08/14 14:11:18 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/09 18:09:35 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	**ft_add_line(char **old_cont, char *line, int i, int nb_line)
 	new_cont = ft_calloc(sizeof(char *), nb_line + 2);
 	if (!new_cont)
 	{
-		ft_free_multiple_array(old_cont, NULL, NULL);
+		ft_free_multiple_array(old_cont, NULL);
 		return (NULL);
 	}
 	while (old_cont[++i])
@@ -39,17 +39,17 @@ static char	**ft_add_line(char **old_cont, char *line, int i, int nb_line)
 		new_cont[i] = ft_strdup(old_cont[i]);
 		if (!new_cont[i])
 		{
-			ft_free_multiple_array(new_cont, old_cont, NULL);
+			ft_free_multiple_array(new_cont, old_cont);
 			return (NULL);
 		}
 	}
 	new_cont[i] = ft_strdup(line);
 	if (!new_cont[i])
 	{
-		ft_free_multiple_array(new_cont, old_cont, NULL);
+		ft_free_multiple_array(new_cont, old_cont);
 		return (NULL);
 	}
-	ft_free_multiple_array(old_cont, NULL, NULL);
+	ft_free_multiple_array(old_cont, NULL);
 	return (new_cont);
 }
 

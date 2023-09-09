@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 19:04:13 by cormiere          #+#    #+#             */
-/*   Updated: 2023/09/07 15:37:38 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/09 18:55:49 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static void	ft_update_map(char **map, int end_line, int end_col)
 
 	i = 0;
 	free(map[end_line]);
+	ft_free_sp_array(&map[end_line + 1]);
 	map[end_line] = NULL;
 	while (map[i])
 	{
