@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 14:11:20 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/10 16:26:27 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/10 18:25:23 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static int	ft_has_good_extension(t_akinator *data, int i, int j, char *tmp)
 		if ((tmp[j] != '.') || (tmp[j] == '.' && !tmp[j + 1]) \
 			|| (ft_strcmp(&tmp[j], ".png") && ft_strlen(tmp) >= 4)
 			|| (!ft_strcmp(&tmp[j], ".png") && ft_strlen(tmp) <= 4)
-			|| (!ft_strcmp(&tmp[j], ".png") && ft_strlen(tmp) >= 6 \
-			&& (tmp[j - 1] == '/' && tmp[j - 2] == '.')))
+			|| (!ft_strcmp(&tmp[j], ".png") && ft_strlen(tmp) == 5 \
+			&& tmp[j - 1] == '/'))
 		{
 			free(tmp);
 			ft_printf_fd(2, "Error\nINVALID EXTENSIONS\n");

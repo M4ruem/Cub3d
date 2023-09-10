@@ -6,11 +6,11 @@
 #    By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/06 18:07:35 by jdelsol-          #+#    #+#              #
-#    Updated: 2023/09/06 19:57:19 by jdelsol-         ###   ########.fr        #
+#    Updated: 2023/09/10 18:26:03 by jdelsol-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= cub3d
+NAME	:= cub3D
 CFLAGS	:= -Wextra -Werror -Wall -g3
 LIBMLX	:= ./MLX42
 
