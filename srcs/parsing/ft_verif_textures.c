@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 14:11:20 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/09 19:09:17 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/10 16:26:27 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,15 @@ static int	ft_image_integrity(t_akinator *data)
 			ft_printf_fd(2, "Error\nINVALID TEXTURE\n");
 			return (0);
 		}
-		free(tmp);
+		mlx_delete_texture(tmp);
 		i++;
 	}
 	return (1);
 }
 
-static int	ft_has_good_extension(t_akinator *data, int i)
+static int	ft_has_good_extension(t_akinator *data, int i, int j, char *tmp)
 {
-	int		j;
 	char	**tmp_tab;
-	char	*tmp;
 
 	while (data->texture_paths[++i])
 	{
@@ -51,7 +49,9 @@ static int	ft_has_good_extension(t_akinator *data, int i)
 			j--;
 		if ((tmp[j] != '.') || (tmp[j] == '.' && !tmp[j + 1]) \
 			|| (ft_strcmp(&tmp[j], ".png") && ft_strlen(tmp) >= 4)
-			|| (!ft_strcmp(&tmp[j], ".png") && ft_strlen(tmp) <= 4))
+			|| (!ft_strcmp(&tmp[j], ".png") && ft_strlen(tmp) <= 4)
+			|| (!ft_strcmp(&tmp[j], ".png") && ft_strlen(tmp) >= 6 \
+			&& (tmp[j - 1] == '/' && tmp[j - 2] == '.')))
 		{
 			free(tmp);
 			ft_printf_fd(2, "Error\nINVALID EXTENSIONS\n");
@@ -78,7 +78,7 @@ int	ft_check_if_textures_works(t_akinator *data)
 			return (0);
 		}
 	}
-	if (!ft_has_good_extension(data, -1))
+	if (!ft_has_good_extension(data, -1, 0, NULL))
 	{
 		ft_free_data(data);
 		return (0);

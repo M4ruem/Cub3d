@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:53 by jdelsol-          #+#    #+#             */
-/*   Updated: 2023/09/06 17:50:44 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/10 16:12:49 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static void	ft_print_fps(t_gpt *center)
 {
-	char			title[10];
+	char			title[9];
 	int				tmp;
 
 	title[0] = 'f';
@@ -27,6 +27,7 @@ static void	ft_print_fps(t_gpt *center)
 	tmp = roundf(1.0 / center->mlx->delta_time);
 	title[6] = (tmp / 10) + '0';
 	title[7] = (tmp % 10) + '0';
+	title[8] = '\0';
 	mlx_set_window_title(center->mlx, title);
 }
 

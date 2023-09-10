@@ -6,7 +6,7 @@
 /*   By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 17:48:10 by cormiere          #+#    #+#             */
-/*   Updated: 2023/09/09 18:30:54 by jdelsol-         ###   ########.fr       */
+/*   Updated: 2023/09/10 16:11:06 by jdelsol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	ft_free_data(t_akinator *data)
 
 void	ft_free_center(t_gpt *center)
 {
-	free(center->textures_tab.east);
-	free(center->textures_tab.west);
-	free(center->textures_tab.north);
-	free(center->textures_tab.south);
+	mlx_delete_texture(center->textures_tab.east);
+	mlx_delete_texture(center->textures_tab.west);
+	mlx_delete_texture(center->textures_tab.north);
+	mlx_delete_texture(center->textures_tab.south);
 	ft_free_data(center->data);
 	free(center);
 }
