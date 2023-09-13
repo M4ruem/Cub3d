@@ -6,12 +6,12 @@
 #    By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/06 18:07:35 by jdelsol-          #+#    #+#              #
-#    Updated: 2023/09/13 18:37:05 by jdelsol-         ###   ########.fr        #
+#    Updated: 2023/09/13 18:58:11 by jdelsol-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= cub3D
-NAME_BONUS := cub3D
+BONUS := cub3D
 CFLAGS	:= -Wextra -Werror -Wall -g3
 LIBMLX	:= ./MLX42
 
@@ -99,7 +99,7 @@ $(NAME): $(OBJS)
 	@clang $(OBJS) $(LIBFT_NAME) $(LIBS) $(HEADERS) -o $(NAME)
 
 $(NAME_BONUS): $(OBJS_BONUS)
-	@clang $(OBJS_BONUS) $(LIBFT_NAME) $(LIBS) $(HEADERS) -o $(NAME_BONUS)
+	@clang $(OBJS_BONUS) $(LIBFT_NAME) $(LIBS) $(HEADERS) -o $(BONUS)
 
 bonus:	libmlx $(LIBFT_NAME) $(NAME_BONUS)
 
