@@ -3,22 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jdelsol- <jdelsol-@student.42.fr>          +#+  +:+       +#+         #
+#    By: cormiere <cormiere@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/06 18:07:35 by jdelsol-          #+#    #+#              #
-#    Updated: 2023/09/13 18:58:11 by jdelsol-         ###   ########.fr        #
+#    Updated: 2023/09/13 19:21:40 by cormiere         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= cub3D
-BONUS := cub3D
-CFLAGS	:= -Wextra -Werror -Wall -g3
-LIBMLX	:= ./MLX42
+NAME	= cub3D
+BONUS = cub3D_bonus
+CFLAGS	= -Wextra -Werror -Wall -g3
+LIBMLX	= ./MLX42
 
-HEADERS	:= -I ./include -I $(LIBMLX)/include
-LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+HEADERS	= -I ./include -I $(LIBMLX)/include
+LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
-SRCS	:= srcs/All_free/ft_free_arrays.c \
+SRCS	= srcs/All_free/ft_free_arrays.c \
 		srcs/All_free/ft_free_structs.c \
 		srcs/main.c \
 		srcs/parsing/ft_attributes_securities.c \
@@ -46,9 +46,9 @@ SRCS	:= srcs/All_free/ft_free_arrays.c \
 		srcs/raycaster/ft_launch_raycasting.c \
 		srcs/raycaster/ft_raycasting_shorcuts.c \
 		srcs/raycaster/ft_textures_gestion.c \
-		srcs/raycaster/mouse_mouvement.c \
+		srcs/raycaster/mouse_mouvement.c
 
-SRCS_BONUS :=	srcs_bonus/All_free_bonus/ft_free_arrays_bonus.c \
+SRCS_BONUS =	srcs_bonus/All_free_bonus/ft_free_arrays_bonus.c \
 		srcs_bonus/All_free_bonus/ft_free_structs_bonus.c \
 		srcs_bonus/main_bonus.c \
 		srcs_bonus/parsing_bonus/ft_attributes_securities_bonus.c \
@@ -76,15 +76,17 @@ SRCS_BONUS :=	srcs_bonus/All_free_bonus/ft_free_arrays_bonus.c \
 		srcs_bonus/raycaster_bonus/ft_launch_raycasting_bonus.c \
 		srcs_bonus/raycaster_bonus/ft_raycasting_shorcuts_bonus.c \
 		srcs_bonus/raycaster_bonus/ft_textures_gestion_bonus.c \
-		srcs_bonus/raycaster_bonus/mouse_mouvement_bonus.c \
+		srcs_bonus/raycaster_bonus/mouse_mouvement_bonus.c
 
-OBJS	:= ${SRCS:.c=.o}
-OBJS_BONUS	:= ${SRCS_BONUS:.c=.o}
+OBJS	= ${SRCS:.c=.o}
+OBJS_BONUS	= ${SRCS_BONUS:.c=.o}
 
 LIBFT_PATH = libft/ --no-print-directory
 LIBFT_NAME = libft/libft.a
 
 all: libmlx $(LIBFT_NAME) $(NAME)
+
+bonus:	libmlx $(LIBFT_NAME) $(BONUS)
 
 libmlx:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
@@ -98,10 +100,8 @@ $(LIBFT_NAME):
 $(NAME): $(OBJS)
 	@clang $(OBJS) $(LIBFT_NAME) $(LIBS) $(HEADERS) -o $(NAME)
 
-$(NAME_BONUS): $(OBJS_BONUS)
+$(BONUS): $(OBJS_BONUS)
 	@clang $(OBJS_BONUS) $(LIBFT_NAME) $(LIBS) $(HEADERS) -o $(BONUS)
-
-bonus:	libmlx $(LIBFT_NAME) $(NAME_BONUS)
 
 clean:
 	make clean -C ./libft
@@ -110,8 +110,8 @@ clean:
 
 fclean: clean
 	make fclean -C $(LIBFT_PATH)
-	@rm -rf $(NAME) $(NAME_BONUS)
+	@rm -rf $(NAME) $(BONUS)
 
 re: clean all
 
-.PHONY: all, clean, fclean, re, libmlx
+.PHONY: all, clean, fclean, re, libmlx, bonus
